@@ -111,29 +111,27 @@ function showResult() {
     category = "📸 Narcisista Compulsivo"
 
     penitence = `
-Durante 24 horas deberás:
-
-- pasar un día entero sin usar la cámara frontal
-- mirar un espejo solo 3 veces
+Durante 24 horas deberás: <br>
+- pasar un día entero sin usar la cámara frontal <br>
+- mirar un espejo solo 3 veces <br>
 - y dar un like sincero a la foto de otra persona sin compararte
 `
   } else if (audiosLargos) {
     category = "🎤 Criminal Sonoro de WhatsApp"
 
     penitence = `
-Penitencia obligatoria:
-
-escuchar <strong>"Despacito"</strong> ralentizado y en bucle  
-hasta que comprendas el sufrimiento que causas  
-cuando envías audios interminables.
+Penitencia obligatoria: <br> 
+escuchar <strong>"Despacito"</strong> ralentizado y en bucle  <br>
+hasta que comprendas el sufrimiento que causas  <br>
+cuando envías audios interminables. <br>
 `
   } else if (tostadaInstagram) {
     category = "🥑 Ansiedad Crónica por los Likes"
 
     penitence = `
-Deberás publicar una foto completamente aburrida  
-(un vaso de agua o un calcetín)  
-y resistir la tentación de mirar cuántos likes tiene durante 6 horas.
+Deberás publicar una foto completamente aburrida  <br>
+(un vaso de agua o un calcetín)  <br>
+y resistir la tentación de mirar cuántos likes tiene durante 6 horas. <br>
 `
   } else {
     if (score <= 30) {
@@ -141,27 +139,29 @@ y resistir la tentación de mirar cuántos likes tiene durante 6 horas.
       penitence = "Ninguna penitencia. Pero vigila… nadie es perfecto."
     } else if (score <= 60) {
       category = "😈 Pecador Leve"
-      penitence = `Durante las próximas 24 horas deberás: 
-      - decir “gracias” de forma exageradamente amable a tres desconocidos
-      - dejar pasar a alguien en una cola 
+      penitence = `Durante las próximas 24 horas deberás: <br>
+      - decir “gracias” de forma exageradamente amable a tres desconocidos <br>
+      - dejar pasar a alguien en una cola <br>
       - y resistir la tentación de enviar un audio de WhatsApp.`
     } else if (score <= 100) {
       category = "👿 Villano Cotidiano"
-      penitence = `Has sido condenado a: 
-      - escuchar un audio de WhatsApp de 4 minutos sin acelerar
-      - ver un vídeo vertical grabado en horizontal 
+      penitence = `Has sido condenado a: <br>
+      - escuchar un audio de WhatsApp de 4 minutos sin acelerar <br>
+      - ver un vídeo vertical grabado en horizontal <br>
       - y leer los comentarios de una noticia de internet sin enfadarte.`
     } else if (score <= 150) {
       category = "🧨 Amenaza Social"
-      penitence = `El tribunal considera que tu comportamiento requiere medidas correctivas. Deberás: 
-      - pasar 12 horas sin mirar el móvil
-      - decir “perdón” aunque no tengas la culpa 
+      penitence = `El tribunal considera que tu comportamiento requiere medidas correctivas. <br>
+      Deberás: <br>
+      - pasar 12 horas sin mirar el móvil <br>
+      - decir “perdón” aunque no tengas la culpa <br>
       - y ver el final de una serie sin saltarte los créditos.`
     } else {
       category = "💀 Supervillano Absoluto"
-      penitence = `Tu caso ha sido clasificado como grave para la convivencia humana. Penitencia obligatoria:
-      - escuchar un audio de WhatsApp grabado mientras alguien camina por la calle con viento
-      - intentar cancelar una suscripción online que no se puede cancelar
+      penitence = `Tu caso ha sido clasificado como grave para la convivencia humana. <br>
+      Penitencia obligatoria: <br>
+      - escuchar un audio de WhatsApp grabado mientras alguien camina por la calle con viento <br>
+      - intentar cancelar una suscripción online que no se puede cancelar <br>
       - y esperar en un servicio de atención telefónica escuchando música de ascensor.`
     }
   }
