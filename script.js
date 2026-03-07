@@ -141,16 +141,28 @@ y resistir la tentación de mirar cuántos likes tiene durante 6 horas.
       penitence = "Ninguna penitencia. Pero vigila… nadie es perfecto."
     } else if (score <= 60) {
       category = "😈 Pecador Leve"
-      penitence = "Devuelve 1 carrito de supermercado abandonado."
+      penitence = `Durante las próximas 24 horas deberás: 
+      - decir “gracias” de forma exageradamente amable a tres desconocidos
+      - dejar pasar a alguien en una cola 
+      - y resistir la tentación de enviar un audio de WhatsApp.`
     } else if (score <= 100) {
       category = "👿 Villano Cotidiano"
-      penitence = "Escucha un audio de WhatsApp de 3 minutos sin acelerar."
+      penitence = `Has sido condenado a: 
+      - escuchar un audio de WhatsApp de 4 minutos sin acelerar
+      - ver un vídeo vertical grabado en horizontal 
+      - y leer los comentarios de una noticia de internet sin enfadarte.`
     } else if (score <= 150) {
       category = "🧨 Amenaza Social"
-      penitence = "Devuelve 10 carritos del supermercado y deja pasar a alguien en el tráfico."
+      penitence = `El tribunal considera que tu comportamiento requiere medidas correctivas. Deberás: 
+      - pasar 12 horas sin mirar el móvil
+      - decir “perdón” aunque no tengas la culpa 
+      - y ver el final de una serie sin saltarte los créditos.`
     } else {
       category = "💀 Supervillano Absoluto"
-      penitence = "Escucha reguetón durante 30 minutos y pide perdón al microondas de la oficina."
+      penitence = `Tu caso ha sido clasificado como grave para la convivencia humana. Penitencia obligatoria:
+      - escuchar un audio de WhatsApp grabado mientras alguien camina por la calle con viento
+      - intentar cancelar una suscripción online que no se puede cancelar
+      - y esperar en un servicio de atención telefónica escuchando música de ascensor.`
     }
   }
 
