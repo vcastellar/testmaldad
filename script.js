@@ -22,6 +22,7 @@ const questions = [
 ]
 
 let score = 0
+const answeredPoints = Array(questions.length).fill(null)
 
 let selfieMorritos = false
 let audiosLargos = false
@@ -37,9 +38,9 @@ div.className = "question"
 div.innerHTML = `
 <p>${i + 1}. ${q}</p>
 <div class="answers">
-<button onclick="answer(${i},10)">Sí</button>
-<button onclick="answer(${i},5)">A veces</button>
-<button onclick="answer(${i},0)">No</button>
+<button onclick="answer(${i},10,this)">Sí</button>
+<button onclick="answer(${i},5,this)">A veces</button>
+<button onclick="answer(${i},0,this)">No</button>
 </div>
 `
 
@@ -47,9 +48,14 @@ container.appendChild(div)
 
 })
 
-function answer(id, points) {
+function answer(id, points, buttonEl) {
+
+if (answeredPoints[id] !== null) {
+score -= answeredPoints[id]
+}
 
 score += points
+answeredPoints[id] = points
 
 // PECADOS ESPECIALES (sobreescriben el resultado final, sin mostrar ventanas emergentes)
 if (id === 11 && points === 10) {
@@ -64,7 +70,12 @@ if (id === 18 && points === 10) {
 tostadaInstagram = true
 }
 
-document.getElementsByClassName("question")[id].style.opacity = "0.4"
+const questionEl = document.getElementsByClassName("question")[id]
+questionEl.classList.add("answered")
+
+const answerButtons = questionEl.querySelectorAll(".answers button")
+answerButtons.forEach((btn) => btn.classList.remove("selected"))
+buttonEl.classList.add("selected")
 
 }
 
