@@ -10,18 +10,22 @@ const questions = [
 "¿Ignoras los 'buenos días' en el ascensor?",
 "¿Has fingido no ver a alguien para no saludar?",
 "¿Te comes comida de otros diciendo 'solo una'?",
-"¿Aplaudes cuando aterriza el avión?",
+"¿Te haces selfies poniendo morritos?",
 "¿Has visto una serie sin esperar a alguien?",
 "¿Dejas el microondas del trabajo sucio?",
 "¿Has abierto snacks ruidosamente en el cine?",
 "¿Miras el móvil mientras alguien habla contigo?",
 "¿Usas contraseñas tipo 123456?",
-"¿Envías audios de WhatsApp de más de 2 minutos?",
-"¿Corriges la gramática de desconocidos en internet?",
+"¿Mandas audios de WhatsApp de más de 3 minutos?",
+"¿Publicas en Instagram tu tostada de aguacate?",
 "¿Has dicho 'luego lo miro' sin intención de hacerlo?"
 ]
 
 let score = 0
+
+let selfieMorritos=false
+let audiosLargos=false
+let tostadaInstagram=false
 
 const container = document.getElementById("questions")
 
@@ -44,8 +48,15 @@ container.appendChild(div)
 })
 
 function answer(id,points){
+
 score+=points
+
+if(id===11 && points===10) selfieMorritos=true
+if(id===17 && points===10) audiosLargos=true
+if(id===18 && points===10) tostadaInstagram=true
+
 document.getElementsByClassName("question")[id].style.opacity="0.4"
+
 }
 
 document.getElementById("startBtn").onclick=()=>{
@@ -55,6 +66,7 @@ document.getElementById("startBtn").style.display="none"
 
 document.getElementById("submitBtn").onclick=showResult
 
+
 function showResult(){
 
 document.getElementById("quiz").classList.add("hidden")
@@ -63,9 +75,51 @@ document.getElementById("resultSection").classList.remove("hidden")
 let category=""
 let penitence=""
 
+if(selfieMorritos){
+
+category="📸 Narcisista Compulsivo"
+
+penitence=`
+Durante 24 horas deberás:
+
+- pasar un día entero sin usar la cámara frontal
+- mirar un espejo solo 3 veces
+- y dar un like sincero a la foto de otra persona sin compararte
+`
+
+}
+
+else if(audiosLargos){
+
+category="🎤 Criminal Sonoro de WhatsApp"
+
+penitence=`
+Penitencia obligatoria:
+
+escuchar <strong>"Despacito"</strong> ralentizado y en bucle  
+hasta que comprendas el sufrimiento que causas  
+cuando envías audios interminables.
+`
+
+}
+
+else if(tostadaInstagram){
+
+category="🥑 Ansiedad Crónica por los Likes"
+
+penitence=`
+Deberás publicar una foto completamente aburrida  
+(un vaso de agua o un calcetín)  
+y resistir la tentación de mirar cuántos likes tiene durante 6 horas.
+`
+
+}
+
+else{
+
 if(score<=30){
 category="😇 Humano Decente"
-penitence="Debes vigilar. Nadie es perfecto."
+penitence="Ninguna penitencia. Pero vigila… nadie es perfecto."
 }
 
 else if(score<=60){
@@ -88,6 +142,8 @@ category="💀 Supervillano Absoluto"
 penitence="Escucha reguetón durante 30 minutos y pide perdón al microondas de la oficina."
 }
 
+}
+
 const resultText=`Tu puntuación de maldad es ${score}. <br><strong>${category}</strong>`
 
 document.getElementById("result").innerHTML=resultText
@@ -99,7 +155,7 @@ setupShare(resultText,penitence)
 
 function setupShare(result,penitence){
 
-const text=`Mi nivel de maldad es: ${result}. Penitencia: ${penitence}`
+const text=`Mi resultado en el Test Científico de Maldad Humana: ${result}. Penitencia: ${penitence}`
 
 document.getElementById("shareWhatsapp").onclick=()=>{
 window.open(`https://wa.me/?text=${encodeURIComponent(text)}`)
@@ -110,7 +166,7 @@ window.open(`https://www.facebook.com/sharer/sharer.php?u=&quote=${encodeURIComp
 }
 
 document.getElementById("shareInstagram").onclick=()=>{
-alert("Instagram no permite compartir directamente enlaces. Copia tu resultado y compártelo en una historia 😈")
+alert("Instagram no permite compartir enlaces directamente. Copia tu resultado y súbelo a una historia 😈")
 }
 
 }
