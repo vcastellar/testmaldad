@@ -51,9 +51,51 @@ function answer(id,points){
 
 score+=points
 
-if(id===11 && points===10) selfieMorritos=true
-if(id===17 && points===10) audiosLargos=true
-if(id===18 && points===10) tostadaInstagram=true
+// PECADOS ESPECIALES
+
+if(id===11 && points===10){
+showImmediateResult(
+"📸 Narcisista Compulsivo",
+`Tu actividad selfie ha superado niveles aceptables.
+
+Penitencia:
+
+• 24 horas sin usar la cámara frontal
+• máximo 3 miradas al espejo
+• dar 5 likes sinceros a fotos ajenas`
+)
+return
+}
+
+if(id===17 && points===10){
+showImmediateResult(
+"🎤 Criminal Sonoro de WhatsApp",
+`Has sido condenado por enviar audios excesivos.
+
+Penitencia:
+
+escuchar "Despacito" ralentizado y en bucle
+hasta comprender el sufrimiento que causas
+cuando envías audios interminables`
+)
+return
+}
+
+if(id===18 && points===10){
+showImmediateResult(
+"🥑 Ansiedad Crónica por los Likes",
+`Has sido diagnosticado con necesidad extrema de aprobación digital.
+
+Penitencia:
+
+publicar una foto completamente aburrida
+(un vaso de agua o un calcetín)
+
+y resistir la tentación de mirar los likes
+durante 6 horas`
+)
+return
+}
 
 document.getElementsByClassName("question")[id].style.opacity="0.4"
 
@@ -169,4 +211,29 @@ document.getElementById("shareInstagram").onclick=()=>{
 alert("Instagram no permite compartir enlaces directamente. Copia tu resultado y súbelo a una historia 😈")
 }
 
+}
+
+function showImmediateResult(title,penitence){
+
+// deshabilitar todas las preguntas
+const buttons=document.querySelectorAll(".answers button")
+
+buttons.forEach(b=>{
+b.disabled=true
+b.style.opacity="0.3"
+})
+
+// deshabilitar botón final
+document.getElementById("submitBtn").disabled=true
+
+// mostrar modal
+document.getElementById("modalTitle").innerText=title
+document.getElementById("modalPenitence").innerText=penitence
+
+document.getElementById("specialModal").classList.remove("hidden")
+
+}
+
+function closeModal(){
+document.getElementById("specialModal").classList.add("hidden")
 }
