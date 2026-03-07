@@ -23,19 +23,19 @@ const questions = [
 
 let score = 0
 
-let selfieMorritos=false
-let audiosLargos=false
-let tostadaInstagram=false
+let selfieMorritos = false
+let audiosLargos = false
+let tostadaInstagram = false
 
 const container = document.getElementById("questions")
 
-questions.forEach((q,i)=>{
+questions.forEach((q, i) => {
 
 const div = document.createElement("div")
-div.className="question"
+div.className = "question"
 
 div.innerHTML = `
-<p>${i+1}. ${q}</p>
+<p>${i + 1}. ${q}</p>
 <div class="answers">
 <button onclick="answer(${i},10)">Sí</button>
 <button onclick="answer(${i},5)">A veces</button>
@@ -47,13 +47,13 @@ container.appendChild(div)
 
 })
 
-function answer(id,points){
+function answer(id, points) {
 
-score+=points
+score += points
 
-// PECADOS ESPECIALES
-
-if(id===11 && points===10){
+// PECADOS ESPECIALES (ya no detienen el test, pero sí sobreescriben el resultado final)
+if (id === 11 && points === 10) {
+selfieMorritos = true
 showImmediateResult(
 "📸 Narcisista Compulsivo",
 `Tu actividad selfie ha superado niveles aceptables.
@@ -64,10 +64,10 @@ Penitencia:
 • máximo 3 miradas al espejo
 • dar 5 likes sinceros a fotos ajenas`
 )
-return
 }
 
-if(id===17 && points===10){
+if (id === 17 && points === 10) {
+audiosLargos = true
 showImmediateResult(
 "🎤 Criminal Sonoro de WhatsApp",
 `Has sido condenado por enviar audios excesivos.
@@ -78,10 +78,10 @@ escuchar "Despacito" ralentizado y en bucle
 hasta comprender el sufrimiento que causas
 cuando envías audios interminables`
 )
-return
 }
 
-if(id===18 && points===10){
+if (id === 18 && points === 10) {
+tostadaInstagram = true
 showImmediateResult(
 "🥑 Ansiedad Crónica por los Likes",
 `Has sido diagnosticado con necesidad extrema de aprobación digital.
@@ -94,34 +94,33 @@ publicar una foto completamente aburrida
 y resistir la tentación de mirar los likes
 durante 6 horas`
 )
-return
 }
 
-document.getElementsByClassName("question")[id].style.opacity="0.4"
+document.getElementsByClassName("question")[id].style.opacity = "0.4"
 
 }
 
-document.getElementById("startBtn").onclick=()=>{
+document.getElementById("startBtn").onclick = () => {
 document.getElementById("quiz").classList.remove("hidden")
-document.getElementById("startBtn").style.display="none"
+document.getElementById("startBtn").style.display = "none"
 }
 
-document.getElementById("submitBtn").onclick=showResult
+document.getElementById("submitBtn").onclick = showResult
 
 
-function showResult(){
+function showResult() {
 
 document.getElementById("quiz").classList.add("hidden")
 document.getElementById("resultSection").classList.remove("hidden")
 
-let category=""
-let penitence=""
+let category = ""
+let penitence = ""
 
-if(selfieMorritos){
+if (selfieMorritos) {
 
-category="📸 Narcisista Compulsivo"
+category = "📸 Narcisista Compulsivo"
 
-penitence=`
+penitence = `
 Durante 24 horas deberás:
 
 - pasar un día entero sin usar la cámara frontal
@@ -131,11 +130,11 @@ Durante 24 horas deberás:
 
 }
 
-else if(audiosLargos){
+else if (audiosLargos) {
 
-category="🎤 Criminal Sonoro de WhatsApp"
+category = "🎤 Criminal Sonoro de WhatsApp"
 
-penitence=`
+penitence = `
 Penitencia obligatoria:
 
 escuchar <strong>"Despacito"</strong> ralentizado y en bucle  
@@ -145,11 +144,11 @@ cuando envías audios interminables.
 
 }
 
-else if(tostadaInstagram){
+else if (tostadaInstagram) {
 
-category="🥑 Ansiedad Crónica por los Likes"
+category = "🥑 Ansiedad Crónica por los Likes"
 
-penitence=`
+penitence = `
 Deberás publicar una foto completamente aburrida  
 (un vaso de agua o un calcetín)  
 y resistir la tentación de mirar cuántos likes tiene durante 6 horas.
@@ -157,83 +156,71 @@ y resistir la tentación de mirar cuántos likes tiene durante 6 horas.
 
 }
 
-else{
+else {
 
-if(score<=30){
-category="😇 Humano Decente"
-penitence="Ninguna penitencia. Pero vigila… nadie es perfecto."
+if (score <= 30) {
+category = "😇 Humano Decente"
+penitence = "Ninguna penitencia. Pero vigila… nadie es perfecto."
 }
 
-else if(score<=60){
-category="😈 Pecador Leve"
-penitence="Devuelve 1 carrito de supermercado abandonado."
+else if (score <= 60) {
+category = "😈 Pecador Leve"
+penitence = "Devuelve 1 carrito de supermercado abandonado."
 }
 
-else if(score<=100){
-category="👿 Villano Cotidiano"
-penitence="Escucha un audio de WhatsApp de 3 minutos sin acelerar."
+else if (score <= 100) {
+category = "👿 Villano Cotidiano"
+penitence = "Escucha un audio de WhatsApp de 3 minutos sin acelerar."
 }
 
-else if(score<=150){
-category="🧨 Amenaza Social"
-penitence="Devuelve 10 carritos del supermercado y deja pasar a alguien en el tráfico."
+else if (score <= 150) {
+category = "🧨 Amenaza Social"
+penitence = "Devuelve 10 carritos del supermercado y deja pasar a alguien en el tráfico."
 }
 
-else{
-category="💀 Supervillano Absoluto"
-penitence="Escucha reguetón durante 30 minutos y pide perdón al microondas de la oficina."
+else {
+category = "💀 Supervillano Absoluto"
+penitence = "Escucha reguetón durante 30 minutos y pide perdón al microondas de la oficina."
 }
-
-}
-
-const resultText=`Tu puntuación de maldad es ${score}. <br><strong>${category}</strong>`
-
-document.getElementById("result").innerHTML=resultText
-document.getElementById("penitence").innerHTML=penitence
-
-setupShare(resultText,penitence)
 
 }
 
-function setupShare(result,penitence){
+const resultText = `Tu puntuación de maldad es ${score}. <br><strong>${category}</strong>`
 
-const text=`Mi resultado en el Test Científico de Maldad Humana: ${result}. Penitencia: ${penitence}`
+document.getElementById("result").innerHTML = resultText
+document.getElementById("penitence").innerHTML = penitence
 
-document.getElementById("shareWhatsapp").onclick=()=>{
+setupShare(resultText, penitence)
+
+}
+
+function setupShare(result, penitence) {
+
+const text = `Mi resultado en el Test Científico de Maldad Humana: ${result}. Penitencia: ${penitence}`
+
+document.getElementById("shareWhatsapp").onclick = () => {
 window.open(`https://wa.me/?text=${encodeURIComponent(text)}`)
 }
 
-document.getElementById("shareFacebook").onclick=()=>{
+document.getElementById("shareFacebook").onclick = () => {
 window.open(`https://www.facebook.com/sharer/sharer.php?u=&quote=${encodeURIComponent(text)}`)
 }
 
-document.getElementById("shareInstagram").onclick=()=>{
+document.getElementById("shareInstagram").onclick = () => {
 alert("Instagram no permite compartir enlaces directamente. Copia tu resultado y súbelo a una historia 😈")
 }
 
 }
 
-function showImmediateResult(title,penitence){
+function showImmediateResult(title, penitence) {
 
-// deshabilitar todas las preguntas
-const buttons=document.querySelectorAll(".answers button")
-
-buttons.forEach(b=>{
-b.disabled=true
-b.style.opacity="0.3"
-})
-
-// deshabilitar botón final
-document.getElementById("submitBtn").disabled=true
-
-// mostrar modal
-document.getElementById("modalTitle").innerText=title
-document.getElementById("modalPenitence").innerText=penitence
+document.getElementById("modalTitle").innerText = title
+document.getElementById("modalPenitence").innerText = penitence
 
 document.getElementById("specialModal").classList.remove("hidden")
 
 }
 
-function closeModal(){
+function closeModal() {
 document.getElementById("specialModal").classList.add("hidden")
 }
