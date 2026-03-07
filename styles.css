@@ -89,3 +89,12 @@ background:#444;
 .share button:hover{
 background:#666;
 }
+
+button:disabled{
+opacity:0.5;
+cursor:not-allowed;
+}
+
+button:disabled:hover{
+background:#ff4d4d;
+}
