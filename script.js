@@ -177,6 +177,7 @@ y resistir la tentación de mirar cuántos likes tiene durante 6 horas. <br>
 
 function setupShare(result, penitence) {
   const cleanPenitence = penitence
+    .replace(/<br\s*\/?>/gi, "\n")
     .replace(/<[^>]*>/g, "")
     .replace(/[ \t]+\n/g, "\n")
     .replace(/\n{3,}/g, "\n\n")
