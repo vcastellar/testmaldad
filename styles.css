@@ -51,6 +51,11 @@ margin:20px;
 padding:20px;
 background:#222;
 border-radius:10px;
+transition:opacity .2s ease, box-shadow .2s ease;
+}
+
+.question.answered{
+opacity:0.4;
 }
 
 .answers button{
@@ -60,6 +65,10 @@ background:#333;
 
 .answers button:hover{
 background:#555;
+}
+
+.answers button.selected{
+background:#777;
 }
 
 #result{
@@ -80,4 +89,3 @@ background:#444;
 .share button:hover{
 background:#666;
 }
-
