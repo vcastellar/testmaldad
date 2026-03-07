@@ -51,49 +51,17 @@ function answer(id, points) {
 
 score += points
 
-// PECADOS ESPECIALES (ya no detienen el test, pero sí sobreescriben el resultado final)
+// PECADOS ESPECIALES (sobreescriben el resultado final, sin mostrar ventanas emergentes)
 if (id === 11 && points === 10) {
 selfieMorritos = true
-showImmediateResult(
-"📸 Narcisista Compulsivo",
-`Tu actividad selfie ha superado niveles aceptables.
-
-Penitencia:
-
-• 24 horas sin usar la cámara frontal
-• máximo 3 miradas al espejo
-• dar 5 likes sinceros a fotos ajenas`
-)
 }
 
 if (id === 17 && points === 10) {
 audiosLargos = true
-showImmediateResult(
-"🎤 Criminal Sonoro de WhatsApp",
-`Has sido condenado por enviar audios excesivos.
-
-Penitencia:
-
-escuchar "Despacito" ralentizado y en bucle
-hasta comprender el sufrimiento que causas
-cuando envías audios interminables`
-)
 }
 
 if (id === 18 && points === 10) {
 tostadaInstagram = true
-showImmediateResult(
-"🥑 Ansiedad Crónica por los Likes",
-`Has sido diagnosticado con necesidad extrema de aprobación digital.
-
-Penitencia:
-
-publicar una foto completamente aburrida
-(un vaso de agua o un calcetín)
-
-y resistir la tentación de mirar los likes
-durante 6 horas`
-)
 }
 
 document.getElementsByClassName("question")[id].style.opacity = "0.4"
@@ -210,17 +178,4 @@ document.getElementById("shareInstagram").onclick = () => {
 alert("Instagram no permite compartir enlaces directamente. Copia tu resultado y súbelo a una historia 😈")
 }
 
-}
-
-function showImmediateResult(title, penitence) {
-
-document.getElementById("modalTitle").innerText = title
-document.getElementById("modalPenitence").innerText = penitence
-
-document.getElementById("specialModal").classList.remove("hidden")
-
-}
-
-function closeModal() {
-document.getElementById("specialModal").classList.add("hidden")
 }
