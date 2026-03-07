@@ -165,17 +165,24 @@ penitence = "Escucha reguetón durante 30 minutos y pide perdón al microondas d
 }
 
 const resultText = `Tu puntuación de maldad es ${score}. <br><strong>${category}</strong>`
+const resultTextPlain = `Tu puntuación de maldad es ${score}. ${category}`
 
 document.getElementById("result").innerHTML = resultText
 document.getElementById("penitence").innerHTML = penitence
 
-setupShare(resultText, penitence)
+setupShare(resultTextPlain, penitence)
 
 }
 
 function setupShare(result, penitence) {
 
-const text = `Mi resultado en el Test Científico de Maldad Humana: ${result}. Penitencia: ${penitence}`
+const cleanPenitence = penitence
+.replace(/<[^>]*>/g, "")
+.replace(/[ \t]+\n/g, "\n")
+.replace(/\n{3,}/g, "\n\n")
+.trim()
+
+const text = `Mi resultado en el Test Científico de Maldad Humana:\n${result}\n\nPenitencia:\n${cleanPenitence}\n\nHaz el test aquí: https://vcastellar.github.io/testmaldad/`
 
 document.getElementById("shareWhatsapp").onclick = () => {
 window.open(`https://wa.me/?text=${encodeURIComponent(text)}`)
