@@ -107,9 +107,9 @@ const QUESTION_BANK = [
 
 // Reglas de puntuación base.
 const ANSWERS = [
-  { label: "YES", points: 10 },
-  { label: "SOMETIMES", points: 5 },
-  { label: "NO", points: 0 }
+  { label: "Sí", points: 10 },
+  { label: "A veces", points: 5 },
+  { label: "No", points: 0 }
 ]
 
 // Preguntas especiales: si se responde YES, se corta el quiz y se impone resultado directo.
