@@ -122,28 +122,34 @@ const SPECIAL_TRIGGERS = {
 // Resultados y penitencias (incluye normales y especiales).
 const RESULTS = {
   "Humano sospechosamente normal": {
-    penitence: "El tribunal ha decidido vigilarte discretamente."
+    penitence: "El tribunal ha decidido vigilarte discretamente: 1) cede el asiento sin que te lo pidan, 2) escucha 10 minutos sin interrumpir, 3) responde un mensaje pendiente con amabilidad."
+  },
+  "Mentecato premium": {
+    penitence: "Programa oficial de rehumanización: 1) pide disculpas por una torpeza reciente, 2) deja pasar a alguien en una fila, 3) pasa una hora sin quejarte de nada."
+  },
+  "Energúmeno de secano": {
+    penitence: "Plan anti-berrinche en 3 actos: 1) cuenta hasta 20 antes de responder en caliente, 2) acepta una opinión contraria sin discutir, 3) agradece algo que normalmente das por hecho."
   },
   "Anómalo social": {
-    penitence: "Debes escuchar una conversación de ascensor completa sin mirar el móvil."
+    penitence: "Penitencia social mínima: 1) mantén una conversación de ascensor completa, 2) no mires el móvil durante esa charla, 3) despídete con una sonrisa creíble."
   },
   "Inadaptado funcional": {
-    penitence: "Escuchar un audio de WhatsApp de 4 minutos sin acelerarlo."
+    penitence: "Reinserción express: 1) escucha un audio de 4 minutos sin acelerarlo, 2) responde con un texto claro en menos de 3 frases, 3) evita cualquier sarcasmo durante una hora."
   },
   "Anarquista de la convivencia": {
-    penitence: "Responder con educación a todos los mensajes pendientes durante 24h."
+    penitence: "Tratado de convivencia temporal: 1) responde con educación todos tus mensajes pendientes, 2) no dejes platos sucios fuera del fregadero, 3) llega puntual a tu próximo compromiso."
   },
   "Maestro del caos social": {
-    penitence: "Intentar cancelar una suscripción online imposible de cancelar."
+    penitence: "Sanción máxima no apelable: 1) intenta cancelar una suscripción imposible, 2) devuelve un tupper que no es tuyo, 3) deja pasar a tres personas antes que tú hoy."
   },
   "Narcisista compulsivo": {
-    penitence: "48 horas sin cámara frontal y obligación de subir una foto de una planta sin filtros."
+    penitence: "Desinflado de ego controlado: 1) 48 horas sin cámara frontal, 2) sube una foto de una planta sin filtros, 3) comenta algo bonito en la publicación de otra persona sin hablar de ti."
   },
   "Narciso digital": {
-    penitence: "Publicar una tostada normal (sin aguacate) y aceptar el silencio del algoritmo."
+    penitence: "Protocolo detox de postureo: 1) publica una tostada normal (sin aguacate), 2) no revises likes durante 12 horas, 3) comparte una historia útil que no incluya tu cara."
   },
   "Terrorista del WhatsApp": {
-    penitence: "Solo puedes enviar mensajes de texto de máximo 12 palabras durante 24h."
+    penitence: "Régimen estricto de mensajería: 1) solo textos de máximo 12 palabras por 24h, 2) ningún audio, 3) resume tus ideas en un único mensaje en vez de siete."
   }
 }
 
@@ -256,9 +262,11 @@ function handleAnswer(questionIndex, questionText, points, clickedButton) {
 }
 
 function calculateResultByScore(score) {
-  if (score <= 20) return "Humano sospechosamente normal"
-  if (score <= 40) return "Anómalo social"
-  if (score <= 60) return "Inadaptado funcional"
+  if (score <= 10) return "Humano sospechosamente normal"
+  if (score <= 20) return "Mentecato premium"
+  if (score <= 35) return "Energúmeno de secano"
+  if (score <= 50) return "Anómalo social"
+  if (score <= 65) return "Inadaptado funcional"
   if (score <= 80) return "Anarquista de la convivencia"
   return "Maestro del caos social"
 }
