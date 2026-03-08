@@ -174,10 +174,11 @@ function shuffleArray(array) {
   return array
 }
 
-function pickRandomQuestions() {
+function pickRandomQuestions(count = QUESTIONS_TO_SHOW) {
+  const limit = Math.min(count, QUESTION_BANK.length)
   const copy = [...QUESTION_BANK]
   shuffleArray(copy)
-  return copy.slice(0, QUESTIONS_TO_SHOW)
+  return copy.slice(0, limit)
 }
 
 function resetQuizState() {
@@ -368,7 +369,7 @@ startBtn.addEventListener("click", () => {
 
 submitBtn.addEventListener("click", () => {
   if (answersByIndex.size !== selectedQuestions.length) {
-    alert("Responde las 10 preguntas para terminar el test.")
+    alert(`Responde las ${selectedQuestions.length} preguntas para terminar el test.`)
     return
   }
 
