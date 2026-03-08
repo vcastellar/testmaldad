@@ -300,7 +300,7 @@ function ensureModal() {
   modal.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;padding:20px;z-index:9999;"
 
   modal.innerHTML = `
-    <div style="background:white;max-width:560px;width:100%;border-radius:14px;padding:20px;box-shadow:0 15px 45px rgba(0,0,0,.25);">
+    <div style="background:white;color:#111;max-width:560px;width:100%;border-radius:14px;padding:20px;box-shadow:0 15px 45px rgba(0,0,0,.25);">
       <h2 id="modalResultTitle" style="margin-top:0;">Resultado</h2>
       <p id="modalPenitence" style="line-height:1.5;"></p>
       <div style="display:flex;gap:10px;flex-wrap:wrap;">
