@@ -123,7 +123,7 @@ const ANSWERS = [
   { label: "No", multiplier: 0 }
 ]
 
-const QUESTION_TRAITS = {
+const RAW_QUESTION_TRAITS = {
 "¿Has fingido no ver a alguien para evitar saludarlo?": { INF:2, PAP:1 },
 "¿Has cruzado la calle para evitar una conversación incómoda?": { INF:2 },
 "¿Has dicho “te aviso” sabiendo que nunca avisarías?": { MNP:2, PAP:1 },
@@ -228,6 +228,18 @@ const QUESTION_TRAITS = {
 "¿Publicas selfies haciendo morritos?": { NAR:3, INF:1 },
 "¿Publicas en Instagram tu tostada de aguacate?": { NAR:3, PAP:1 }
 }
+
+
+const QUESTION_TRAITS = Object.fromEntries(
+  Object.entries(RAW_QUESTION_TRAITS).map(([question, traits]) => {
+    const normalizedTraits = Object.keys(TRAITS).reduce((acc, traitKey) => {
+      acc[traitKey] = traits[traitKey] ?? 0
+      return acc
+    }, {})
+
+    return [question, normalizedTraits]
+  })
+)
 
 const TRAIT_PENITENCES = {
   NAR: "Desinflado de ego controlado: 1) 48 horas sin cámara frontal, 2) sube una foto de una planta sin filtros, 3) felicita a alguien sin mencionar nada de ti.",
