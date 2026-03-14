@@ -379,7 +379,11 @@ function handleAnswer(questionIndex, multiplier, clickedButton) {
   updateSubmitButton()
 }
 
-function finishQuiz() {
+function finishQuiz(trigger = "submit") {
+  // Solo permitimos calcular resultados al enviar el cuestionario completo.
+  // Esto evita atajos de "resultado inmediato" al responder afirmativamente.
+  if (trigger !== "submit") return
+
   quizLocked = true
   disableRemainingQuestions()
   updateSubmitButton()
@@ -426,5 +430,5 @@ submitBtn.addEventListener("click", () => {
     return
   }
 
-  finishQuiz()
+  finishQuiz("submit")
 })
