@@ -106,54 +106,140 @@ const QUESTION_BANK = [
 ]
 
 // Reglas de puntuación base.
+
+const TRAITS = {
+  NAR: "Narcisista compulsivo",
+  WSP: "Terrorista del WhatsApp",
+  INF: "Inadaptado funcional",
+  ANC: "Anarquista de la convivencia",
+  PAP: "Pasivo-agresivo profesional",
+  MNP: "Manipulador de bolsillo",
+  TRL: "Troll doméstico"
+}
+
 const ANSWERS = [
-  { label: "Sí", points: 10 },
-  { label: "A veces", points: 5 },
-  { label: "No", points: 0 }
+  { label: "Sí", multiplier: 1 },
+  { label: "A veces", multiplier: 0.5 },
+  { label: "No", multiplier: 0 }
 ]
 
-// Preguntas especiales: si se responde YES, se corta el quiz y se impone resultado directo.
-const SPECIAL_TRIGGERS = {
-  "¿Publicas selfies haciendo morritos?": "Narcisista compulsivo",
-  "¿Publicas en Instagram tu tostada de aguacate?": "Narciso digital",
-  "¿Has enviado un audio diciendo 'seré breve' y duró más de dos minutos?": "Terrorista del WhatsApp"
+const QUESTION_TRAITS = {
+"¿Has fingido no ver a alguien para evitar saludarlo?": { INF:2, PAP:1 },
+"¿Has cruzado la calle para evitar una conversación incómoda?": { INF:2 },
+"¿Has dicho “te aviso” sabiendo que nunca avisarías?": { MNP:2, PAP:1 },
+"¿Has devuelto una llamada solo porque necesitabas algo?": { MNP:3 },
+"¿Has respondido “qué pena” sin sentir ninguna pena?": { PAP:3 },
+"¿Has dado un consejo que tú mismo no seguirías?": { MNP:2, PAP:1 },
+"¿Has asentido fingiendo interés en una historia aburrida?": { PAP:2, INF:1 },
+"¿Has interrumpido a alguien para contar tu propia historia?": { NAR:2, INF:1 },
+"¿Has dicho “no tengo hambre” y luego comido del plato de otro?": { MNP:2 },
+"¿Has cogido la última porción diciendo “si nadie la quiere…”?": { MNP:3 },
+"¿Has criticado algo que en realidad te gusta?": { PAP:2 },
+"¿Has dicho “no me gusta la polémica” justo antes de crear una?": { TRL:2, PAP:2 },
+"¿Has leído un mensaje y tardado en responder para parecer ocupado?": { WSP:2, NAR:1 },
+"¿Has dejado que alguien se equivoque sin corregirlo?": { MNP:2 },
+"¿Has corregido a alguien solo para demostrar que tenías razón?": { NAR:2, PAP:1 },
+"¿Has hecho una pregunta cuya respuesta ya sabías?": { MNP:2 },
+"¿Has fingido sorpresa ante algo que ya sabías?": { PAP:2 },
+"¿Has contado un secreto que te pidieron no contar?": { TRL:3 },
+"¿Has exagerado una historia para que parezca mejor?": { NAR:2 },
+"¿Has hecho un comentario sarcástico que alguien no entendió?": { PAP:3 },
+"¿Has culpado al tráfico aunque saliste tarde de casa?": { MNP:2 },
+"¿Has dicho “estoy llegando” cuando aún estabas en casa?": { MNP:2, WSP:1 },
+"¿Has dicho “cinco minutos” sabiendo que eran quince?": { MNP:2 },
+"¿Has prometido algo que sabías que no cumplirías?": { MNP:3 },
+"¿Has dicho “luego lo hago” y lo olvidaste convenientemente?": { INF:1, MNP:1 },
+"¿Has fingido que no escuchaste algo incómodo?": { PAP:2 },
+"¿Has mirado el móvil para evitar una conversación?": { WSP:2 },
+"¿Has hecho una broma a costa de alguien presente?": { TRL:3 },
+"¿Has repetido un chisme empezando por “no debería decir esto…”?": { TRL:3, INF:1, ANC:1 },
+"¿Has soltado un spoiler “sin querer”?": { TRL:3, PAP:1, INF:2 },
+"¿Has ocupado más espacio del necesario en transporte público?": { ANC:2, PAP:1, INF:2 },
+"¿Has caminado lento bloqueando el paso sin darte cuenta… o sí?": { ANC:2, INF:2 },
+"¿Has intentado colarte sutilmente en una fila?": { ANC:3, MNP:1 },
+"¿Has usado “solo es un momento” para justificar algo molesto?": { ANC:2, MNP:1 },
+"¿Has puesto cara de inocente después de causar un pequeño caos?": { MNP:2, TRL:1 },
+"¿Has dejado que otro pague una cuenta que podrías haber dividido?": { MNP:3, INF:1 },
+"¿Has aceptado comida gratis sin ofrecer pagar?": { MNP:2, NAR:1 },
+"¿Has hecho un comentario pasivo-agresivo?": { PAP:3, MNP:3 },
+"¿Has fingido estar ocupado para evitar ayudar?": { MNP:2, PAP:1 },
+"¿Has dicho “yo no fui” demasiado rápido?": { MNP:2 },
+"¿Has respondido con un meme para evitar una conversación seria?": { WSP:2, PAP:2 },
+"¿Has enviado un mensaje ambiguo para que otro lo interprete?": { PAP:2, MNP:2 },
+"¿Has cambiado de tema para evitar admitir un error?": { MNP:3, NAR:3 },
+"¿Has reído cuando alguien tropezó?": { TRL:2 },
+"¿Has esperado a que alguien termine de hablar solo para contradecirlo?": { PAP:2 },
+"¿Has disfrutado secretamente cuando alguien que te cae mal se equivoca?": { TRL:2, PAP:1 },
+"¿Has dicho “era broma” después de un comentario incómodo?": { PAP:2 },
+"¿Has dejado que alguien crea que tu idea era mejor de lo que era?": { NAR:2, MNP:2 },
+"¿Has repetido una historia haciéndote quedar mejor?": { NAR:2 },
+"¿Has pensado alguna vez: “esto es un poco malvado… pero divertido”?": { TRL:3 },
+"¿Has aplaudido cuando aterriza el avión?": { INF:3 },
+"¿Has dicho “vamos viendo” sin ninguna intención real de quedar?": { WSP:2, MNP:1 },
+"¿Has dicho “qué ilusión verte” cuando no te hacía ninguna ilusión?": { PAP:3 },
+"¿Has respondido “jajaja” a algo que no te hizo gracia?": { PAP:3, MNP:2 },
+"¿Has enviado un audio diciendo 'seré breve' y duró más de dos minutos?": { WSP:3, TRL:3 },
+"¿Has dicho “solo será un minuto” sabiendo que no lo sería?": { MNP:2 },
+"¿Has usado el altavoz del móvil en un sitio público lleno de gente?": { ANC:3, INF:1 },
+"¿Has mirado el móvil mientras alguien te contaba algo importante?": { INF:2, WSP:1 },
+"¿Has dicho “yo invito la próxima” esperando que nadie lo recuerde?": { MNP:3 },
+"¿Has fingido no ver un mensaje para no responder?": { WSP:2, NAR:1 },
+"¿Has dicho “te escribo luego” sabiendo que no lo harías?": { WSP:2 },
+"¿Has visto una serie con alguien y luego seguiste viéndola sin esa persona?": { MNP:2 },
+"¿Has soltado un spoiler diciendo “no es spoiler pero…”?": { TRL:3 },
+"¿Has preguntado algo que acababan de explicar porque no estabas escuchando?": { INF:2 },
+"¿Has fingido que sabías algo que en realidad no tenías ni idea?": { NAR:2 },
+"¿Has corregido a alguien en público solo para tener razón?": { NAR:2, PAP:1 },
+"¿Has ocupado dos asientos en transporte público con tu mochila?": { ANC:3 },
+"¿Has fingido interés mientras pensabas en otra cosa?": { PAP:2 },
+"¿Has dicho “salgo ya” cuando aún estabas en pijama?": { WSP:2 },
+"¿Has dicho “no pasa nada” esperando claramente que sí pase algo?": { PAP:3 },
+"¿Has respondido “haz lo que quieras” esperando que no lo hagan?": { PAP:3 },
+"¿Has dicho “no tengo opinión” para evitar discutir aunque sí la tenías?": { PAP:2 },
+"¿Has fingido que no sabías algo para evitar responsabilidad?": { MNP:2 },
+"¿Has soltado un “yo ya lo dije” después de que algo saliera mal?": { NAR:2 },
+"¿Has hecho una broma pasivo-agresiva que parecía un cumplido?": { PAP:3 },
+"¿Has dicho “qué raro…” insinuando que alguien hizo algo mal?": { PAP:2 },
+"¿Has mirado el móvil mientras alguien hablaba contigo cara a cara?": { INF:2, WSP:1 },
+"¿Has fingido que escuchabas mientras pensabas en otra cosa?": { INF:2 },
+"¿Has dicho “claro, claro” sin saber de qué hablaban?": { INF:2 },
+"¿Has asentido con la cabeza para terminar antes una conversación?": { PAP:2 },
+"¿Has dicho “te aviso” sin intención de avisar?": { MNP:2 },
+"¿Has dicho “solo una cosa rápida” y luego hablaste diez minutos?": { NAR:2 },
+"¿Has contado una historia exagerando tu papel heroico?": { NAR:3 },
+"¿Has omitido un detalle importante para parecer más listo?": { NAR:2 },
+"¿Has dicho “yo no dije eso” cuando sí lo dijiste?": { MNP:3 },
+"¿Has cambiado ligeramente una historia cada vez que la cuentas?": { NAR:2 },
+"¿Has usado “según estudios” sin saber qué estudios?": { NAR:2 },
+"¿Has citado algo que leíste en internet como si fuera seguro?": { INF:1 },
+"¿Has dicho “todo el mundo dice que…” cuando no era cierto?": { PAP:2 },
+"¿Has fingido saber de qué hablaban para no quedar mal?": { NAR:2 },
+"¿Has dicho “sí, claro” esperando que no te pidan hacerlo?": { MNP:2 },
+"¿Has mirado al móvil para escapar de una charla incómoda?": { WSP:2 },
+"¿Has dicho “te queda genial” cuando claramente no era así?": { PAP:3 },
+"¿Has dicho “no soy cotilla pero…” justo antes de cotillear?": { TRL:2 },
+"¿Has escuchado un chisme con mucho interés aunque fingías lo contrario?": { TRL:2 },
+"¿Has contado algo confidencial “solo a una persona”?": { TRL:3 },
+"¿Has soltado una indirecta esperando que alguien la entienda?": { PAP:2 },
+"¿Has fingido no entender una indirecta incómoda?": { PAP:2 },
+"¿Has dicho “qué interesante…” para terminar una conversación aburrida?": { PAP:2 },
+"¿Has respondido con un emoji para evitar seguir hablando?": { WSP:2 },
+"¿Alguna vez has pensado:\n“esto es un poco malvado… pero nadie se dará cuenta”?": { TRL:3 },
+"¿Publicas selfies haciendo morritos?": { NAR:3, INF:1 },
+"¿Publicas en Instagram tu tostada de aguacate?": { NAR:3, PAP:1 }
 }
 
-// Resultados y penitencias (incluye normales y especiales).
-const RESULTS = {
-  "Humano sospechosamente normal": {
-    penitence: "El tribunal ha decidido vigilarte discretamente: 1) cede el asiento sin que te lo pidan, 2) escucha 10 minutos sin interrumpir, 3) responde un mensaje pendiente con amabilidad."
-  },
-  "Mentecato premium": {
-    penitence: "Programa oficial de rehumanización: 1) pide disculpas por una torpeza reciente, 2) deja pasar a alguien en una fila, 3) pasa una hora sin quejarte de nada."
-  },
-  "Energúmeno de secano": {
-    penitence: "Plan anti-berrinche en 3 actos: 1) cuenta hasta 20 antes de responder en caliente, 2) acepta una opinión contraria sin discutir, 3) agradece algo que normalmente das por hecho."
-  },
-  "Anómalo social": {
-    penitence: "Penitencia social mínima: 1) mantén una conversación de ascensor completa, 2) no mires el móvil durante esa charla, 3) despídete con una sonrisa creíble."
-  },
-  "Inadaptado funcional": {
-    penitence: "Reinserción express: 1) escucha un audio de 4 minutos sin acelerarlo, 2) responde con un texto claro en menos de 3 frases, 3) evita cualquier sarcasmo durante una hora."
-  },
-  "Anarquista de la convivencia": {
-    penitence: "Tratado de convivencia temporal: 1) responde con educación todos tus mensajes pendientes, 2) no dejes platos sucios fuera del fregadero, 3) llega puntual a tu próximo compromiso."
-  },
-  "Maestro del caos social": {
-    penitence: "Sanción máxima no apelable: 1) intenta cancelar una suscripción imposible, 2) devuelve un tupper que no es tuyo, 3) deja pasar a tres personas antes que tú hoy."
-  },
-  "Narcisista compulsivo": {
-    penitence: "Desinflado de ego controlado: 1) 48 horas sin cámara frontal, 2) sube una foto de una planta sin filtros, 3) comenta algo bonito en la publicación de otra persona sin hablar de ti."
-  },
-  "Narciso digital": {
-    penitence: "Protocolo detox de postureo: 1) publica una tostada normal (sin aguacate), 2) no revises likes durante 12 horas, 3) comparte una historia útil que no incluya tu cara."
-  },
-  "Terrorista del WhatsApp": {
-    penitence: "Régimen estricto de mensajería: 1) solo textos de máximo 12 palabras por 24h, 2) ningún audio, 3) resume tus ideas en un único mensaje en vez de siete."
-  }
+const TRAIT_PENITENCES = {
+  NAR: "Desinflado de ego controlado: 1) 48 horas sin cámara frontal, 2) sube una foto de una planta sin filtros, 3) felicita a alguien sin mencionar nada de ti.",
+  WSP: "Régimen estricto de mensajería: 1) cero audios por 24h, 2) mensajes de máximo 12 palabras, 3) responde en un único texto y sin trilogías.",
+  INF: "Reinserción social express: 1) escucha sin mirar el móvil 10 minutos, 2) responde algo útil en 2 frases, 3) evita sarcasmos durante una hora.",
+  ANC: "Tratado temporal de convivencia: 1) respeta una fila sin atajos, 2) no invadas espacio ajeno en transporte, 3) deja todo más limpio de como lo encontraste.",
+  PAP: "Desintoxicación pasivo-agresiva: 1) di lo que te molesta de forma directa y amable, 2) evita indirectas durante todo el día, 3) cambia un “lo que quieras” por una propuesta clara.",
+  MNP: "Plan anti-manipulación de bolsillo: 1) paga tu parte sin teatro, 2) admite un error sin excusas, 3) pide un favor sin chantaje emocional.",
+  TRL: "Protocolo anti-troleo doméstico: 1) 24h sin spoilers ni chismes, 2) no remates errores ajenos con ironía, 3) convierte una pulla en un cumplido real."
 }
 
-const QUESTIONS_TO_SHOW = 10
+const QUESTIONS_TO_SHOW = 15
 
 const questionsContainer = document.querySelector("#questions")
 const startBtn = document.querySelector("#startBtn")
@@ -162,12 +248,182 @@ const quizSection = document.querySelector("#quiz")
 const resultSection = document.querySelector("#resultSection")
 const resultNode = document.querySelector("#result")
 const penitenceNode = document.querySelector("#penitence")
+const traitRadarNode = document.querySelector("#traitRadar")
+const deviceHintNode = document.querySelector("#deviceHint")
 
 let selectedQuestions = []
 let answersByIndex = new Map()
-let totalScore = 0
 let quizLocked = false
 let currentResult = null
+
+function detectDeviceType() {
+  const byWidth = window.matchMedia("(max-width: 767px)").matches
+  const coarsePointer = window.matchMedia("(pointer: coarse)").matches
+  return (byWidth || coarsePointer) ? "mobile" : "desktop"
+}
+
+function applyDeviceExperience() {
+  const deviceType = detectDeviceType()
+  const isMobile = deviceType === "mobile"
+
+  document.body.classList.toggle("device-mobile", isMobile)
+  document.body.classList.toggle("device-desktop", !isMobile)
+  document.body.dataset.device = deviceType
+
+  if (deviceHintNode) {
+    deviceHintNode.textContent = isMobile
+      ? "📱 Modo smartphone activado: botones grandes y preguntas en columna para tocar más fácil."
+      : "🖥️ Modo PC activado: distribución amplia optimizada para pantalla grande."
+  }
+}
+
+function createEmptyTraitScores() {
+  return Object.keys(TRAITS).reduce((acc, key) => {
+    acc[key] = 0
+    return acc
+  }, {})
+}
+
+function normalizeQuestion(questionText) {
+  return questionText.toLowerCase()
+}
+
+function inferQuestionTraits(questionText) {
+  const normalized = normalizeQuestion(questionText)
+  const inferred = {}
+
+  const add = (trait, points) => {
+    inferred[trait] = (inferred[trait] || 0) + points
+  }
+
+  if (/(selfies|instagram|morritos|heroico|quedar mejor|tenías razón)/.test(normalized)) add("NAR", 2)
+  if (/(audio|mensaje|móvil|movil|whatsapp|emoji|meme|responder|te aviso|te escribo)/.test(normalized)) add("WSP", 2)
+  if (/(público|publico|transporte|dos asientos|mochila|altavoz|convivencia)/.test(normalized)) add("ANC", 2)
+  if (/(fingido|fingías|fingias|no sabías|no sabias|incomod|evitar saludar|escuchando)/.test(normalized)) add("INF", 2)
+  if (/(pasivo-agresivo|indirecta|no pasa nada|haz lo que quieras|jajaja|qué raro|que raro)/.test(normalized)) add("PAP", 2)
+  if (/(colarte|pague|pagar|admitir un error|ambiguo|yo no fui|yo no dije eso|culpado al tráfico|trafico)/.test(normalized)) add("MNP", 2)
+  if (/(spoiler|chisme|broma|tropezó|tropezo|caos|malvado|cotilla)/.test(normalized)) add("TRL", 2)
+
+  return Object.keys(inferred).length > 0 ? inferred : { INF: 1 }
+}
+
+function getQuestionTraits(questionText) {
+  return QUESTION_TRAITS[questionText] || inferQuestionTraits(questionText)
+}
+
+function calculateTraitScores() {
+  const traitScores = createEmptyTraitScores()
+
+  selectedQuestions.forEach((questionText, questionIndex) => {
+    const multiplier = answersByIndex.get(questionIndex) || 0
+    if (multiplier === 0) return
+
+    const questionTraits = getQuestionTraits(questionText)
+    Object.entries(questionTraits).forEach(([traitCode, points]) => {
+      traitScores[traitCode] += points * multiplier
+    })
+  })
+
+  return traitScores
+}
+
+function getTopTraitCode(traitScores) {
+  return Object.keys(traitScores).reduce((bestTrait, traitCode) => {
+    if (!bestTrait) return traitCode
+    return traitScores[traitCode] > traitScores[bestTrait] ? traitCode : bestTrait
+  }, null)
+}
+
+function formatTraitBreakdown(traitScores) {
+  const sorted = Object.entries(traitScores)
+    .sort((a, b) => b[1] - a[1])
+    .map(([code, score]) => `${TRAITS[code]}: ${score.toFixed(1)} pts`)
+
+  return `Perfil por dimensiones: ${sorted.join(" · ")}`
+}
+
+function buildRadarPolygonPoints(values, cx, cy, radius, maxValue) {
+  return values
+    .map((value, index) => {
+      const angle = (-Math.PI / 2) + (2 * Math.PI * index) / values.length
+      const ratio = maxValue > 0 ? value / maxValue : 0
+      const x = cx + Math.cos(angle) * radius * ratio
+      const y = cy + Math.sin(angle) * radius * ratio
+      return `${x.toFixed(2)},${y.toFixed(2)}`
+    })
+    .join(" ")
+}
+
+function renderTraitRadar(traitScores) {
+  if (!traitRadarNode) return
+
+  const entries = Object.entries(traitScores)
+  const values = entries.map(([, score]) => score)
+  const maxObserved = Math.max(...values, 1)
+  const maxValue = Math.ceil(maxObserved / 2) * 2
+  const size = 420
+  const cx = size / 2
+  const cy = size / 2
+  const radius = 150
+  const levels = 4
+
+  const gridPolygons = Array.from({ length: levels }, (_, i) => {
+    const levelRadius = radius * ((i + 1) / levels)
+    const points = buildRadarPolygonPoints(new Array(entries.length).fill(maxValue), cx, cy, levelRadius, maxValue)
+    return `<polygon class="radar-grid" points="${points}" />`
+  }).join("")
+
+  const axes = entries.map((_, index) => {
+    const angle = (-Math.PI / 2) + (2 * Math.PI * index) / entries.length
+    const x = cx + Math.cos(angle) * radius
+    const y = cy + Math.sin(angle) * radius
+    return `<line class="radar-axis" x1="${cx}" y1="${cy}" x2="${x.toFixed(2)}" y2="${y.toFixed(2)}" />`
+  }).join("")
+
+  const dataPoints = buildRadarPolygonPoints(values, cx, cy, radius, maxValue)
+
+  const labels = entries.map(([code, score], index) => {
+    const angle = (-Math.PI / 2) + (2 * Math.PI * index) / entries.length
+    const labelRadius = radius + 28
+    const x = cx + Math.cos(angle) * labelRadius
+    const y = cy + Math.sin(angle) * labelRadius
+    const textAnchor = x < cx - 10 ? "end" : x > cx + 10 ? "start" : "middle"
+
+    return `
+      <text class="radar-label" x="${x.toFixed(2)}" y="${y.toFixed(2)}" text-anchor="${textAnchor}">${code}</text>
+      <text class="radar-score" x="${x.toFixed(2)}" y="${(y + 14).toFixed(2)}" text-anchor="${textAnchor}">${score.toFixed(1)} pts</text>
+    `
+  }).join("")
+
+  traitRadarNode.innerHTML = `
+    <svg viewBox="0 0 ${size} ${size}" role="img" aria-label="Diagrama de estrella con puntuación por dimensión">
+      ${gridPolygons}
+      ${axes}
+      <polygon class="radar-shape" points="${dataPoints}" />
+      ${labels}
+    </svg>
+  `
+}
+
+function getShareMessage() {
+  if (!currentResult) return ""
+
+  return `Según el Test Científico de Maldad Humana soy: ${currentResult.title}.\nhttps://vcastellar.github.io/testmaldad/`
+}
+
+function shareWhatsApp() {
+  const text = encodeURIComponent(getShareMessage())
+  window.open(`https://wa.me/?text=${text}`, "_blank")
+}
+
+function shareFacebook() {
+  const text = encodeURIComponent(getShareMessage())
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=&quote=${text}`, "_blank")
+}
+
+function shareInstagram() {
+  alert("Instagram no permite compartir texto directamente por enlace. Copia el resultado y súbelo en una historia.")
+}
 
 // Fisher-Yates: mezcla aleatoria in-place.
 function shuffleArray(array) {
@@ -190,7 +446,6 @@ function pickRandomQuestions(count = QUESTIONS_TO_SHOW) {
 function resetQuizState() {
   selectedQuestions = pickRandomQuestions()
   answersByIndex = new Map()
-  totalScore = 0
   quizLocked = false
   currentResult = null
   questionsContainer.innerHTML = ""
@@ -208,12 +463,12 @@ function renderQuestions() {
     const answersWrapper = document.createElement("div")
     answersWrapper.className = "answers"
 
-    ANSWERS.forEach(({ label, points }) => {
+    ANSWERS.forEach(({ label, multiplier }) => {
       const button = document.createElement("button")
       button.type = "button"
       button.className = "answer-btn"
       button.textContent = label
-      button.addEventListener("click", () => handleAnswer(questionIndex, questionText, points, button))
+      button.addEventListener("click", () => handleAnswer(questionIndex, multiplier, button))
       answersWrapper.appendChild(button)
     })
 
@@ -236,135 +491,55 @@ function disableRemainingQuestions() {
   })
 }
 
-function handleAnswer(questionIndex, questionText, points, clickedButton) {
+function handleAnswer(questionIndex, multiplier, clickedButton) {
   if (quizLocked) return
 
-  const previousPoints = answersByIndex.has(questionIndex) ? answersByIndex.get(questionIndex) : null
-  if (previousPoints !== null) {
-    totalScore -= previousPoints
-  }
-
-  answersByIndex.set(questionIndex, points)
-  totalScore += points
+  answersByIndex.set(questionIndex, multiplier)
 
   const card = clickedButton.closest(".question")
   card.classList.add("answered")
   card.querySelectorAll(".answer-btn").forEach((btn) => btn.classList.remove("selected"))
   clickedButton.classList.add("selected")
 
-  // Detección inmediata de preguntas especiales con respuesta YES.
-  if (points === 10 && SPECIAL_TRIGGERS[questionText]) {
-    finishQuiz(SPECIAL_TRIGGERS[questionText], true)
-    return
-  }
-
   updateSubmitButton()
 }
 
-function calculateResultByScore(score) {
-  if (score <= 10) return "Humano sospechosamente normal"
-  if (score <= 20) return "Mentecato premium"
-  if (score <= 35) return "Energúmeno de secano"
-  if (score <= 50) return "Anómalo social"
-  if (score <= 65) return "Inadaptado funcional"
-  if (score <= 80) return "Anarquista de la convivencia"
-  return "Maestro del caos social"
-}
+function finishQuiz(trigger = "submit") {
+  // Solo permitimos calcular resultados al enviar el cuestionario completo.
+  // Esto evita atajos de "resultado inmediato" al responder afirmativamente.
+  if (trigger !== "submit") return
 
-function getShareMessage() {
-  if (!currentResult) return ""
-
-  return `Según el Test Científico de Maldad Humana soy: ${currentResult.title}.\nPenitencia impuesta: ${currentResult.penitence}`
-}
-
-function shareWhatsApp() {
-  const text = encodeURIComponent(getShareMessage())
-  window.open(`https://wa.me/?text=${text}`, "_blank")
-}
-
-function shareFacebook() {
-  const text = encodeURIComponent(getShareMessage())
-  window.open(`https://www.facebook.com/sharer/sharer.php?u=&quote=${text}`, "_blank")
-}
-
-function shareInstagram() {
-  alert("Instagram no permite compartir texto directamente por enlace. Copia el resultado y súbelo en una historia.")
-}
-
-function ensureModal() {
-  let modal = document.querySelector("#resultModal")
-  if (modal) return modal
-
-  modal = document.createElement("div")
-  modal.id = "resultModal"
-  modal.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;padding:20px;z-index:9999;"
-
-  modal.innerHTML = `
-    <div style="background:white;color:#111;max-width:560px;width:100%;border-radius:14px;padding:20px;box-shadow:0 15px 45px rgba(0,0,0,.25);">
-      <h2 id="modalResultTitle" style="margin-top:0;">Resultado</h2>
-      <p id="modalPenitence" style="line-height:1.5;"></p>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        <button id="modalShareWhatsApp" type="button">WhatsApp</button>
-        <button id="modalShareFacebook" type="button">Facebook</button>
-        <button id="modalShareInstagram" type="button">Instagram</button>
-        <button id="closeModalBtn" type="button">Cerrar</button>
-      </div>
-    </div>
-  `
-
-  document.body.appendChild(modal)
-
-  modal.querySelector("#modalShareWhatsApp").addEventListener("click", shareWhatsApp)
-  modal.querySelector("#modalShareFacebook").addEventListener("click", shareFacebook)
-  modal.querySelector("#modalShareInstagram").addEventListener("click", shareInstagram)
-  modal.querySelector("#closeModalBtn").addEventListener("click", () => {
-    modal.style.display = "none"
-  })
-
-  modal.addEventListener("click", (event) => {
-    if (event.target === modal) {
-      modal.style.display = "none"
-    }
-  })
-
-  return modal
-}
-
-function showResultModal() {
-  const modal = ensureModal()
-  modal.querySelector("#modalResultTitle").textContent = currentResult.title
-  modal.querySelector("#modalPenitence").textContent = currentResult.penitence
-  modal.style.display = "flex"
-}
-
-function finishQuiz(forcedResultTitle = null, isSpecial = false) {
   quizLocked = true
   disableRemainingQuestions()
   updateSubmitButton()
 
-  const resultTitle = forcedResultTitle || calculateResultByScore(totalScore)
-  const resultData = RESULTS[resultTitle]
+  const traitScores = calculateTraitScores()
+  const topTraitCode = getTopTraitCode(traitScores)
+  const resultTitle = TRAITS[topTraitCode]
+  const breakdown = formatTraitBreakdown(traitScores)
+  renderTraitRadar(traitScores)
 
   currentResult = {
     title: resultTitle,
-    penitence: resultData.penitence,
-    isSpecial,
-    score: totalScore
+    traitScores,
+    breakdown,
+    penitence: TRAIT_PENITENCES[topTraitCode]
   }
 
-  resultNode.textContent = isSpecial
-    ? `Resultado especial activado: ${resultTitle}`
-    : `Tu puntuación final es ${totalScore}. Resultado: ${resultTitle}`
+  resultNode.textContent = `Resultado dominante: ${resultTitle}`
+  const breakdownNode = document.querySelector("#traitBreakdown") || document.createElement("div")
+  breakdownNode.id = "traitBreakdown"
+  breakdownNode.textContent = breakdown
+  resultNode.insertAdjacentElement("afterend", breakdownNode)
 
-  penitenceNode.textContent = resultData.penitence
+  penitenceNode.textContent = currentResult.penitence
   resultSection.classList.remove("hidden")
+  resultSection.scrollIntoView({ behavior: "smooth", block: "start" })
 
-  // Botones de compartir del layout principal.
   document.querySelector("#shareWhatsapp").onclick = shareWhatsApp
   document.querySelector("#shareFacebook").onclick = shareFacebook
   document.querySelector("#shareInstagram").onclick = shareInstagram
 
-  showResultModal()
 }
 
 startBtn.addEventListener("click", () => {
@@ -381,5 +556,8 @@ submitBtn.addEventListener("click", () => {
     return
   }
 
-  finishQuiz()
+  finishQuiz("submit")
 })
+
+applyDeviceExperience()
+window.addEventListener("resize", applyDeviceExperience)
