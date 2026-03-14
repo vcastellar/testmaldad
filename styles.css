@@ -106,3 +106,25 @@ cursor:not-allowed;
 button:disabled:hover{
 background:#ff4d4d;
 }
+
+
+#traitRadar{
+max-width:900px;
+margin:0 auto 24px;
+padding:16px;
+background:#1a1a1a;
+border-radius:12px;
+}
+
+#traitRadar svg{
+width:100%;
+height:auto;
+display:block;
+}
+
+.radar-grid{stroke:#35506b;stroke-width:1;fill:none;}
+.radar-axis{stroke:#4d6a86;stroke-width:1;}
+.radar-shape{fill:rgba(255,77,77,.35);stroke:#ff6b6b;stroke-width:2;}
+.radar-point{fill:#ffd166;}
+.radar-label{fill:#e8f4ff;font-size:12px;font-weight:bold;}
+.radar-score{fill:#ffd166;font-size:11px;}
