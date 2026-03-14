@@ -123,6 +123,21 @@ const ANSWERS = [
   { label: "No", multiplier: 0 }
 ]
 
+function normalizeQuestionTraitsToFullScale(traits) {
+  const rawToFullScale = {
+    0: 1,
+    1: 3,
+    2: 5,
+    3: 7
+  }
+
+  return Object.keys(TRAITS).reduce((acc, traitKey) => {
+    const rawValue = traits[traitKey] ?? 0
+    acc[traitKey] = rawToFullScale[rawValue] ?? 1
+    return acc
+  }, {})
+}
+
 const RAW_QUESTION_TRAITS = {
 "¿Has fingido no ver a alguien para evitar saludarlo?": { INF:2, PAP:1 },
 "¿Has cruzado la calle para evitar una conversación incómoda?": { INF:2 },
@@ -232,10 +247,7 @@ const RAW_QUESTION_TRAITS = {
 
 const QUESTION_TRAITS = Object.fromEntries(
   Object.entries(RAW_QUESTION_TRAITS).map(([question, traits]) => {
-    const normalizedTraits = Object.keys(TRAITS).reduce((acc, traitKey) => {
-      acc[traitKey] = traits[traitKey] ?? 0
-      return acc
-    }, {})
+    const normalizedTraits = normalizeQuestionTraitsToFullScale(traits)
 
     return [question, normalizedTraits]
   })
@@ -294,7 +306,8 @@ function inferQuestionTraits(questionText) {
   if (/(colarte|pague|pagar|admitir un error|ambiguo|yo no fui|yo no dije eso|culpado al tráfico|trafico)/.test(normalized)) add("MNP", 2)
   if (/(spoiler|chisme|broma|tropezó|tropezo|caos|malvado|cotilla)/.test(normalized)) add("TRL", 2)
 
-  return Object.keys(inferred).length > 0 ? inferred : { INF: 1 }
+  const fallbackTraits = Object.keys(inferred).length > 0 ? inferred : { INF: 1 }
+  return normalizeQuestionTraitsToFullScale(fallbackTraits)
 }
 
 function getQuestionTraits(questionText) {
