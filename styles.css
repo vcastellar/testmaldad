@@ -41,6 +41,12 @@ background:#ff7777;
 display:none;
 }
 
+.question-meta{
+margin:0 0 12px;
+color:#cde7ff;
+font-size:14px;
+}
+
 #quiz{
 max-width:800px;
 margin:auto;
