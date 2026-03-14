@@ -261,6 +261,7 @@ const resultSection = document.querySelector("#resultSection")
 const resultNode = document.querySelector("#result")
 const penitenceNode = document.querySelector("#penitence")
 const traitRadarNode = document.querySelector("#traitRadar")
+const questionMetaNode = document.querySelector("#questionMeta")
 
 let selectedQuestions = []
 let answersByIndex = new Map()
@@ -491,6 +492,10 @@ function resetQuizState() {
 }
 
 function renderQuestions() {
+  if (questionMetaNode) {
+    questionMetaNode.textContent = `Mostrando ${selectedQuestions.length} preguntas aleatorias en esta ronda.`
+  }
+
   selectedQuestions.forEach((questionText, questionIndex) => {
     const card = document.createElement("article")
     card.className = "question"
