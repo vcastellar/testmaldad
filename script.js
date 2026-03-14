@@ -249,11 +249,33 @@ const resultSection = document.querySelector("#resultSection")
 const resultNode = document.querySelector("#result")
 const penitenceNode = document.querySelector("#penitence")
 const traitRadarNode = document.querySelector("#traitRadar")
+const deviceHintNode = document.querySelector("#deviceHint")
 
 let selectedQuestions = []
 let answersByIndex = new Map()
 let quizLocked = false
 let currentResult = null
+
+function detectDeviceType() {
+  const byWidth = window.matchMedia("(max-width: 767px)").matches
+  const coarsePointer = window.matchMedia("(pointer: coarse)").matches
+  return (byWidth || coarsePointer) ? "mobile" : "desktop"
+}
+
+function applyDeviceExperience() {
+  const deviceType = detectDeviceType()
+  const isMobile = deviceType === "mobile"
+
+  document.body.classList.toggle("device-mobile", isMobile)
+  document.body.classList.toggle("device-desktop", !isMobile)
+  document.body.dataset.device = deviceType
+
+  if (deviceHintNode) {
+    deviceHintNode.textContent = isMobile
+      ? "📱 Modo smartphone activado: botones grandes y preguntas en columna para tocar más fácil."
+      : "🖥️ Modo PC activado: distribución amplia optimizada para pantalla grande."
+  }
+}
 
 function createEmptyTraitScores() {
   return Object.keys(TRAITS).reduce((acc, key) => {
@@ -535,3 +557,6 @@ submitBtn.addEventListener("click", () => {
 
   finishQuiz("submit")
 })
+
+applyDeviceExperience()
+window.addEventListener("resize", applyDeviceExperience)
