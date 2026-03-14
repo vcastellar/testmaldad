@@ -251,7 +251,7 @@ const TRAIT_PENITENCES = {
   TRL: "Protocolo anti-troleo doméstico: 1) 24h sin spoilers ni chismes, 2) no remates errores ajenos con ironía, 3) convierte una pulla en un cumplido real."
 }
 
-const QUESTIONS_TO_SHOW = 10
+const QUESTIONS_TO_SHOW = 20
 
 const questionsContainer = document.querySelector("#questions")
 const startBtn = document.querySelector("#startBtn")
