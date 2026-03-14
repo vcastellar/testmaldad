@@ -386,7 +386,7 @@ function renderTraitRadar(traitScores) {
 function getShareMessage() {
   if (!currentResult) return ""
 
-  return `Según el Test Científico de Maldad Humana soy: ${currentResult.title}.\n${currentResult.breakdown}\nPenitencia impuesta: ${currentResult.penitence}`
+  return `Según el Test Científico de Maldad Humana soy: ${currentResult.title}.\nhttps://vcastellar.github.io/testmaldad/`
 }
 
 function shareWhatsApp() {
