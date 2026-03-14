@@ -106,51 +106,50 @@ const QUESTION_BANK = [
 ]
 
 // Reglas de puntuación base.
-const ANSWERS = [
-  { label: "Sí", points: 10 },
-  { label: "A veces", points: 5 },
-  { label: "No", points: 0 }
-]
 
-// Preguntas especiales: si se responde YES, se corta el quiz y se impone resultado directo.
-const SPECIAL_TRIGGERS = {
-  "¿Publicas selfies haciendo morritos?": "Narcisista compulsivo",
-  "¿Publicas en Instagram tu tostada de aguacate?": "Narciso digital",
-  "¿Has enviado un audio diciendo 'seré breve' y duró más de dos minutos?": "Terrorista del WhatsApp"
+const TRAITS = {
+  NAR: "Narcisista compulsivo",
+  WSP: "Terrorista del WhatsApp",
+  INF: "Inadaptado funcional",
+  ANC: "Anarquista de la convivencia",
+  PAP: "Pasivo-agresivo profesional",
+  MNP: "Manipulador de bolsillo",
+  TRL: "Troll doméstico"
 }
 
-// Resultados y penitencias (incluye normales y especiales).
-const RESULTS = {
-  "Humano sospechosamente normal": {
-    penitence: "El tribunal ha decidido vigilarte discretamente: 1) cede el asiento sin que te lo pidan, 2) escucha 10 minutos sin interrumpir, 3) responde un mensaje pendiente con amabilidad."
-  },
-  "Mentecato premium": {
-    penitence: "Programa oficial de rehumanización: 1) pide disculpas por una torpeza reciente, 2) deja pasar a alguien en una fila, 3) pasa una hora sin quejarte de nada."
-  },
-  "Energúmeno de secano": {
-    penitence: "Plan anti-berrinche en 3 actos: 1) cuenta hasta 20 antes de responder en caliente, 2) acepta una opinión contraria sin discutir, 3) agradece algo que normalmente das por hecho."
-  },
-  "Anómalo social": {
-    penitence: "Penitencia social mínima: 1) mantén una conversación de ascensor completa, 2) no mires el móvil durante esa charla, 3) despídete con una sonrisa creíble."
-  },
-  "Inadaptado funcional": {
-    penitence: "Reinserción express: 1) escucha un audio de 4 minutos sin acelerarlo, 2) responde con un texto claro en menos de 3 frases, 3) evita cualquier sarcasmo durante una hora."
-  },
-  "Anarquista de la convivencia": {
-    penitence: "Tratado de convivencia temporal: 1) responde con educación todos tus mensajes pendientes, 2) no dejes platos sucios fuera del fregadero, 3) llega puntual a tu próximo compromiso."
-  },
-  "Maestro del caos social": {
-    penitence: "Sanción máxima no apelable: 1) intenta cancelar una suscripción imposible, 2) devuelve un tupper que no es tuyo, 3) deja pasar a tres personas antes que tú hoy."
-  },
-  "Narcisista compulsivo": {
-    penitence: "Desinflado de ego controlado: 1) 48 horas sin cámara frontal, 2) sube una foto de una planta sin filtros, 3) comenta algo bonito en la publicación de otra persona sin hablar de ti."
-  },
-  "Narciso digital": {
-    penitence: "Protocolo detox de postureo: 1) publica una tostada normal (sin aguacate), 2) no revises likes durante 12 horas, 3) comparte una historia útil que no incluya tu cara."
-  },
-  "Terrorista del WhatsApp": {
-    penitence: "Régimen estricto de mensajería: 1) solo textos de máximo 12 palabras por 24h, 2) ningún audio, 3) resume tus ideas en un único mensaje en vez de siete."
-  }
+const ANSWERS = [
+  { label: "Sí", multiplier: 1 },
+  { label: "A veces", multiplier: 0.5 },
+  { label: "No", multiplier: 0 }
+]
+
+const QUESTION_TRAITS = {
+  "¿Publicas selfies haciendo morritos?": { NAR: 3 },
+  "¿Publicas en Instagram tu tostada de aguacate?": { NAR: 3 },
+  "¿Has enviado un audio diciendo 'seré breve' y duró más de dos minutos?": { WSP: 3 },
+  "¿Has usado el altavoz del móvil en un sitio público lleno de gente?": { ANC: 3, INF: 1 },
+  "¿Has respondido “jajaja” a algo que no te hizo gracia?": { PAP: 2 },
+  "¿Has hecho un comentario pasivo-agresivo?": { PAP: 3 },
+  "¿Has repetido un chisme empezando por “no debería decir esto…”?": { TRL: 3 },
+  "¿Has soltado un spoiler “sin querer”?": { TRL: 3 },
+  "¿Has ocupado más espacio del necesario en transporte público?": { ANC: 2 },
+  "¿Has intentado colarte sutilmente en una fila?": { ANC: 3, MNP: 1 },
+  "¿Has dejado que otro pague una cuenta que podrías haber dividido?": { MNP: 3 },
+  "¿Has aceptado comida gratis sin ofrecer pagar?": { MNP: 2 },
+  "¿Has fingido no ver un mensaje para no responder?": { WSP: 2 },
+  "¿Has respondido con un meme para evitar una conversación seria?": { WSP: 2 },
+  "¿Has cambiado de tema para evitar admitir un error?": { MNP: 2 },
+  "¿Has disfrutado secretamente cuando alguien que te cae mal se equivoca?": { TRL: 2 }
+}
+
+const TRAIT_PENITENCES = {
+  NAR: "Desinflado de ego controlado: 1) 48 horas sin cámara frontal, 2) sube una foto de una planta sin filtros, 3) felicita a alguien sin mencionar nada de ti.",
+  WSP: "Régimen estricto de mensajería: 1) cero audios por 24h, 2) mensajes de máximo 12 palabras, 3) responde en un único texto y sin trilogías.",
+  INF: "Reinserción social express: 1) escucha sin mirar el móvil 10 minutos, 2) responde algo útil en 2 frases, 3) evita sarcasmos durante una hora.",
+  ANC: "Tratado temporal de convivencia: 1) respeta una fila sin atajos, 2) no invadas espacio ajeno en transporte, 3) deja todo más limpio de como lo encontraste.",
+  PAP: "Desintoxicación pasivo-agresiva: 1) di lo que te molesta de forma directa y amable, 2) evita indirectas durante todo el día, 3) cambia un “lo que quieras” por una propuesta clara.",
+  MNP: "Plan anti-manipulación de bolsillo: 1) paga tu parte sin teatro, 2) admite un error sin excusas, 3) pide un favor sin chantaje emocional.",
+  TRL: "Protocolo anti-troleo doméstico: 1) 24h sin spoilers ni chismes, 2) no remates errores ajenos con ironía, 3) convierte una pulla en un cumplido real."
 }
 
 const QUESTIONS_TO_SHOW = 10
@@ -165,116 +164,78 @@ const penitenceNode = document.querySelector("#penitence")
 
 let selectedQuestions = []
 let answersByIndex = new Map()
-let totalScore = 0
 let quizLocked = false
 let currentResult = null
 
-// Fisher-Yates: mezcla aleatoria in-place.
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1))
-    const temp = array[i]
-    array[i] = array[j]
-    array[j] = temp
+function createEmptyTraitScores() {
+  return Object.keys(TRAITS).reduce((acc, key) => {
+    acc[key] = 0
+    return acc
+  }, {})
+}
+
+function normalizeQuestion(questionText) {
+  return questionText.toLowerCase()
+}
+
+function inferQuestionTraits(questionText) {
+  const normalized = normalizeQuestion(questionText)
+  const inferred = {}
+
+  const add = (trait, points) => {
+    inferred[trait] = (inferred[trait] || 0) + points
   }
-  return array
+
+  if (/(selfies|instagram|morritos|heroico|quedar mejor|tenías razón)/.test(normalized)) add("NAR", 2)
+  if (/(audio|mensaje|móvil|movil|whatsapp|emoji|meme|responder|te aviso|te escribo)/.test(normalized)) add("WSP", 2)
+  if (/(público|publico|transporte|dos asientos|mochila|altavoz|convivencia)/.test(normalized)) add("ANC", 2)
+  if (/(fingido|fingías|fingias|no sabías|no sabias|incomod|evitar saludar|escuchando)/.test(normalized)) add("INF", 2)
+  if (/(pasivo-agresivo|indirecta|no pasa nada|haz lo que quieras|jajaja|qué raro|que raro)/.test(normalized)) add("PAP", 2)
+  if (/(colarte|pague|pagar|admitir un error|ambiguo|yo no fui|yo no dije eso|culpado al tráfico|trafico)/.test(normalized)) add("MNP", 2)
+  if (/(spoiler|chisme|broma|tropezó|tropezo|caos|malvado|cotilla)/.test(normalized)) add("TRL", 2)
+
+  return Object.keys(inferred).length > 0 ? inferred : { INF: 1 }
 }
 
-function pickRandomQuestions(count = QUESTIONS_TO_SHOW) {
-  const limit = Math.min(count, QUESTION_BANK.length)
-  const copy = [...QUESTION_BANK]
-  shuffleArray(copy)
-  return copy.slice(0, limit)
+function getQuestionTraits(questionText) {
+  return QUESTION_TRAITS[questionText] || inferQuestionTraits(questionText)
 }
 
-function resetQuizState() {
-  selectedQuestions = pickRandomQuestions()
-  answersByIndex = new Map()
-  totalScore = 0
-  quizLocked = false
-  currentResult = null
-  questionsContainer.innerHTML = ""
-}
+function calculateTraitScores() {
+  const traitScores = createEmptyTraitScores()
 
-function renderQuestions() {
   selectedQuestions.forEach((questionText, questionIndex) => {
-    const card = document.createElement("article")
-    card.className = "question"
-    card.dataset.index = String(questionIndex)
+    const multiplier = answersByIndex.get(questionIndex) || 0
+    if (multiplier === 0) return
 
-    const title = document.createElement("p")
-    title.textContent = `${questionIndex + 1}. ${questionText}`
-
-    const answersWrapper = document.createElement("div")
-    answersWrapper.className = "answers"
-
-    ANSWERS.forEach(({ label, points }) => {
-      const button = document.createElement("button")
-      button.type = "button"
-      button.className = "answer-btn"
-      button.textContent = label
-      button.addEventListener("click", () => handleAnswer(questionIndex, questionText, points, button))
-      answersWrapper.appendChild(button)
+    const questionTraits = getQuestionTraits(questionText)
+    Object.entries(questionTraits).forEach(([traitCode, points]) => {
+      traitScores[traitCode] += points * multiplier
     })
-
-    card.appendChild(title)
-    card.appendChild(answersWrapper)
-    questionsContainer.appendChild(card)
   })
 
-  updateSubmitButton()
+  return traitScores
 }
 
-function updateSubmitButton() {
-  submitBtn.disabled = quizLocked || answersByIndex.size !== selectedQuestions.length
+function getTopTraitCode(traitScores) {
+  return Object.keys(traitScores).reduce((bestTrait, traitCode) => {
+    if (!bestTrait) return traitCode
+    return traitScores[traitCode] > traitScores[bestTrait] ? traitCode : bestTrait
+  }, null)
 }
 
-function disableRemainingQuestions() {
-  const allAnswerButtons = document.querySelectorAll(".answer-btn")
-  allAnswerButtons.forEach((button) => {
-    button.disabled = true
-  })
-}
+function formatTraitBreakdown(traitScores) {
+  const sorted = Object.entries(traitScores)
+    .sort((a, b) => b[1] - a[1])
+    .map(([code, score]) => `${TRAITS[code]}: ${score.toFixed(1)} pts`)
 
-function handleAnswer(questionIndex, questionText, points, clickedButton) {
-  if (quizLocked) return
-
-  const previousPoints = answersByIndex.has(questionIndex) ? answersByIndex.get(questionIndex) : null
-  if (previousPoints !== null) {
-    totalScore -= previousPoints
-  }
-
-  answersByIndex.set(questionIndex, points)
-  totalScore += points
-
-  const card = clickedButton.closest(".question")
-  card.classList.add("answered")
-  card.querySelectorAll(".answer-btn").forEach((btn) => btn.classList.remove("selected"))
-  clickedButton.classList.add("selected")
-
-  // Detección inmediata de preguntas especiales con respuesta YES.
-  if (points === 10 && SPECIAL_TRIGGERS[questionText]) {
-    finishQuiz(SPECIAL_TRIGGERS[questionText], true)
-    return
-  }
-
-  updateSubmitButton()
-}
-
-function calculateResultByScore(score) {
-  if (score <= 10) return "Humano sospechosamente normal"
-  if (score <= 20) return "Mentecato premium"
-  if (score <= 35) return "Energúmeno de secano"
-  if (score <= 50) return "Anómalo social"
-  if (score <= 65) return "Inadaptado funcional"
-  if (score <= 80) return "Anarquista de la convivencia"
-  return "Maestro del caos social"
+  return `Perfil por dimensiones: ${sorted.join(" · ")}`
 }
 
 function getShareMessage() {
   if (!currentResult) return ""
 
-  return `Según el Test Científico de Maldad Humana soy: ${currentResult.title}.\nPenitencia impuesta: ${currentResult.penitence}`
+  return `Según el Test Científico de Maldad Humana soy: ${currentResult.title}.\n${currentResult.breakdown}\nPenitencia impuesta: ${currentResult.penitence}`
 }
 
 function shareWhatsApp() {
@@ -302,6 +263,7 @@ function ensureModal() {
   modal.innerHTML = `
     <div style="background:white;color:#111;max-width:560px;width:100%;border-radius:14px;padding:20px;box-shadow:0 15px 45px rgba(0,0,0,.25);">
       <h2 id="modalResultTitle" style="margin-top:0;">Resultado</h2>
+      <p id="modalBreakdown" style="line-height:1.5;"></p>
       <p id="modalPenitence" style="line-height:1.5;"></p>
       <div style="display:flex;gap:10px;flex-wrap:wrap;">
         <button id="modalShareWhatsApp" type="button">WhatsApp</button>
@@ -333,33 +295,116 @@ function ensureModal() {
 function showResultModal() {
   const modal = ensureModal()
   modal.querySelector("#modalResultTitle").textContent = currentResult.title
+  modal.querySelector("#modalBreakdown").textContent = currentResult.breakdown
   modal.querySelector("#modalPenitence").textContent = currentResult.penitence
   modal.style.display = "flex"
 }
 
-function finishQuiz(forcedResultTitle = null, isSpecial = false) {
+// Fisher-Yates: mezcla aleatoria in-place.
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1))
+    const temp = array[i]
+    array[i] = array[j]
+    array[j] = temp
+  }
+  return array
+}
+
+function pickRandomQuestions(count = QUESTIONS_TO_SHOW) {
+  const limit = Math.min(count, QUESTION_BANK.length)
+  const copy = [...QUESTION_BANK]
+  shuffleArray(copy)
+  return copy.slice(0, limit)
+}
+
+function resetQuizState() {
+  selectedQuestions = pickRandomQuestions()
+  answersByIndex = new Map()
+  quizLocked = false
+  currentResult = null
+  questionsContainer.innerHTML = ""
+}
+
+function renderQuestions() {
+  selectedQuestions.forEach((questionText, questionIndex) => {
+    const card = document.createElement("article")
+    card.className = "question"
+    card.dataset.index = String(questionIndex)
+
+    const title = document.createElement("p")
+    title.textContent = `${questionIndex + 1}. ${questionText}`
+
+    const answersWrapper = document.createElement("div")
+    answersWrapper.className = "answers"
+
+    ANSWERS.forEach(({ label, multiplier }) => {
+      const button = document.createElement("button")
+      button.type = "button"
+      button.className = "answer-btn"
+      button.textContent = label
+      button.addEventListener("click", () => handleAnswer(questionIndex, multiplier, button))
+      answersWrapper.appendChild(button)
+    })
+
+    card.appendChild(title)
+    card.appendChild(answersWrapper)
+    questionsContainer.appendChild(card)
+  })
+
+  updateSubmitButton()
+}
+
+function updateSubmitButton() {
+  submitBtn.disabled = quizLocked || answersByIndex.size !== selectedQuestions.length
+}
+
+function disableRemainingQuestions() {
+  const allAnswerButtons = document.querySelectorAll(".answer-btn")
+  allAnswerButtons.forEach((button) => {
+    button.disabled = true
+  })
+}
+
+function handleAnswer(questionIndex, multiplier, clickedButton) {
+  if (quizLocked) return
+
+  answersByIndex.set(questionIndex, multiplier)
+
+  const card = clickedButton.closest(".question")
+  card.classList.add("answered")
+  card.querySelectorAll(".answer-btn").forEach((btn) => btn.classList.remove("selected"))
+  clickedButton.classList.add("selected")
+
+  updateSubmitButton()
+}
+
+function finishQuiz() {
   quizLocked = true
   disableRemainingQuestions()
   updateSubmitButton()
 
-  const resultTitle = forcedResultTitle || calculateResultByScore(totalScore)
-  const resultData = RESULTS[resultTitle]
+  const traitScores = calculateTraitScores()
+  const topTraitCode = getTopTraitCode(traitScores)
+  const resultTitle = TRAITS[topTraitCode]
+  const breakdown = formatTraitBreakdown(traitScores)
 
   currentResult = {
     title: resultTitle,
-    penitence: resultData.penitence,
-    isSpecial,
-    score: totalScore
+    traitScores,
+    breakdown,
+    penitence: TRAIT_PENITENCES[topTraitCode]
   }
 
-  resultNode.textContent = isSpecial
-    ? `Resultado especial activado: ${resultTitle}`
-    : `Tu puntuación final es ${totalScore}. Resultado: ${resultTitle}`
+  resultNode.textContent = `Resultado dominante: ${resultTitle}`
+  const breakdownNode = document.querySelector("#traitBreakdown") || document.createElement("div")
+  breakdownNode.id = "traitBreakdown"
+  breakdownNode.textContent = breakdown
+  resultNode.insertAdjacentElement("afterend", breakdownNode)
 
-  penitenceNode.textContent = resultData.penitence
+  penitenceNode.textContent = currentResult.penitence
   resultSection.classList.remove("hidden")
 
-  // Botones de compartir del layout principal.
   document.querySelector("#shareWhatsapp").onclick = shareWhatsApp
   document.querySelector("#shareFacebook").onclick = shareFacebook
   document.querySelector("#shareInstagram").onclick = shareInstagram

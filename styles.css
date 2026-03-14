@@ -76,6 +76,14 @@ font-size:22px;
 margin:20px;
 }
 
+#traitBreakdown{
+font-size:16px;
+max-width:900px;
+margin:0 auto 20px;
+line-height:1.5;
+color:#cde7ff;
+}
+
 #penitence{
 font-size:18px;
 margin:20px;
