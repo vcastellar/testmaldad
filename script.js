@@ -262,11 +262,37 @@ const resultNode = document.querySelector("#result")
 const penitenceNode = document.querySelector("#penitence")
 const traitRadarNode = document.querySelector("#traitRadar")
 const questionMetaNode = document.querySelector("#questionMeta")
+const deviceModeNode = document.querySelector("#deviceMode")
 
 let selectedQuestions = []
 let answersByIndex = new Map()
 let quizLocked = false
 let currentResult = null
+
+
+function detectDeviceMode() {
+  const ua = navigator.userAgent || ""
+  const isTouch = navigator.maxTouchPoints > 0
+  const byUserAgent = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|Mobile/i.test(ua)
+  const byViewport = window.matchMedia("(max-width: 768px)").matches
+  return (byUserAgent || (isTouch && byViewport)) ? "mobile" : "desktop"
+}
+
+function applyDeviceMode() {
+  const mode = detectDeviceMode()
+  document.body.classList.toggle("device-mobile", mode === "mobile")
+  document.body.classList.toggle("device-desktop", mode === "desktop")
+
+  if (deviceModeNode) {
+    deviceModeNode.textContent = mode === "mobile"
+      ? "Modo detectado: smartphone. Interfaz compacta activada."
+      : "Modo detectado: PC. Interfaz amplia activada."
+  }
+}
+
+applyDeviceMode()
+window.addEventListener("resize", applyDeviceMode)
+window.addEventListener("orientationchange", applyDeviceMode)
 
 function createEmptyTraitScores() {
   return Object.keys(TRAITS).reduce((acc, key) => {
