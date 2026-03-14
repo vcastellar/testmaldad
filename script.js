@@ -239,7 +239,7 @@ const TRAIT_PENITENCES = {
   TRL: "Protocolo anti-troleo doméstico: 1) 24h sin spoilers ni chismes, 2) no remates errores ajenos con ironía, 3) convierte una pulla en un cumplido real."
 }
 
-const QUESTIONS_TO_SHOW = 10
+const QUESTIONS_TO_SHOW = 15
 
 const questionsContainer = document.querySelector("#questions")
 const startBtn = document.querySelector("#startBtn")
@@ -403,54 +403,6 @@ function shareInstagram() {
   alert("Instagram no permite compartir texto directamente por enlace. Copia el resultado y súbelo en una historia.")
 }
 
-function ensureModal() {
-  let modal = document.querySelector("#resultModal")
-  if (modal) return modal
-
-  modal = document.createElement("div")
-  modal.id = "resultModal"
-  modal.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;padding:20px;z-index:9999;"
-
-  modal.innerHTML = `
-    <div style="background:white;color:#111;max-width:560px;width:100%;border-radius:14px;padding:20px;box-shadow:0 15px 45px rgba(0,0,0,.25);">
-      <h2 id="modalResultTitle" style="margin-top:0;">Resultado</h2>
-      <p id="modalBreakdown" style="line-height:1.5;"></p>
-      <p id="modalPenitence" style="line-height:1.5;"></p>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        <button id="modalShareWhatsApp" type="button">WhatsApp</button>
-        <button id="modalShareFacebook" type="button">Facebook</button>
-        <button id="modalShareInstagram" type="button">Instagram</button>
-        <button id="closeModalBtn" type="button">Cerrar</button>
-      </div>
-    </div>
-  `
-
-  document.body.appendChild(modal)
-
-  modal.querySelector("#modalShareWhatsApp").addEventListener("click", shareWhatsApp)
-  modal.querySelector("#modalShareFacebook").addEventListener("click", shareFacebook)
-  modal.querySelector("#modalShareInstagram").addEventListener("click", shareInstagram)
-  modal.querySelector("#closeModalBtn").addEventListener("click", () => {
-    modal.style.display = "none"
-  })
-
-  modal.addEventListener("click", (event) => {
-    if (event.target === modal) {
-      modal.style.display = "none"
-    }
-  })
-
-  return modal
-}
-
-function showResultModal() {
-  const modal = ensureModal()
-  modal.querySelector("#modalResultTitle").textContent = currentResult.title
-  modal.querySelector("#modalBreakdown").textContent = currentResult.breakdown
-  modal.querySelector("#modalPenitence").textContent = currentResult.penitence
-  modal.style.display = "flex"
-}
-
 // Fisher-Yates: mezcla aleatoria in-place.
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i -= 1) {
@@ -565,7 +517,6 @@ function finishQuiz(trigger = "submit") {
   document.querySelector("#shareFacebook").onclick = shareFacebook
   document.querySelector("#shareInstagram").onclick = shareInstagram
 
-  showResultModal()
 }
 
 startBtn.addEventListener("click", () => {
