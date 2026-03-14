@@ -124,7 +124,6 @@ const ANSWERS = [
 ]
 
 const QUESTION_TRAITS = {
-const QUESTION_TRAITS = {
 "¿Has fingido no ver a alguien para evitar saludarlo?": { INF:2, PAP:1 },
 "¿Has cruzado la calle para evitar una conversación incómoda?": { INF:2 },
 "¿Has dicho “te aviso” sabiendo que nunca avisarías?": { MNP:2, PAP:1 },
@@ -229,7 +228,6 @@ const QUESTION_TRAITS = {
 "¿Publicas selfies haciendo morritos?": { NAR:3, INF:1 },
 "¿Publicas en Instagram tu tostada de aguacate?": { NAR:3, PAP:1 }
 }
-}
 
 const TRAIT_PENITENCES = {
   NAR: "Desinflado de ego controlado: 1) 48 horas sin cámara frontal, 2) sube una foto de una planta sin filtros, 3) felicita a alguien sin mencionar nada de ti.",
@@ -250,6 +248,7 @@ const quizSection = document.querySelector("#quiz")
 const resultSection = document.querySelector("#resultSection")
 const resultNode = document.querySelector("#result")
 const penitenceNode = document.querySelector("#penitence")
+const traitRadarNode = document.querySelector("#traitRadar")
 
 let selectedQuestions = []
 let answersByIndex = new Map()
@@ -319,6 +318,69 @@ function formatTraitBreakdown(traitScores) {
     .map(([code, score]) => `${TRAITS[code]}: ${score.toFixed(1)} pts`)
 
   return `Perfil por dimensiones: ${sorted.join(" · ")}`
+}
+
+function buildRadarPolygonPoints(values, cx, cy, radius, maxValue) {
+  return values
+    .map((value, index) => {
+      const angle = (-Math.PI / 2) + (2 * Math.PI * index) / values.length
+      const ratio = maxValue > 0 ? value / maxValue : 0
+      const x = cx + Math.cos(angle) * radius * ratio
+      const y = cy + Math.sin(angle) * radius * ratio
+      return `${x.toFixed(2)},${y.toFixed(2)}`
+    })
+    .join(" ")
+}
+
+function renderTraitRadar(traitScores) {
+  if (!traitRadarNode) return
+
+  const entries = Object.entries(traitScores)
+  const values = entries.map(([, score]) => score)
+  const maxObserved = Math.max(...values, 1)
+  const maxValue = Math.ceil(maxObserved / 2) * 2
+  const size = 420
+  const cx = size / 2
+  const cy = size / 2
+  const radius = 150
+  const levels = 4
+
+  const gridPolygons = Array.from({ length: levels }, (_, i) => {
+    const levelRadius = radius * ((i + 1) / levels)
+    const points = buildRadarPolygonPoints(new Array(entries.length).fill(maxValue), cx, cy, levelRadius, maxValue)
+    return `<polygon class="radar-grid" points="${points}" />`
+  }).join("")
+
+  const axes = entries.map((_, index) => {
+    const angle = (-Math.PI / 2) + (2 * Math.PI * index) / entries.length
+    const x = cx + Math.cos(angle) * radius
+    const y = cy + Math.sin(angle) * radius
+    return `<line class="radar-axis" x1="${cx}" y1="${cy}" x2="${x.toFixed(2)}" y2="${y.toFixed(2)}" />`
+  }).join("")
+
+  const dataPoints = buildRadarPolygonPoints(values, cx, cy, radius, maxValue)
+
+  const labels = entries.map(([code, score], index) => {
+    const angle = (-Math.PI / 2) + (2 * Math.PI * index) / entries.length
+    const labelRadius = radius + 28
+    const x = cx + Math.cos(angle) * labelRadius
+    const y = cy + Math.sin(angle) * labelRadius
+    const textAnchor = x < cx - 10 ? "end" : x > cx + 10 ? "start" : "middle"
+
+    return `
+      <text class="radar-label" x="${x.toFixed(2)}" y="${y.toFixed(2)}" text-anchor="${textAnchor}">${code}</text>
+      <text class="radar-score" x="${x.toFixed(2)}" y="${(y + 14).toFixed(2)}" text-anchor="${textAnchor}">${score.toFixed(1)} pts</text>
+    `
+  }).join("")
+
+  traitRadarNode.innerHTML = `
+    <svg viewBox="0 0 ${size} ${size}" role="img" aria-label="Diagrama de estrella con puntuación por dimensión">
+      ${gridPolygons}
+      ${axes}
+      <polygon class="radar-shape" points="${dataPoints}" />
+      ${labels}
+    </svg>
+  `
 }
 
 function getShareMessage() {
@@ -481,6 +543,7 @@ function finishQuiz(trigger = "submit") {
   const topTraitCode = getTopTraitCode(traitScores)
   const resultTitle = TRAITS[topTraitCode]
   const breakdown = formatTraitBreakdown(traitScores)
+  renderTraitRadar(traitScores)
 
   currentResult = {
     title: resultTitle,
