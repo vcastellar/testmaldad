@@ -138,7 +138,11 @@ function normalizeQuestionTraitsToFullScale(traits) {
   }, {})
 }
 
-const QUESTION_TRAITS = {
+// ------------------------------
+// Pesos iniciales de cada pregunta
+// ------------------------------
+
+const RAW_QUESTION_TRAITS = {
 
 "¿Has fingido no ver a alguien para evitar saludarlo?": { INF:4, PAP:3, MNP:2, NAR:1 },
 
@@ -204,77 +208,36 @@ const QUESTION_TRAITS = {
 
 "¿Has caminado lento bloqueando el paso sin darte cuenta… o sí?": { ANC:4, INF:3, PAP:2, TRL:1 },
 
-"¿Has intentado colarte sutilmente en una fila?": { ANC:4, MNP:3, INF:2, TRL:1 },
+"¿Has intentado colarte sutilmente en una fila?": { ANC:4, MNP:3, INF:2, TRL:1 }
 
-"¿Has usado “solo es un momento” para justificar algo molesto?": { ANC:4, MNP:3, PAP:2, INF:1 },
-
-"¿Has puesto cara de inocente después de causar un pequeño caos?": { MNP:4, TRL:3, PAP:2, NAR:1 },
-
-"¿Has dejado que otro pague una cuenta que podrías haber dividido?": { MNP:4, INF:3, PAP:2, NAR:1 },
-
-"¿Has aceptado comida gratis sin ofrecer pagar?": { MNP:4, INF:3, NAR:2, PAP:1 },
-
-"¿Has hecho un comentario pasivo-agresivo?": { PAP:4, MNP:3, NAR:2, INF:1 },
-
-"¿Has fingido estar ocupado para evitar ayudar?": { MNP:4, PAP:3, INF:2, NAR:1 },
-
-"¿Has dicho “yo no fui” demasiado rápido?": { MNP:4, PAP:3, TRL:2, INF:1 },
-
-"¿Has respondido con un meme para evitar una conversación seria?": { WSP:4, PAP:3, TRL:2, NAR:1 },
-
-"¿Has enviado un mensaje ambiguo para que otro lo interprete?": { PAP:4, MNP:3, TRL:2, NAR:1 },
-
-"¿Has cambiado de tema para evitar admitir un error?": { MNP:4, NAR:3, PAP:2, TRL:1 },
-
-"¿Has reído cuando alguien tropezó?": { TRL:4, PAP:3, INF:2, NAR:1 },
-
-"¿Has esperado a que alguien termine de hablar solo para contradecirlo?": { PAP:4, NAR:3, TRL:2, INF:1 },
-
-"¿Has disfrutado secretamente cuando alguien que te cae mal se equivoca?": { TRL:4, PAP:3, NAR:2, INF:1 },
-
-"¿Has dicho “era broma” después de un comentario incómodo?": { PAP:4, TRL:3, MNP:2, INF:1 },
-
-"¿Has dejado que alguien crea que tu idea era mejor de lo que era?": { NAR:4, MNP:3, PAP:2, TRL:1 },
-
-"¿Has repetido una historia haciéndote quedar mejor?": { NAR:4, PAP:3, MNP:2, TRL:1 },
-
-"¿Has pensado alguna vez: “esto es un poco malvado… pero divertido”?": { TRL:4, PAP:3, MNP:2, NAR:1 },
-
-"¿Has aplaudido cuando aterriza el avión?": { INF:4, ANC:3, PAP:2, NAR:1 },
-
-"¿Has dicho “vamos viendo” sin ninguna intención real de quedar?": { WSP:4, MNP:3, PAP:2, NAR:1 },
-
-"¿Has dicho “qué ilusión verte” cuando no te hacía ninguna ilusión?": { PAP:4, MNP:3, NAR:2, INF:1 },
-
-"¿Has respondido “jajaja” a algo que no te hizo gracia?": { PAP:4, MNP:3, WSP:2, NAR:1 },
-
-"¿Has enviado un audio diciendo 'seré breve' y duró más de dos minutos?": { WSP:4, TRL:3, PAP:2, NAR:1 },
-
-"¿Has dicho “solo será un minuto” sabiendo que no lo sería?": { MNP:4, PAP:3, WSP:2, NAR:1 },
-
-"¿Has usado el altavoz del móvil en un sitio público lleno de gente?": { ANC:4, INF:3, PAP:2, WSP:1 },
-
-"¿Has mirado el móvil mientras alguien te contaba algo importante?": { INF:4, WSP:3, PAP:2, NAR:1 },
-
-"¿Has dicho “yo invito la próxima” esperando que nadie lo recuerde?": { MNP:4, PAP:3, NAR:2, INF:1 },
-
-"¿Has fingido no ver un mensaje para no responder?": { WSP:4, NAR:3, PAP:2, MNP:1 },
-
-"¿Has dicho “te escribo luego” sabiendo que no lo harías?": { WSP:4, MNP:3, PAP:2, NAR:1 },
-
-"¿Has visto una serie con alguien y luego seguiste viéndola sin esa persona?": { MNP:4, NAR:3, PAP:2, TRL:1 },
-
-"¿Has soltado un spoiler diciendo “no es spoiler pero…”?": { TRL:4, PAP:3, INF:2, ANC:1 },
-
-"¿Has preguntado algo que acababan de explicar porque no estabas escuchando?": {
+}
 
 
+// ------------------------------
+// Normalización automática
+// ------------------------------
+
+function normalizeQuestionTraitsToFullScale(traits) {
+
+  const maxWeight = Math.max(...Object.values(traits))
+
+  const normalized = {}
+
+  Object.entries(traits).forEach(([trait, weight]) => {
+    normalized[trait] = Math.round((weight / maxWeight) * 5)
+  })
+
+  return normalized
+}
+
+
+// ------------------------------
+// Generar matriz final
+// ------------------------------
 
 const QUESTION_TRAITS = Object.fromEntries(
   Object.entries(RAW_QUESTION_TRAITS).map(([question, traits]) => {
-    const normalizedTraits = normalizeQuestionTraitsToFullScale(traits)
-
-    return [question, normalizedTraits]
+    return [question, normalizeQuestionTraitsToFullScale(traits)]
   })
 )
 
