@@ -534,6 +534,7 @@ function finishQuiz(trigger = "submit") {
 
   penitenceNode.textContent = currentResult.penitence
   resultSection.classList.remove("hidden")
+  resultSection.scrollIntoView({ behavior: "smooth", block: "start" })
 
   document.querySelector("#shareWhatsapp").onclick = shareWhatsApp
   document.querySelector("#shareFacebook").onclick = shareFacebook
