@@ -477,14 +477,21 @@ function shuffleArray(array) {
 }
 
 function pickRandomQuestions(count = QUESTIONS_TO_SHOW) {
-  const limit = Math.min(count, QUESTION_BANK.length)
-  const copy = [...QUESTION_BANK]
-  shuffleArray(copy)
-  return copy.slice(0, limit)
+  if (QUESTION_BANK.length < count) {
+    throw new Error(`No hay suficientes preguntas para mostrar ${count} elementos.`)
+  }
+
+  const selectedIndexes = new Set()
+
+  while (selectedIndexes.size < count) {
+    selectedIndexes.add(Math.floor(Math.random() * QUESTION_BANK.length))
+  }
+
+  return Array.from(selectedIndexes, (index) => QUESTION_BANK[index])
 }
 
 function resetQuizState() {
-  selectedQuestions = pickRandomQuestions()
+  selectedQuestions = pickRandomQuestions(QUESTIONS_TO_SHOW)
   answersByIndex = new Map()
   quizLocked = false
   currentResult = null
