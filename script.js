@@ -80,7 +80,12 @@ const QUESTIONS = [
 
 "¿Alguna vez has pensado: “esto es un poco malvado… pero nadie se dará cuenta”?",
 "¿Publicas selfies haciendo morritos?",
-"¿Publicas en Instagram tu tostada de aguacate?"
+"¿Publicas en Instagram tu tostada de aguacate?",
+"¿Has enviado “perdón por contestar tarde” mientras estabas en línea todo el día?",
+"¿Has abierto la nevera ajena y has opinado sin que te preguntaran?",
+"¿Has dicho “no era por ti” justo después de lanzar una indirecta nuclear?",
+"¿Has subido una story triste esperando mensajes de “¿qué te pasa?”?",
+"¿Has pedido “una prueba” del postre y terminaste comiéndote medio plato?"
 
 ]
 // Reglas de puntuación base.
@@ -201,7 +206,12 @@ const RAW_QUESTION_TRAITS = {
 
 "¿Alguna vez has pensado: “esto es un poco malvado… pero nadie se dará cuenta”?": { TRL:4, MNP:3, PAP:2, NAR:1 },
 "¿Publicas selfies haciendo morritos?": { NAR:4, INF:3, PAP:2, TRL:1 },
-"¿Publicas en Instagram tu tostada de aguacate?": { NAR:4, PAP:3, INF:2, TRL:1 }
+"¿Publicas en Instagram tu tostada de aguacate?": { NAR:4, PAP:3, INF:2, TRL:1 },
+"¿Has enviado “perdón por contestar tarde” mientras estabas en línea todo el día?": { WSP:4, MNP:3, PAP:2, NAR:1 },
+"¿Has abierto la nevera ajena y has opinado sin que te preguntaran?": { ANC:4, NAR:3, INF:2, TRL:1 },
+"¿Has dicho “no era por ti” justo después de lanzar una indirecta nuclear?": { PAP:4, TRL:3, MNP:2, NAR:1 },
+"¿Has subido una story triste esperando mensajes de “¿qué te pasa?”?": { NAR:4, MNP:3, WSP:2, PAP:1 },
+"¿Has pedido “una prueba” del postre y terminaste comiéndote medio plato?": { MNP:4, ANC:3, INF:2, TRL:1 }
 
 }
 
@@ -233,14 +243,18 @@ const QUESTION_TRAITS = Object.fromEntries(
   })
 )
 
+const QUESTION_BANK = QUESTIONS.filter((question, index, allQuestions) => {
+  return allQuestions.indexOf(question) === index
+})
+
 const TRAIT_PENITENCES = {
-  NAR: "Desinflado de ego controlado: 1) 48 horas sin cámara frontal, 2) sube una foto de una planta sin filtros, 3) felicita a alguien sin mencionar nada de ti.",
-  WSP: "Régimen estricto de mensajería: 1) cero audios por 24h, 2) mensajes de máximo 12 palabras, 3) responde en un único texto y sin trilogías.",
-  INF: "Reinserción social express: 1) escucha sin mirar el móvil 10 minutos, 2) responde algo útil en 2 frases, 3) evita sarcasmos durante una hora.",
-  ANC: "Tratado temporal de convivencia: 1) respeta una fila sin atajos, 2) no invadas espacio ajeno en transporte, 3) deja todo más limpio de como lo encontraste.",
-  PAP: "Desintoxicación pasivo-agresiva: 1) di lo que te molesta de forma directa y amable, 2) evita indirectas durante todo el día, 3) cambia un “lo que quieras” por una propuesta clara.",
-  MNP: "Plan anti-manipulación de bolsillo: 1) paga tu parte sin teatro, 2) admite un error sin excusas, 3) pide un favor sin chantaje emocional.",
-  TRL: "Protocolo anti-troleo doméstico: 1) 24h sin spoilers ni chismes, 2) no remates errores ajenos con ironía, 3) convierte una pulla en un cumplido real."
+  NAR: "Penitencia anti-ego (modo tierra): 1) 48h sin cámara frontal ni selfies, 2) sube una foto de algo bonito que no seas tú, 3) felicita a 3 personas sin meter un “yo también”.",
+  WSP: "Penitencia anti-spam (modo monje): 1) 24h sin audios, 2) nada de mensajes en ráfaga: un texto, una idea, 3) si escribes “jajaja”, añade una respuesta real detrás.",
+  INF: "Penitencia de reconexión humana: 1) 10 minutos de escucha total sin móvil, 2) responde con algo útil antes de opinar, 3) cero ghosting durante hoy.",
+  ANC: "Penitencia de convivencia extrema: 1) haz una fila completa sin colarte ni suspirar, 2) mochila en el regazo en transporte, 3) deja un espacio más limpio de como lo encontraste.",
+  PAP: "Penitencia desintoxicante de indirectas: 1) cambia una indirecta por una frase clara, 2) prohíbete el “haz lo que quieras” por 24h, 3) pide lo que necesitas sin teatro.",
+  MNP: "Penitencia anti-manipulación: 1) paga tu parte exacta sin cálculos creativos, 2) admite un error sin “pero…”, 3) pide un favor sin culpa ni chantaje emocional.",
+  TRL: "Penitencia anti-caos social: 1) 24h sin spoilers ni chismes jugosos, 2) no remates fallos ajenos con ironía, 3) transforma una pulla en un cumplido honesto."
 }
 
 const QUESTIONS_TO_SHOW = 20
