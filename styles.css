@@ -11,6 +11,27 @@ header{
 padding:40px;
 }
 
+.skip-link{
+position:absolute;
+left:-9999px;
+top:auto;
+width:1px;
+height:1px;
+overflow:hidden;
+}
+
+.skip-link:focus{
+left:16px;
+top:16px;
+width:auto;
+height:auto;
+padding:10px 14px;
+background:#ffd166;
+color:#111;
+border-radius:8px;
+z-index:999;
+}
+
 h1{
 font-size:40px;
 color:#ff4d4d;
@@ -142,6 +163,37 @@ font-size:14px;
 color:#9cd2ff;
 }
 
+.seo-content{
+max-width:860px;
+margin:26px auto 40px;
+padding:20px;
+background:#1b1b1b;
+border-radius:12px;
+text-align:left;
+line-height:1.7;
+}
+
+.seo-content h2,
+.seo-content h3{
+color:#ffd166;
+}
+
+.seo-content dt{
+font-weight:700;
+margin-top:12px;
+}
+
+.seo-content dd{
+margin:6px 0 0;
+color:#e5e5e5;
+}
+
+footer{
+padding:18px 16px 28px;
+color:#b9b9b9;
+font-size:14px;
+}
+
 main, header, section{
 box-sizing:border-box;
 }
@@ -161,7 +213,8 @@ font-size:15px;
 }
 
 body.device-mobile #quiz,
-body.device-mobile #resultSection{
+body.device-mobile #resultSection,
+body.device-mobile .seo-content{
 max-width:100%;
 padding:0 12px 18px;
 }
