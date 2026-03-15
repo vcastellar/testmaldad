@@ -258,6 +258,60 @@ justify-content:center;
 flex-wrap:wrap;
 }
 
+/*
+  Ajustes de convivencia lista/mapa.
+  Evita que el mapa tape la lista de misterios cuando ambos comparten pantalla.
+*/
+.mystery-layout,
+.misterios-layout,
+.layout-mapa-misterios{
+display:grid;
+grid-template-columns:minmax(280px, 1fr) minmax(320px, 1.4fr);
+gap:16px;
+align-items:start;
+}
+
+#mysteryList,
+#mysteriesList,
+#listaMisterios,
+#lista-misterios,
+.mystery-list,
+.lista-misterios{
+position:relative;
+z-index:2;
+background:#1b1b1b;
+border-radius:10px;
+padding:12px;
+}
+
+#map,
+#mapa,
+.map,
+.mapa,
+.map-container{
+position:relative;
+z-index:1;
+min-height:320px;
+border-radius:10px;
+overflow:hidden;
+}
+
+@media (max-width: 900px){
+  .mystery-layout,
+  .misterios-layout,
+  .layout-mapa-misterios{
+  grid-template-columns:1fr;
+  }
+
+  #map,
+  #mapa,
+  .map,
+  .mapa,
+  .map-container{
+  min-height:260px;
+  }
+}
+
 body.device-desktop #quiz,
 body.device-desktop #resultSection{
 padding:0 20px 24px;
