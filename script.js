@@ -86,7 +86,7 @@ const QUESTIONS = [
 "¿Has dicho “no era por ti” justo después de lanzar una indirecta nuclear?",
 "¿Has subido una story triste esperando mensajes de “¿qué te pasa?”?",
 "¿Has pedido “una prueba” del postre y terminaste comiéndote medio plato?",
-  "¿Has abierto la nevera de alguien sin pedir permiso?",
+"¿Has abierto la nevera de alguien sin pedir permiso?",
 "¿Has usado el cargador de alguien sin decir nada?",
 "¿Has enviado un 'ok' seco para cerrar una conversación incómoda?",
 "¿Has respondido a un mensaje importante solo con un emoji?",
@@ -118,10 +118,10 @@ const QUESTIONS = [
 const TRAITS = {
   NAR: "Narcisista compulsivo",
   WSP: "Terrorista del WhatsApp",
-  INF: "Inadaptado funcional",
+  INF: "Desastre social certificado",
   ANC: "Anarquista de la convivencia",
   PAP: "Pasivo-agresivo profesional",
-  MNP: "Manipulador de bolsillo",
+  MNP: "Rata estratégica",
   TRL: "Troll doméstico"
 }
 
