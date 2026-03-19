@@ -311,7 +311,7 @@ const TRAIT_PENITENCES = {
   TRL: "Penitencia anti-caos social: 1) 24h sin spoilers ni chismes jugosos, 2) no remates fallos ajenos con ironía, 3) transforma una pulla en un cumplido honesto."
 }
 
-const QUESTIONS_TO_SHOW = 15
+const QUESTIONS_TO_SHOW = 20
 
 const questionsContainer = document.querySelector("#questions")
 const startBtn = document.querySelector("#startBtn")
@@ -321,33 +321,38 @@ const resultSection = document.querySelector("#resultSection")
 const resultNode = document.querySelector("#result")
 const penitenceNode = document.querySelector("#penitence")
 const traitRadarNode = document.querySelector("#traitRadar")
-const deviceHintNode = document.querySelector("#deviceHint")
+const questionMetaNode = document.querySelector("#questionMeta")
+const deviceModeNode = document.querySelector("#deviceMode")
 
 let selectedQuestions = []
 let answersByIndex = new Map()
 let quizLocked = false
 let currentResult = null
 
-function detectDeviceType() {
-  const byWidth = window.matchMedia("(max-width: 767px)").matches
-  const coarsePointer = window.matchMedia("(pointer: coarse)").matches
-  return (byWidth || coarsePointer) ? "mobile" : "desktop"
+
+function detectDeviceMode() {
+  const ua = navigator.userAgent || ""
+  const isTouch = navigator.maxTouchPoints > 0
+  const byUserAgent = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|Mobile/i.test(ua)
+  const byViewport = window.matchMedia("(max-width: 768px)").matches
+  return (byUserAgent || (isTouch && byViewport)) ? "mobile" : "desktop"
 }
 
-function applyDeviceExperience() {
-  const deviceType = detectDeviceType()
-  const isMobile = deviceType === "mobile"
+function applyDeviceMode() {
+  const mode = detectDeviceMode()
+  document.body.classList.toggle("device-mobile", mode === "mobile")
+  document.body.classList.toggle("device-desktop", mode === "desktop")
 
-  document.body.classList.toggle("device-mobile", isMobile)
-  document.body.classList.toggle("device-desktop", !isMobile)
-  document.body.dataset.device = deviceType
-
-  if (deviceHintNode) {
-    deviceHintNode.textContent = isMobile
-      ? "📱 Modo smartphone activado: botones grandes y preguntas en columna para tocar más fácil."
-      : "🖥️ Modo PC activado: distribución amplia optimizada para pantalla grande."
+  if (deviceModeNode) {
+    deviceModeNode.textContent = mode === "mobile"
+      ? "Modo detectado: smartphone. Interfaz compacta activada."
+      : "Modo detectado: PC. Interfaz amplia activada."
   }
 }
+
+applyDeviceMode()
+window.addEventListener("resize", applyDeviceMode)
+window.addEventListener("orientationchange", applyDeviceMode)
 
 function createEmptyTraitScores() {
   return Object.keys(TRAITS).reduce((acc, key) => {
@@ -481,7 +486,7 @@ function renderTraitRadar(traitScores) {
 function getShareMessage() {
   if (!currentResult) return ""
 
-  return `Según el Test Científico de Maldad Humana soy: ${currentResult.title}.\nhttps://vcastellar.github.io/testmaldad/`
+  return `Según el Test Científico de Maldad Humana soy: ${currentResult.title}.\n${currentResult.breakdown}\nPenitencia impuesta: ${currentResult.penitence}`
 }
 
 function shareWhatsApp() {
@@ -618,7 +623,6 @@ function finishQuiz(trigger = "submit") {
 
   penitenceNode.textContent = currentResult.penitence
   resultSection.classList.remove("hidden")
-  resultSection.scrollIntoView({ behavior: "smooth", block: "start" })
 
   requestAnimationFrame(() => {
     resultSection.scrollIntoView({ behavior: "smooth", block: "start" })
@@ -646,6 +650,3 @@ submitBtn.addEventListener("click", () => {
 
   finishQuiz("submit")
 })
-
-applyDeviceExperience()
-window.addEventListener("resize", applyDeviceExperience)
