@@ -1,3 +1,14 @@
+:root{
+--content-width:900px;
+--question-padding:20px;
+--title-size:40px;
+--button-size:16px;
+}
+
+*{
+box-sizing:border-box;
+}
+
 body{
 font-family: Arial, Helvetica, sans-serif;
 background:#111;
@@ -8,7 +19,7 @@ padding:0;
 }
 
 header{
-padding:40px;
+padding:40px 20px;
 }
 
 .skip-link{
@@ -33,14 +44,22 @@ z-index:999;
 }
 
 h1{
-font-size:40px;
+font-size:var(--title-size);
 color:#ff4d4d;
+margin:0 0 16px;
 }
 
 .intro{
 max-width:700px;
 margin:auto;
 line-height:1.6;
+}
+
+.device-hint{
+margin:18px auto 0;
+color:#9ed0ff;
+font-size:14px;
+opacity:.9;
 }
 
 button{
@@ -50,7 +69,7 @@ border:none;
 border-radius:8px;
 background:#ff4d4d;
 color:white;
-font-size:16px;
+font-size:var(--button-size);
 cursor:pointer;
 }
 
@@ -62,20 +81,16 @@ background:#ff7777;
 display:none;
 }
 
-.question-meta{
-margin:0 0 12px;
-color:#cde7ff;
-font-size:14px;
-}
-
-#quiz{
-max-width:800px;
+#quiz,
+#resultSection{
+max-width:var(--content-width);
 margin:auto;
+padding:0 16px 24px;
 }
 
 .question{
-margin:20px;
-padding:20px;
+margin:20px 0;
+padding:var(--question-padding);
 background:#222;
 border-radius:10px;
 transition:opacity .2s ease, box-shadow .2s ease;
@@ -85,8 +100,15 @@ transition:opacity .2s ease, box-shadow .2s ease;
 opacity:0.4;
 }
 
+.answers{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:8px;
+}
+
 .answers button{
-margin:5px;
+margin:0;
 background:#333;
 }
 
@@ -134,7 +156,6 @@ button:disabled:hover{
 background:#ff4d4d;
 }
 
-
 #traitRadar{
 max-width:900px;
 margin:0 auto 24px;
@@ -156,173 +177,56 @@ display:block;
 .radar-label{fill:#e8f4ff;font-size:12px;font-weight:bold;}
 .radar-score{fill:#ffd166;font-size:11px;}
 
-
-.device-mode{
-margin:16px auto 4px;
-font-size:14px;
-color:#9cd2ff;
-}
-
-.seo-content{
-max-width:860px;
-margin:26px auto 40px;
-padding:20px;
-background:#1b1b1b;
-border-radius:12px;
-text-align:left;
-line-height:1.7;
-}
-
-.seo-content h2,
-.seo-content h3{
-color:#ffd166;
-}
-
-.seo-content dt{
-font-weight:700;
-margin-top:12px;
-}
-
-.seo-content dd{
-margin:6px 0 0;
-color:#e5e5e5;
-}
-
-footer{
-padding:18px 16px 28px;
-color:#b9b9b9;
-font-size:14px;
-}
-
-main, header, section{
-box-sizing:border-box;
-}
-
-body.device-mobile header{
-padding:24px 16px;
-}
-
-body.device-mobile h1{
-font-size:30px;
-line-height:1.2;
-}
-
-body.device-mobile .intro{
-max-width:100%;
-font-size:15px;
-}
-
-body.device-mobile #quiz,
-body.device-mobile #resultSection,
-body.device-mobile .seo-content{
-max-width:100%;
-padding:0 12px 18px;
-}
-
-body.device-mobile .question{
-margin:12px 0;
-padding:14px;
+body.device-mobile{
+--content-width:100%;
+--question-padding:14px;
+--title-size:30px;
+--button-size:15px;
 }
 
 body.device-mobile button{
-width:100%;
-max-width:100%;
-margin:8px 0;
+width:min(100%, 320px);
 }
 
 body.device-mobile .answers{
-display:flex;
 flex-direction:column;
-gap:8px;
+align-items:stretch;
 }
 
-body.device-mobile #traitRadar{
-padding:10px;
+body.device-mobile .answers .answer-btn{
+width:100%;
 }
 
-body.device-mobile .radar-label{
-font-size:10px;
+@media (max-width: 767px){
+header{
+padding:24px 14px;
 }
 
-body.device-mobile .radar-score{
-font-size:9px;
+.intro{
+font-size:15px;
+}
+
+#result{
+font-size:20px;
+}
+
+#traitBreakdown,
+#penitence{
+font-size:15px;
+}
 }
 
 body.device-desktop{
-font-size:16px;
+--content-width:980px;
+--question-padding:22px;
 }
 
-body.device-desktop .answers{
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
+@media (min-width: 1024px){
+.answers{
+justify-content:flex-start;
 }
 
-/*
-  Ajustes de convivencia lista/mapa.
-  Evita que el mapa tape la lista de misterios cuando ambos comparten pantalla.
-*/
-.mystery-layout,
-.misterios-layout,
-.layout-mapa-misterios{
-display:grid;
-grid-template-columns:minmax(280px, 1fr) minmax(320px, 1.4fr);
-gap:16px;
-align-items:start;
-}
-
-#mysteryList,
-#mysteriesList,
-#listaMisterios,
-#lista-misterios,
-.mystery-list,
-.lista-misterios{
-position:relative;
-z-index:2;
-background:#1b1b1b;
-border-radius:10px;
-padding:12px;
-}
-
-#map,
-#mapa,
-.map,
-.mapa,
-.map-container{
-position:relative;
-z-index:1;
-min-height:320px;
-border-radius:10px;
-overflow:hidden;
-}
-
-@media (max-width: 900px){
-  .mystery-layout,
-  .misterios-layout,
-  .layout-mapa-misterios{
-  grid-template-columns:1fr;
-  }
-
-  #map,
-  #mapa,
-  .map,
-  .mapa,
-  .map-container{
-  min-height:260px;
-  }
-}
-
-body.device-desktop #quiz,
-body.device-desktop #resultSection{
-padding:0 20px 24px;
-}
-
-@media (max-width: 768px){
-body:not(.device-desktop) header{
-padding:24px 16px;
-}
-
-body:not(.device-desktop) h1{
-font-size:30px;
+.answers .answer-btn{
+min-width:130px;
 }
 }
