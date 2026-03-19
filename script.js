@@ -1,110 +1,118 @@
 // Banco completo de preguntas del test satírico.
-const QUESTION_BANK = [
-  "¿Has fingido no ver a alguien para evitar saludarlo?",
-  "¿Has cruzado la calle para evitar una conversación incómoda?",
-  "¿Has dicho “te aviso” sabiendo que nunca avisarías?",
-  "¿Has devuelto una llamada solo porque necesitabas algo?",
-  "¿Has respondido “qué pena” sin sentir ninguna pena?",
-  "¿Has dado un consejo que tú mismo no seguirías?",
-  "¿Has asentido fingiendo interés en una historia aburrida?",
-  "¿Has interrumpido a alguien para contar tu propia historia?",
-  "¿Has dicho “no tengo hambre” y luego comido del plato de otro?",
-  "¿Has cogido la última porción diciendo “si nadie la quiere…”?",
-  "¿Has criticado algo que en realidad te gusta?",
-  "¿Has dicho “no me gusta la polémica” justo antes de crear una?",
-  "¿Has leído un mensaje y tardado en responder para parecer ocupado?",
-  "¿Has dejado que alguien se equivoque sin corregirlo?",
-  "¿Has corregido a alguien solo para demostrar que tenías razón?",
-  "¿Has hecho una pregunta cuya respuesta ya sabías?",
-  "¿Has fingido sorpresa ante algo que ya sabías?",
-  "¿Has contado un secreto que te pidieron no contar?",
-  "¿Has exagerado una historia para que parezca mejor?",
-  "¿Has hecho un comentario sarcástico que alguien no entendió?",
-  "¿Has culpado al tráfico aunque saliste tarde de casa?",
-  "¿Has dicho “estoy llegando” cuando aún estabas en casa?",
-  "¿Has dicho “cinco minutos” sabiendo que eran quince?",
-  "¿Has prometido algo que sabías que no cumplirías?",
-  "¿Has dicho “luego lo hago” y lo olvidaste convenientemente?",
-  "¿Has fingido que no escuchaste algo incómodo?",
-  "¿Has mirado el móvil para evitar una conversación?",
-  "¿Has hecho una broma a costa de alguien presente?",
-  "¿Has repetido un chisme empezando por “no debería decir esto…”?",
-  "¿Has soltado un spoiler “sin querer”?",
-  "¿Has ocupado más espacio del necesario en transporte público?",
-  "¿Has caminado lento bloqueando el paso sin darte cuenta… o sí?",
-  "¿Has intentado colarte sutilmente en una fila?",
-  "¿Has usado “solo es un momento” para justificar algo molesto?",
-  "¿Has puesto cara de inocente después de causar un pequeño caos?",
-  "¿Has dejado que otro pague una cuenta que podrías haber dividido?",
-  "¿Has aceptado comida gratis sin ofrecer pagar?",
-  "¿Has hecho un comentario pasivo-agresivo?",
-  "¿Has fingido estar ocupado para evitar ayudar?",
-  "¿Has dicho “yo no fui” demasiado rápido?",
-  "¿Has respondido con un meme para evitar una conversación seria?",
-  "¿Has enviado un mensaje ambiguo para que otro lo interprete?",
-  "¿Has cambiado de tema para evitar admitir un error?",
-  "¿Has reído cuando alguien tropezó?",
-  "¿Has esperado a que alguien termine de hablar solo para contradecirlo?",
-  "¿Has disfrutado secretamente cuando alguien que te cae mal se equivoca?",
-  "¿Has dicho “era broma” después de un comentario incómodo?",
-  "¿Has dejado que alguien crea que tu idea era mejor de lo que era?",
-  "¿Has repetido una historia haciéndote quedar mejor?",
-  "¿Has pensado alguna vez: “esto es un poco malvado… pero divertido”?",
-  "¿Has aplaudido cuando aterriza el avión?",
-  "¿Has dicho “vamos viendo” sin ninguna intención real de quedar?",
-  "¿Has dicho “qué ilusión verte” cuando no te hacía ninguna ilusión?",
-  "¿Has respondido “jajaja” a algo que no te hizo gracia?",
-  "¿Has enviado un audio diciendo 'seré breve' y duró más de dos minutos?",
-  "¿Has dicho “solo será un minuto” sabiendo que no lo sería?",
-  "¿Has usado el altavoz del móvil en un sitio público lleno de gente?",
-  "¿Has mirado el móvil mientras alguien te contaba algo importante?",
-  "¿Has dicho “yo invito la próxima” esperando que nadie lo recuerde?",
-  "¿Has fingido no ver un mensaje para no responder?",
-  "¿Has dicho “te escribo luego” sabiendo que no lo harías?",
-  "¿Has visto una serie con alguien y luego seguiste viéndola sin esa persona?",
-  "¿Has soltado un spoiler diciendo “no es spoiler pero…”?",
-  "¿Has preguntado algo que acababan de explicar porque no estabas escuchando?",
-  "¿Has fingido que sabías algo que en realidad no tenías ni idea?",
-  "¿Has corregido a alguien en público solo para tener razón?",
-  "¿Has ocupado dos asientos en transporte público con tu mochila?",
-  "¿Has fingido interés mientras pensabas en otra cosa?",
-  "¿Has dicho “salgo ya” cuando aún estabas en pijama?",
-  "¿Has dicho “no pasa nada” esperando claramente que sí pase algo?",
-  "¿Has respondido “haz lo que quieras” esperando que no lo hagan?",
-  "¿Has dicho “no tengo opinión” para evitar discutir aunque sí la tenías?",
-  "¿Has fingido que no sabías algo para evitar responsabilidad?",
-  "¿Has soltado un “yo ya lo dije” después de que algo saliera mal?",
-  "¿Has hecho una broma pasivo-agresiva que parecía un cumplido?",
-  "¿Has dicho “qué raro…” insinuando que alguien hizo algo mal?",
-  "¿Has mirado el móvil mientras alguien hablaba contigo cara a cara?",
-  "¿Has fingido que escuchabas mientras pensabas en otra cosa?",
-  "¿Has dicho “claro, claro” sin saber de qué hablaban?",
-  "¿Has asentido con la cabeza para terminar antes una conversación?",
-  "¿Has dicho “te aviso” sin intención de avisar?",
-  "¿Has dicho “solo una cosa rápida” y luego hablaste diez minutos?",
-  "¿Has contado una historia exagerando tu papel heroico?",
-  "¿Has omitido un detalle importante para parecer más listo?",
-  "¿Has dicho “yo no dije eso” cuando sí lo dijiste?",
-  "¿Has cambiado ligeramente una historia cada vez que la cuentas?",
-  "¿Has usado “según estudios” sin saber qué estudios?",
-  "¿Has citado algo que leíste en internet como si fuera seguro?",
-  "¿Has dicho “todo el mundo dice que…” cuando no era cierto?",
-  "¿Has fingido saber de qué hablaban para no quedar mal?",
-  "¿Has dicho “sí, claro” esperando que no te pidan hacerlo?",
-  "¿Has mirado al móvil para escapar de una charla incómoda?",
-  "¿Has dicho “te queda genial” cuando claramente no era así?",
-  "¿Has dicho “no soy cotilla pero…” justo antes de cotillear?",
-  "¿Has escuchado un chisme con mucho interés aunque fingías lo contrario?",
-  "¿Has contado algo confidencial “solo a una persona”?",
-  "¿Has soltado una indirecta esperando que alguien la entienda?",
-  "¿Has fingido no entender una indirecta incómoda?",
-  "¿Has dicho “qué interesante…” para terminar una conversación aburrida?",
-  "¿Has respondido con un emoji para evitar seguir hablando?",
-  "¿Alguna vez has pensado:\n“esto es un poco malvado… pero nadie se dará cuenta”?",
-  "¿Publicas selfies haciendo morritos?",
-  "¿Publicas en Instagram tu tostada de aguacate?"
-]
+const QUESTIONS = [
 
+"¿Has fingido no ver a alguien para evitar saludarlo?",
+"¿Has cruzado la calle para evitar una conversación incómoda?",
+"¿Has dicho “te aviso” sabiendo que nunca avisarías?",
+"¿Has devuelto una llamada solo porque necesitabas algo?",
+"¿Has respondido “qué pena” sin sentir ninguna pena?",
+"¿Has dado un consejo que tú mismo no seguirías?",
+"¿Has asentido fingiendo interés en una historia aburrida?",
+"¿Has interrumpido a alguien para contar tu propia historia?",
+"¿Has cogido la última porción diciendo “si nadie la quiere…”?",
+"¿Has criticado algo que en realidad te gusta?",
+
+"¿Has dicho “no me gusta la polémica” justo antes de crear una?",
+"¿Has leído un mensaje y tardado en responder para parecer ocupado?",
+"¿Has contado un secreto que te pidieron no contar?",
+"¿Has exagerado una historia para que parezca mejor?",
+"¿Has hecho un comentario sarcástico que alguien no entendió?",
+"¿Has culpado al tráfico aunque saliste tarde de casa?",
+"¿Has prometido algo que sabías que no cumplirías?",
+"¿Has mirado el móvil para evitar una conversación?",
+"¿Has hecho una broma a costa de alguien presente?",
+"¿Has repetido un chisme empezando por “no debería decir esto…”?",
+
+"¿Has soltado un spoiler sin avisar?",
+"¿Has ocupado más espacio del necesario en transporte público?",
+"¿Has intentado colarte sutilmente en una fila?",
+"¿Has usado “solo es un momento” para justificar algo molesto?",
+"¿Has puesto cara de inocente después de causar un pequeño caos?",
+"¿Has dejado que otro pague una cuenta que podríais haber dividido?",
+"¿Has aceptado comida gratis sin ofrecer pagar?",
+"¿Has hecho un comentario pasivo-agresivo?",
+"¿Has fingido estar ocupado para evitar ayudar?",
+"¿Has respondido con un meme para evitar una conversación seria?",
+
+"¿Has enviado un mensaje ambiguo para que otro lo interprete?",
+"¿Has cambiado de tema para evitar admitir un error?",
+"¿Has reído cuando alguien tropezó?",
+"¿Has disfrutado secretamente cuando alguien que te cae mal se equivoca?",
+"¿Has dicho “era broma” después de un comentario incómodo?",
+"¿Has repetido una historia haciéndote quedar mejor?",
+"¿Has pensado alguna vez: “esto es un poco malvado… pero divertido”?",
+"¿Has aplaudido cuando aterriza el avión?",
+"¿Has dicho “vamos viendo” sin ninguna intención real de quedar?",
+"¿Has dicho “qué ilusión verte” cuando no te hacía ninguna ilusión?",
+
+"¿Has respondido “jajaja” a algo que no te hizo gracia?",
+"¿Has enviado un audio diciendo 'seré breve' y duró más de dos minutos?",
+"¿Has usado el altavoz del móvil en un sitio público lleno de gente?",
+"¿Has mirado el móvil mientras alguien te contaba algo importante?",
+"¿Has dicho “yo invito la próxima” esperando que nadie lo recuerde?",
+"¿Has fingido no ver un mensaje para no responder?",
+"¿Has visto una serie con alguien y luego seguiste viéndola sin esa persona?",
+"¿Has fingido que sabías algo que en realidad no tenías ni idea?",
+"¿Has ocupado dos asientos en transporte público con tu mochila?",
+"¿Has dicho “salgo ya” cuando aún estabas en pijama?",
+
+"¿Has dicho “no pasa nada” esperando claramente que sí pase algo?",
+"¿Has respondido “haz lo que quieras” esperando que no lo hagan?",
+"¿Has soltado un “yo ya lo dije” después de que algo saliera mal?",
+"¿Has hecho una broma pasivo-agresiva que parecía un cumplido?",
+"¿Has dicho “qué raro…” insinuando que alguien hizo algo mal?",
+"¿Has dicho “solo una cosa rápida” y luego hablaste diez minutos?",
+"¿Has contado una historia exagerando tu papel heroico?",
+"¿Has omitido un detalle importante para parecer más listo?",
+"¿Has dicho “yo no dije eso” cuando sí lo dijiste?",
+"¿Has usado “según estudios” sin saber qué estudios?",
+
+"¿Has dicho “todo el mundo dice que…” cuando no era cierto?",
+"¿Has fingido saber de qué hablaban para no quedar mal?",
+"¿Has dicho “sí, claro” esperando que no te pidan hacerlo?",
+"¿Has mirado al móvil para escapar de una charla incómoda?",
+"¿Has dicho “te queda genial” cuando claramente no era así?",
+"¿Has dicho “no soy cotilla pero…” justo antes de cotillear?",
+"¿Has escuchado un chisme con mucho interés aunque fingías lo contrario?",
+"¿Has contado algo confidencial “solo a una persona”?",
+"¿Has soltado una indirecta esperando que alguien la entienda?",
+"¿Has respondido con un emoji para evitar seguir hablando?",
+
+"¿Alguna vez has pensado: “esto es un poco malvado… pero nadie se dará cuenta”?",
+"¿Publicas selfies haciendo morritos?",
+"¿Publicas en Instagram tu tostada de aguacate?",
+"¿Has enviado “perdón por contestar tarde” mientras estabas en línea todo el día?",
+"¿Has abierto la nevera ajena y has opinado sin que te preguntaran?",
+"¿Has dicho “no era por ti” justo después de lanzar una indirecta nuclear?",
+"¿Has subido una story triste esperando mensajes de “¿qué te pasa?”?",
+"¿Has pedido “una prueba” del postre y terminaste comiéndote medio plato?",
+  "¿Has abierto la nevera de alguien sin pedir permiso?",
+"¿Has usado el cargador de alguien sin decir nada?",
+"¿Has enviado un 'ok' seco para cerrar una conversación incómoda?",
+"¿Has respondido a un mensaje importante solo con un emoji?",
+"¿Has mirado quién dio like antes de decidir si darlo tú también?",
+"¿Has fingido saber de qué hablaban en una reunión?",
+"¿Has hecho scroll en el móvil mientras alguien te contaba algo serio?",
+"¿Has respondido 'ya lo miraré' sabiendo que no lo harías?",
+"¿Has fingido reír para que alguien dejara de contar un chiste?",
+"¿Has dejado una conversación grupal cuando empezaba a ponerse incómoda?",
+"¿Has corregido algo en Google delante de alguien solo para tener razón?",
+"¿Has dicho 'era sarcasmo' cuando en realidad no lo era?",
+"¿Has respondido tarde a propósito para parecer más importante?",
+"¿Has usado la frase 'te lo digo por tu bien' antes de criticar algo?",
+"¿Has contado una historia esperando secretamente impresionar a alguien?",
+"¿Has pensado que alguien estaba hablando demasiado… mientras tú hablabas más?",
+"¿Has dicho 'no soy experto pero…' antes de opinar con mucha seguridad?",
+"¿Has dejado de responder esperando que el problema se resolviera solo?",
+"¿Has hecho una pregunta solo para poder hablar tú después?",
+"¿Has disfrutado viendo una discusión absurda en internet?",
+"¿Has seguido leyendo un drama online solo por puro morbo?",
+"¿Has fingido estar ocupado para evitar que te asignaran una tarea?",
+"¿Has respondido con un GIF para evitar tener que pensar una respuesta?",
+"¿Has mirado el móvil solo para evitar contacto visual?",
+"¿Has pensado 'esto va a acabar mal'… y aun así seguiste mirando?"
+
+]
 // Reglas de puntuación base.
 
 const TRAITS = {
@@ -123,120 +131,184 @@ const ANSWERS = [
   { label: "No", multiplier: 0 }
 ]
 
-const QUESTION_TRAITS = {
-"¿Has fingido no ver a alguien para evitar saludarlo?": { INF:2, PAP:1 },
-"¿Has cruzado la calle para evitar una conversación incómoda?": { INF:2 },
-"¿Has dicho “te aviso” sabiendo que nunca avisarías?": { MNP:2, PAP:1 },
-"¿Has devuelto una llamada solo porque necesitabas algo?": { MNP:3 },
-"¿Has respondido “qué pena” sin sentir ninguna pena?": { PAP:3 },
-"¿Has dado un consejo que tú mismo no seguirías?": { MNP:2, PAP:1 },
-"¿Has asentido fingiendo interés en una historia aburrida?": { PAP:2, INF:1 },
-"¿Has interrumpido a alguien para contar tu propia historia?": { NAR:2, INF:1 },
-"¿Has dicho “no tengo hambre” y luego comido del plato de otro?": { MNP:2 },
-"¿Has cogido la última porción diciendo “si nadie la quiere…”?": { MNP:3 },
-"¿Has criticado algo que en realidad te gusta?": { PAP:2 },
-"¿Has dicho “no me gusta la polémica” justo antes de crear una?": { TRL:2, PAP:2 },
-"¿Has leído un mensaje y tardado en responder para parecer ocupado?": { WSP:2, NAR:1 },
-"¿Has dejado que alguien se equivoque sin corregirlo?": { MNP:2 },
-"¿Has corregido a alguien solo para demostrar que tenías razón?": { NAR:2, PAP:1 },
-"¿Has hecho una pregunta cuya respuesta ya sabías?": { MNP:2 },
-"¿Has fingido sorpresa ante algo que ya sabías?": { PAP:2 },
-"¿Has contado un secreto que te pidieron no contar?": { TRL:3 },
-"¿Has exagerado una historia para que parezca mejor?": { NAR:2 },
-"¿Has hecho un comentario sarcástico que alguien no entendió?": { PAP:3 },
-"¿Has culpado al tráfico aunque saliste tarde de casa?": { MNP:2 },
-"¿Has dicho “estoy llegando” cuando aún estabas en casa?": { MNP:2, WSP:1 },
-"¿Has dicho “cinco minutos” sabiendo que eran quince?": { MNP:2 },
-"¿Has prometido algo que sabías que no cumplirías?": { MNP:3 },
-"¿Has dicho “luego lo hago” y lo olvidaste convenientemente?": { INF:1, MNP:1 },
-"¿Has fingido que no escuchaste algo incómodo?": { PAP:2 },
-"¿Has mirado el móvil para evitar una conversación?": { WSP:2 },
-"¿Has hecho una broma a costa de alguien presente?": { TRL:3 },
-"¿Has repetido un chisme empezando por “no debería decir esto…”?": { TRL:3, INF:1, ANC:1 },
-"¿Has soltado un spoiler “sin querer”?": { TRL:3, PAP:1, INF:2 },
-"¿Has ocupado más espacio del necesario en transporte público?": { ANC:2, PAP:1, INF:2 },
-"¿Has caminado lento bloqueando el paso sin darte cuenta… o sí?": { ANC:2, INF:2 },
-"¿Has intentado colarte sutilmente en una fila?": { ANC:3, MNP:1 },
-"¿Has usado “solo es un momento” para justificar algo molesto?": { ANC:2, MNP:1 },
-"¿Has puesto cara de inocente después de causar un pequeño caos?": { MNP:2, TRL:1 },
-"¿Has dejado que otro pague una cuenta que podrías haber dividido?": { MNP:3, INF:1 },
-"¿Has aceptado comida gratis sin ofrecer pagar?": { MNP:2, NAR:1 },
-"¿Has hecho un comentario pasivo-agresivo?": { PAP:3, MNP:3 },
-"¿Has fingido estar ocupado para evitar ayudar?": { MNP:2, PAP:1 },
-"¿Has dicho “yo no fui” demasiado rápido?": { MNP:2 },
-"¿Has respondido con un meme para evitar una conversación seria?": { WSP:2, PAP:2 },
-"¿Has enviado un mensaje ambiguo para que otro lo interprete?": { PAP:2, MNP:2 },
-"¿Has cambiado de tema para evitar admitir un error?": { MNP:3, NAR:3 },
-"¿Has reído cuando alguien tropezó?": { TRL:2 },
-"¿Has esperado a que alguien termine de hablar solo para contradecirlo?": { PAP:2 },
-"¿Has disfrutado secretamente cuando alguien que te cae mal se equivoca?": { TRL:2, PAP:1 },
-"¿Has dicho “era broma” después de un comentario incómodo?": { PAP:2 },
-"¿Has dejado que alguien crea que tu idea era mejor de lo que era?": { NAR:2, MNP:2 },
-"¿Has repetido una historia haciéndote quedar mejor?": { NAR:2 },
-"¿Has pensado alguna vez: “esto es un poco malvado… pero divertido”?": { TRL:3 },
-"¿Has aplaudido cuando aterriza el avión?": { INF:3 },
-"¿Has dicho “vamos viendo” sin ninguna intención real de quedar?": { WSP:2, MNP:1 },
-"¿Has dicho “qué ilusión verte” cuando no te hacía ninguna ilusión?": { PAP:3 },
-"¿Has respondido “jajaja” a algo que no te hizo gracia?": { PAP:3, MNP:2 },
-"¿Has enviado un audio diciendo 'seré breve' y duró más de dos minutos?": { WSP:3, TRL:3 },
-"¿Has dicho “solo será un minuto” sabiendo que no lo sería?": { MNP:2 },
-"¿Has usado el altavoz del móvil en un sitio público lleno de gente?": { ANC:3, INF:1 },
-"¿Has mirado el móvil mientras alguien te contaba algo importante?": { INF:2, WSP:1 },
-"¿Has dicho “yo invito la próxima” esperando que nadie lo recuerde?": { MNP:3 },
-"¿Has fingido no ver un mensaje para no responder?": { WSP:2, NAR:1 },
-"¿Has dicho “te escribo luego” sabiendo que no lo harías?": { WSP:2 },
-"¿Has visto una serie con alguien y luego seguiste viéndola sin esa persona?": { MNP:2 },
-"¿Has soltado un spoiler diciendo “no es spoiler pero…”?": { TRL:3 },
-"¿Has preguntado algo que acababan de explicar porque no estabas escuchando?": { INF:2 },
-"¿Has fingido que sabías algo que en realidad no tenías ni idea?": { NAR:2 },
-"¿Has corregido a alguien en público solo para tener razón?": { NAR:2, PAP:1 },
-"¿Has ocupado dos asientos en transporte público con tu mochila?": { ANC:3 },
-"¿Has fingido interés mientras pensabas en otra cosa?": { PAP:2 },
-"¿Has dicho “salgo ya” cuando aún estabas en pijama?": { WSP:2 },
-"¿Has dicho “no pasa nada” esperando claramente que sí pase algo?": { PAP:3 },
-"¿Has respondido “haz lo que quieras” esperando que no lo hagan?": { PAP:3 },
-"¿Has dicho “no tengo opinión” para evitar discutir aunque sí la tenías?": { PAP:2 },
-"¿Has fingido que no sabías algo para evitar responsabilidad?": { MNP:2 },
-"¿Has soltado un “yo ya lo dije” después de que algo saliera mal?": { NAR:2 },
-"¿Has hecho una broma pasivo-agresiva que parecía un cumplido?": { PAP:3 },
-"¿Has dicho “qué raro…” insinuando que alguien hizo algo mal?": { PAP:2 },
-"¿Has mirado el móvil mientras alguien hablaba contigo cara a cara?": { INF:2, WSP:1 },
-"¿Has fingido que escuchabas mientras pensabas en otra cosa?": { INF:2 },
-"¿Has dicho “claro, claro” sin saber de qué hablaban?": { INF:2 },
-"¿Has asentido con la cabeza para terminar antes una conversación?": { PAP:2 },
-"¿Has dicho “te aviso” sin intención de avisar?": { MNP:2 },
-"¿Has dicho “solo una cosa rápida” y luego hablaste diez minutos?": { NAR:2 },
-"¿Has contado una historia exagerando tu papel heroico?": { NAR:3 },
-"¿Has omitido un detalle importante para parecer más listo?": { NAR:2 },
-"¿Has dicho “yo no dije eso” cuando sí lo dijiste?": { MNP:3 },
-"¿Has cambiado ligeramente una historia cada vez que la cuentas?": { NAR:2 },
-"¿Has usado “según estudios” sin saber qué estudios?": { NAR:2 },
-"¿Has citado algo que leíste en internet como si fuera seguro?": { INF:1 },
-"¿Has dicho “todo el mundo dice que…” cuando no era cierto?": { PAP:2 },
-"¿Has fingido saber de qué hablaban para no quedar mal?": { NAR:2 },
-"¿Has dicho “sí, claro” esperando que no te pidan hacerlo?": { MNP:2 },
-"¿Has mirado al móvil para escapar de una charla incómoda?": { WSP:2 },
-"¿Has dicho “te queda genial” cuando claramente no era así?": { PAP:3 },
-"¿Has dicho “no soy cotilla pero…” justo antes de cotillear?": { TRL:2 },
-"¿Has escuchado un chisme con mucho interés aunque fingías lo contrario?": { TRL:2 },
-"¿Has contado algo confidencial “solo a una persona”?": { TRL:3 },
-"¿Has soltado una indirecta esperando que alguien la entienda?": { PAP:2 },
-"¿Has fingido no entender una indirecta incómoda?": { PAP:2 },
-"¿Has dicho “qué interesante…” para terminar una conversación aburrida?": { PAP:2 },
-"¿Has respondido con un emoji para evitar seguir hablando?": { WSP:2 },
-"¿Alguna vez has pensado:\n“esto es un poco malvado… pero nadie se dará cuenta”?": { TRL:3 },
-"¿Publicas selfies haciendo morritos?": { NAR:3, INF:1 },
-"¿Publicas en Instagram tu tostada de aguacate?": { NAR:3, PAP:1 }
+function normalizeQuestionTraitsToFullScale(traits) {
+  const rawToFullScale = {
+    0: 1,
+    1: 3,
+    2: 5,
+    3: 7
+  }
+
+  return Object.keys(TRAITS).reduce((acc, traitKey) => {
+    const rawValue = traits[traitKey] ?? 0
+    acc[traitKey] = rawToFullScale[rawValue] ?? 1
+    return acc
+  }, {})
 }
 
+// ------------------------------
+// Pesos iniciales de cada pregunta
+// ------------------------------
+
+const RAW_QUESTION_TRAITS = {
+
+"¿Has fingido no ver a alguien para evitar saludarlo?": { INF:4, PAP:3, MNP:2, NAR:1 },
+"¿Has cruzado la calle para evitar una conversación incómoda?": { INF:4, PAP:3, WSP:2, NAR:1 },
+"¿Has dicho “te aviso” sabiendo que nunca avisarías?": { MNP:4, PAP:3, WSP:2, NAR:1 },
+"¿Has devuelto una llamada solo porque necesitabas algo?": { MNP:4, NAR:3, PAP:2, WSP:1 },
+"¿Has respondido “qué pena” sin sentir ninguna pena?": { PAP:4, MNP:3, NAR:2, INF:1 },
+"¿Has dado un consejo que tú mismo no seguirías?": { MNP:4, PAP:3, NAR:2, INF:1 },
+"¿Has asentido fingiendo interés en una historia aburrida?": { PAP:4, INF:3, MNP:2, NAR:1 },
+"¿Has interrumpido a alguien para contar tu propia historia?": { NAR:4, INF:3, PAP:2, TRL:1 },
+"¿Has cogido la última porción diciendo “si nadie la quiere…”?": { MNP:4, INF:3, NAR:2, ANC:1 },
+"¿Has criticado algo que en realidad te gusta?": { PAP:4, NAR:3, MNP:2, INF:1 },
+
+"¿Has dicho “no me gusta la polémica” justo antes de crear una?": { TRL:4, PAP:3, NAR:2, ANC:1 },
+"¿Has leído un mensaje y tardado en responder para parecer ocupado?": { WSP:4, NAR:3, PAP:2, MNP:1 },
+"¿Has contado un secreto que te pidieron no contar?": { TRL:4, MNP:3, PAP:2, INF:1 },
+"¿Has exagerado una historia para que parezca mejor?": { NAR:4, PAP:3, MNP:2, TRL:1 },
+"¿Has hecho un comentario sarcástico que alguien no entendió?": { PAP:4, TRL:3, INF:2, NAR:1 },
+"¿Has culpado al tráfico aunque saliste tarde de casa?": { MNP:4, PAP:3, NAR:2, INF:1 },
+"¿Has prometido algo que sabías que no cumplirías?": { MNP:4, PAP:3, NAR:2, TRL:1 },
+"¿Has mirado el móvil para evitar una conversación?": { WSP:4, INF:3, PAP:2, NAR:1 },
+"¿Has hecho una broma a costa de alguien presente?": { TRL:4, PAP:3, ANC:2, INF:1 },
+"¿Has repetido un chisme empezando por “no debería decir esto…”?": { TRL:4, PAP:3, INF:2, ANC:1 },
+
+"¿Has soltado un spoiler sin avisar?": { TRL:4, PAP:3, INF:2, ANC:1 },
+"¿Has ocupado más espacio del necesario en transporte público?": { ANC:4, INF:3, PAP:2, NAR:1 },
+"¿Has intentado colarte sutilmente en una fila?": { ANC:4, MNP:3, INF:2, TRL:1 },
+"¿Has usado “solo es un momento” para justificar algo molesto?": { ANC:4, MNP:3, PAP:2, INF:1 },
+"¿Has puesto cara de inocente después de causar un pequeño caos?": { MNP:4, TRL:3, PAP:2, NAR:1 },
+"¿Has dejado que otro pague una cuenta que podríais haber dividido?": { MNP:4, INF:3, PAP:2, NAR:1 },
+"¿Has aceptado comida gratis sin ofrecer pagar?": { MNP:4, INF:3, NAR:2, PAP:1 },
+"¿Has hecho un comentario pasivo-agresivo?": { PAP:4, MNP:3, NAR:2, INF:1 },
+"¿Has fingido estar ocupado para evitar ayudar?": { MNP:4, PAP:3, INF:2, NAR:1 },
+"¿Has respondido con un meme para evitar una conversación seria?": { WSP:4, PAP:3, TRL:2, NAR:1 },
+
+"¿Has enviado un mensaje ambiguo para que otro lo interprete?": { PAP:4, MNP:3, TRL:2, NAR:1 },
+"¿Has cambiado de tema para evitar admitir un error?": { MNP:4, NAR:3, PAP:2, TRL:1 },
+"¿Has reído cuando alguien tropezó?": { TRL:4, PAP:3, INF:2, NAR:1 },
+"¿Has disfrutado secretamente cuando alguien que te cae mal se equivoca?": { TRL:4, PAP:3, NAR:2, INF:1 },
+"¿Has dicho “era broma” después de un comentario incómodo?": { PAP:4, TRL:3, MNP:2, INF:1 },
+"¿Has repetido una historia haciéndote quedar mejor?": { NAR:4, PAP:3, MNP:2, TRL:1 },
+"¿Has pensado alguna vez: “esto es un poco malvado… pero divertido”?": { TRL:4, PAP:3, MNP:2, NAR:1 },
+"¿Has aplaudido cuando aterriza el avión?": { INF:4, ANC:3, PAP:2, NAR:1 },
+"¿Has dicho “vamos viendo” sin ninguna intención real de quedar?": { WSP:4, MNP:3, PAP:2, NAR:1 },
+"¿Has dicho “qué ilusión verte” cuando no te hacía ninguna ilusión?": { PAP:4, MNP:3, NAR:2, INF:1 },
+
+"¿Has respondido “jajaja” a algo que no te hizo gracia?": { PAP:4, MNP:3, WSP:2, NAR:1 },
+"¿Has enviado un audio diciendo 'seré breve' y duró más de dos minutos?": { WSP:4, TRL:3, PAP:2, NAR:1 },
+"¿Has usado el altavoz del móvil en un sitio público lleno de gente?": { ANC:4, INF:3, PAP:2, WSP:1 },
+"¿Has mirado el móvil mientras alguien te contaba algo importante?": { INF:4, WSP:3, PAP:2, NAR:1 },
+"¿Has dicho “yo invito la próxima” esperando que nadie lo recuerde?": { MNP:4, PAP:3, NAR:2, INF:1 },
+"¿Has fingido no ver un mensaje para no responder?": { WSP:4, NAR:3, PAP:2, MNP:1 },
+"¿Has visto una serie con alguien y luego seguiste viéndola sin esa persona?": { MNP:4, NAR:3, PAP:2, TRL:1 },
+"¿Has fingido que sabías algo que en realidad no tenías ni idea?": { NAR:4, PAP:3, MNP:2, INF:1 },
+"¿Has ocupado dos asientos en transporte público con tu mochila?": { ANC:4, INF:3, PAP:2, NAR:1 },
+"¿Has dicho “salgo ya” cuando aún estabas en pijama?": { WSP:4, MNP:3, PAP:2, NAR:1 },
+
+"¿Has dicho “no pasa nada” esperando claramente que sí pase algo?": { PAP:4, MNP:3, NAR:2, INF:1 },
+"¿Has respondido “haz lo que quieras” esperando que no lo hagan?": { PAP:4, MNP:3, NAR:2, INF:1 },
+"¿Has soltado un “yo ya lo dije” después de que algo saliera mal?": { NAR:4, PAP:3, MNP:2, TRL:1 },
+"¿Has hecho una broma pasivo-agresiva que parecía un cumplido?": { PAP:4, TRL:3, NAR:2, MNP:1 },
+"¿Has dicho “qué raro…” insinuando que alguien hizo algo mal?": { PAP:4, TRL:3, NAR:2, INF:1 },
+"¿Has dicho “solo una cosa rápida” y luego hablaste diez minutos?": { NAR:4, PAP:3, INF:2, MNP:1 },
+"¿Has contado una historia exagerando tu papel heroico?": { NAR:4, PAP:3, MNP:2, TRL:1 },
+"¿Has omitido un detalle importante para parecer más listo?": { NAR:4, MNP:3, PAP:2, INF:1 },
+"¿Has dicho “yo no dije eso” cuando sí lo dijiste?": { MNP:4, PAP:3, TRL:2, INF:1 },
+"¿Has usado “según estudios” sin saber qué estudios?": { NAR:4, PAP:3, INF:2, MNP:1 },
+
+"¿Has dicho “todo el mundo dice que…” cuando no era cierto?": { PAP:4, MNP:3, NAR:2, INF:1 },
+"¿Has fingido saber de qué hablaban para no quedar mal?": { NAR:4, PAP:3, INF:2, MNP:1 },
+"¿Has dicho “sí, claro” esperando que no te pidan hacerlo?": { MNP:4, PAP:3, INF:2, NAR:1 },
+"¿Has mirado al móvil para escapar de una charla incómoda?": { WSP:4, INF:3, PAP:2, NAR:1 },
+"¿Has dicho “te queda genial” cuando claramente no era así?": { PAP:4, TRL:3, NAR:2, MNP:1 },
+"¿Has dicho “no soy cotilla pero…” justo antes de cotillear?": { TRL:4, PAP:3, NAR:2, INF:1 },
+"¿Has escuchado un chisme con mucho interés aunque fingías lo contrario?": { TRL:4, PAP:3, NAR:2, INF:1 },
+"¿Has contado algo confidencial “solo a una persona”?": { TRL:4, MNP:3, PAP:2, INF:1 },
+"¿Has soltado una indirecta esperando que alguien la entienda?": { PAP:4, MNP:3, NAR:2, INF:1 },
+"¿Has respondido con un emoji para evitar seguir hablando?": { WSP:4, PAP:3, INF:2, NAR:1 },
+
+"¿Alguna vez has pensado: “esto es un poco malvado… pero nadie se dará cuenta”?": { TRL:4, MNP:3, PAP:2, NAR:1 },
+"¿Publicas selfies haciendo morritos?": { NAR:4, INF:3, PAP:2, TRL:1 },
+"¿Publicas en Instagram tu tostada de aguacate?": { NAR:4, PAP:3, INF:2, TRL:1 },
+"¿Has enviado “perdón por contestar tarde” mientras estabas en línea todo el día?": { WSP:4, MNP:3, PAP:2, NAR:1 },
+"¿Has abierto la nevera ajena y has opinado sin que te preguntaran?": { ANC:4, NAR:3, INF:2, TRL:1 },
+"¿Has dicho “no era por ti” justo después de lanzar una indirecta nuclear?": { PAP:4, TRL:3, MNP:2, NAR:1 },
+"¿Has subido una story triste esperando mensajes de “¿qué te pasa?”?": { NAR:4, MNP:3, WSP:2, PAP:1 },
+"¿Has pedido “una prueba” del postre y terminaste comiéndote medio plato?": { MNP:4, ANC:3, INF:2, TRL:1 },
+"¿Has abierto la nevera ajena sin pedir permiso?": { ANC:4, INF:3, MNP:2, TRL:1 },
+"¿Has usado el cargador de alguien sin decir nada?": { MNP:4, INF:3, ANC:2, NAR:1 },
+"¿Has enviado un 'ok' seco para cerrar una conversación incómoda?": { WSP:4, PAP:3, INF:2, MNP:1 },
+"¿Has respondido a un mensaje importante solo con un emoji?": { WSP:4, PAP:3, INF:2, NAR:1 },
+"¿Has mirado quién dio like antes de decidir si darlo tú también?": { NAR:4, PAP:3, MNP:2, INF:1 },
+"¿Has fingido saber de qué hablaban en una reunión?": { NAR:4, INF:3, PAP:2, MNP:1 },
+"¿Has hecho scroll en el móvil mientras alguien te contaba algo serio?": { INF:4, WSP:3, PAP:2, NAR:1 },
+"¿Has respondido 'ya lo miraré' sabiendo que no lo harías?": { MNP:4, WSP:3, PAP:2, INF:1 },
+"¿Has fingido reír para que alguien dejara de contar un chiste?": { PAP:4, INF:3, MNP:2, TRL:1 },
+"¿Has dejado una conversación grupal cuando empezaba a ponerse incómoda?": { WSP:4, INF:3, PAP:2, NAR:1 },
+"¿Has corregido algo en Google delante de alguien solo para tener razón?": { NAR:4, PAP:3, INF:2, TRL:1 },
+"¿Has dicho 'era sarcasmo' cuando en realidad no lo era?": { PAP:4, TRL:3, MNP:2, NAR:1 },
+"¿Has respondido tarde a propósito para parecer más importante?": { NAR:4, WSP:3, PAP:2, MNP:1 },
+"¿Has hecho como que no viste a alguien que te estaba saludando desde lejos?": { INF:4, PAP:3, MNP:2, NAR:1 },
+"¿Has usado la frase 'te lo digo por tu bien' antes de criticar algo?": { PAP:4, MNP:3, NAR:2, INF:1 },
+"¿Has contado una historia esperando secretamente impresionar a alguien?": { NAR:4, PAP:3, MNP:2, TRL:1 },
+"¿Has pensado que alguien estaba hablando demasiado… mientras tú hablabas más?": { NAR:4, INF:3, PAP:2, TRL:1 },
+"¿Has abierto un mensaje y luego esperado horas para responder?": { WSP:4, PAP:3, NAR:2, MNP:1 },
+"¿Has dicho 'no soy experto pero…' antes de opinar con mucha seguridad?": { NAR:4, PAP:3, INF:2, MNP:1 },
+"¿Has respondido 'lo vemos' sabiendo que no lo veríais jamás?": { MNP:4, WSP:3, PAP:2, INF:1 },
+"¿Has dejado de responder esperando que el problema se resolviera solo?": { WSP:4, MNP:3, PAP:2, INF:1 },
+"¿Has hecho una pregunta solo para poder hablar tú después?": { NAR:4, PAP:3, INF:2, TRL:1 },
+"¿Has disfrutado viendo una discusión absurda en internet?": { TRL:4, PAP:3, INF:2, NAR:1 },
+"¿Has seguido leyendo un drama online solo por puro morbo?": { TRL:4, PAP:3, INF:2, NAR:1 },
+"¿Has dicho 'interesante...' cuando claramente no lo era?": { PAP:4, INF:3, NAR:2, MNP:1 },
+"¿Has fingido estar ocupado para evitar que te asignaran una tarea?": { MNP:4, INF:3, PAP:2, NAR:1 },
+"¿Has respondido con un GIF para evitar tener que pensar una respuesta?": { WSP:4, PAP:3, INF:2, TRL:1 },
+"¿Has mirado el móvil solo para evitar contacto visual?": { INF:4, WSP:3, PAP:2, NAR:1 },
+"¿Has dado un consejo que tú mismo jamás seguirías?": { MNP:4, PAP:3, NAR:2, INF:1 },
+"¿Has pensado 'esto va a acabar mal'… y aun así seguiste mirando?": { TRL:4, PAP:3, INF:2, NAR:1 }
+}
+
+// ------------------------------
+// Normalización automática
+// ------------------------------
+
+function normalizeQuestionTraitsToFullScale(traits) {
+
+  const maxWeight = Math.max(...Object.values(traits))
+
+  const normalized = {}
+
+  Object.entries(traits).forEach(([trait, weight]) => {
+    normalized[trait] = Math.round((weight / maxWeight) * 5)
+  })
+
+  return normalized
+}
+
+
+// ------------------------------
+// Generar matriz final
+// ------------------------------
+
+const QUESTION_TRAITS = Object.fromEntries(
+  Object.entries(RAW_QUESTION_TRAITS).map(([question, traits]) => {
+    return [question, normalizeQuestionTraitsToFullScale(traits)]
+  })
+)
+
+const QUESTION_BANK = QUESTIONS.filter((question, index, allQuestions) => {
+  return allQuestions.indexOf(question) === index
+})
+
 const TRAIT_PENITENCES = {
-  NAR: "Desinflado de ego controlado: 1) 48 horas sin cámara frontal, 2) sube una foto de una planta sin filtros, 3) felicita a alguien sin mencionar nada de ti.",
-  WSP: "Régimen estricto de mensajería: 1) cero audios por 24h, 2) mensajes de máximo 12 palabras, 3) responde en un único texto y sin trilogías.",
-  INF: "Reinserción social express: 1) escucha sin mirar el móvil 10 minutos, 2) responde algo útil en 2 frases, 3) evita sarcasmos durante una hora.",
-  ANC: "Tratado temporal de convivencia: 1) respeta una fila sin atajos, 2) no invadas espacio ajeno en transporte, 3) deja todo más limpio de como lo encontraste.",
-  PAP: "Desintoxicación pasivo-agresiva: 1) di lo que te molesta de forma directa y amable, 2) evita indirectas durante todo el día, 3) cambia un “lo que quieras” por una propuesta clara.",
-  MNP: "Plan anti-manipulación de bolsillo: 1) paga tu parte sin teatro, 2) admite un error sin excusas, 3) pide un favor sin chantaje emocional.",
-  TRL: "Protocolo anti-troleo doméstico: 1) 24h sin spoilers ni chismes, 2) no remates errores ajenos con ironía, 3) convierte una pulla en un cumplido real."
+  NAR: "Penitencia anti-ego (modo tierra): 1) 48h sin cámara frontal ni selfies, 2) sube una foto de algo bonito que no seas tú, 3) felicita a 3 personas sin meter un “yo también”.",
+  WSP: "Penitencia anti-spam (modo monje): 1) 24h sin audios, 2) nada de mensajes en ráfaga: un texto, una idea, 3) si escribes “jajaja”, añade una respuesta real detrás.",
+  INF: "Penitencia de reconexión humana: 1) 10 minutos de escucha total sin móvil, 2) responde con algo útil antes de opinar, 3) cero ghosting durante hoy.",
+  ANC: "Penitencia de convivencia extrema: 1) haz una fila completa sin colarte ni suspirar, 2) mochila en el regazo en transporte, 3) deja un espacio más limpio de como lo encontraste.",
+  PAP: "Penitencia desintoxicante de indirectas: 1) cambia una indirecta por una frase clara, 2) prohíbete el “haz lo que quieras” por 24h, 3) pide lo que necesitas sin teatro.",
+  MNP: "Penitencia anti-manipulación: 1) paga tu parte exacta sin cálculos creativos, 2) admite un error sin “pero…”, 3) pide un favor sin culpa ni chantaje emocional.",
+  TRL: "Penitencia anti-caos social: 1) 24h sin spoilers ni chismes jugosos, 2) no remates fallos ajenos con ironía, 3) transforma una pulla en un cumplido honesto."
 }
 
 const QUESTIONS_TO_SHOW = 15
@@ -304,7 +376,8 @@ function inferQuestionTraits(questionText) {
   if (/(colarte|pague|pagar|admitir un error|ambiguo|yo no fui|yo no dije eso|culpado al tráfico|trafico)/.test(normalized)) add("MNP", 2)
   if (/(spoiler|chisme|broma|tropezó|tropezo|caos|malvado|cotilla)/.test(normalized)) add("TRL", 2)
 
-  return Object.keys(inferred).length > 0 ? inferred : { INF: 1 }
+  const fallbackTraits = Object.keys(inferred).length > 0 ? inferred : { INF: 1 }
+  return normalizeQuestionTraitsToFullScale(fallbackTraits)
 }
 
 function getQuestionTraits(questionText) {
@@ -437,14 +510,21 @@ function shuffleArray(array) {
 }
 
 function pickRandomQuestions(count = QUESTIONS_TO_SHOW) {
-  const limit = Math.min(count, QUESTION_BANK.length)
-  const copy = [...QUESTION_BANK]
-  shuffleArray(copy)
-  return copy.slice(0, limit)
+  if (QUESTION_BANK.length < count) {
+    throw new Error(`No hay suficientes preguntas para mostrar ${count} elementos.`)
+  }
+
+  const selectedIndexes = new Set()
+
+  while (selectedIndexes.size < count) {
+    selectedIndexes.add(Math.floor(Math.random() * QUESTION_BANK.length))
+  }
+
+  return Array.from(selectedIndexes, (index) => QUESTION_BANK[index])
 }
 
 function resetQuizState() {
-  selectedQuestions = pickRandomQuestions()
+  selectedQuestions = pickRandomQuestions(QUESTIONS_TO_SHOW)
   answersByIndex = new Map()
   quizLocked = false
   currentResult = null
@@ -452,6 +532,10 @@ function resetQuizState() {
 }
 
 function renderQuestions() {
+  if (questionMetaNode) {
+    questionMetaNode.textContent = `Mostrando ${selectedQuestions.length} preguntas aleatorias en esta ronda.`
+  }
+
   selectedQuestions.forEach((questionText, questionIndex) => {
     const card = document.createElement("article")
     card.className = "question"
@@ -535,6 +619,10 @@ function finishQuiz(trigger = "submit") {
   penitenceNode.textContent = currentResult.penitence
   resultSection.classList.remove("hidden")
   resultSection.scrollIntoView({ behavior: "smooth", block: "start" })
+
+  requestAnimationFrame(() => {
+    resultSection.scrollIntoView({ behavior: "smooth", block: "start" })
+  })
 
   document.querySelector("#shareWhatsapp").onclick = shareWhatsApp
   document.querySelector("#shareFacebook").onclick = shareFacebook

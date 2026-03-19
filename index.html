@@ -5,9 +5,56 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>El Test Científico de Maldad Humana™</title>
 <link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "name": "Test Científico de Maldad Humana",
+      "url": "https://example.com/",
+      "inLanguage": "es"
+    },
+    {
+      "@type": "WebPage",
+      "name": "Test Científico de Maldad Humana | Quiz divertido online",
+      "description": "Quiz satírico para medir tu nivel de maldad en la vida cotidiana.",
+      "url": "https://example.com/",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Test Científico de Maldad Humana",
+        "url": "https://example.com/"
+      },
+      "inLanguage": "es"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tarda completar el test?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La mayoría de personas termina el test en menos de 3 minutos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿El resultado es real o humorístico?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Es un test humorístico y satírico, pensado para entretenimiento."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
+<a class="skip-link" href="#contenido">Saltar al contenido principal</a>
 
 <header>
 <h1>🧪 El Test Científico de Maldad Humana™</h1>
@@ -26,9 +73,11 @@ La humanidad depende de ello.
 <button id="startBtn">Comenzar el experimento</button>
 </header>
 
-<section id="quiz" class="hidden">
+<main id="contenido">
+<section id="quiz" class="hidden" aria-labelledby="quizHeading">
 
-<h2>Responde con honestidad...</h2>
+<h2 id="quizHeading">Responde con honestidad...</h2>
+<p id="questionMeta" class="question-meta"></p>
 
 <div id="questions"></div>
 
@@ -36,9 +85,9 @@ La humanidad depende de ello.
 
 </section>
 
-<section id="resultSection" class="hidden">
+<section id="resultSection" class="hidden" aria-labelledby="resultHeading">
 
-<h2>Resultado del análisis moral</h2>
+<h2 id="resultHeading">Resultado del análisis moral</h2>
 
 <div id="result"></div>
 <div id="traitBreakdown"></div>
@@ -59,6 +108,29 @@ La humanidad depende de ello.
 
 </section>
 
-<script src="script.js?v=5"></script>
+<section class="seo-content" aria-labelledby="aboutHeading">
+  <h2 id="aboutHeading">¿Qué es este test de maldad humana?</h2>
+  <p>
+    Este test online es un <strong>quiz humorístico en español</strong> que evalúa hábitos cotidianos con un enfoque satírico.
+    Es ideal para pasar un buen rato, compartir resultados y descubrir qué tan "villano" eres en situaciones comunes.
+  </p>
+
+  <h3>Preguntas frecuentes</h3>
+  <dl>
+    <dt>¿Necesito registrarme para hacer el test?</dt>
+    <dd>No, puedes empezar al instante desde móvil, tablet u ordenador.</dd>
+    <dt>¿Puedo compartir mi resultado?</dt>
+    <dd>Sí, puedes compartirlo fácilmente por WhatsApp, Facebook o Instagram.</dd>
+    <dt>¿Para quién está pensado?</dt>
+    <dd>Para cualquier persona que quiera entretenerse con un test rápido y divertido.</dd>
+  </dl>
+</section>
+</main>
+
+<footer>
+  <p>© <span id="currentYear">2026</span> Test Científico de Maldad Humana. Contenido con fines de entretenimiento.</p>
+</footer>
+
+<script src="script.js?v=8"></script>
 </body>
 </html>
