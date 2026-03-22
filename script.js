@@ -10,8 +10,6 @@ const QUESTIONS = [
 "¿Has cogido la última porción diciendo “si nadie la quiere…”?",
 "¿Has criticado algo que en realidad te gusta?",
 "¿Has dicho “no me gusta la polémica” justo antes de crear una?",
-"¿Has leído un mensaje y tardado en responder para parecer ocupado?",
-"¿Has contado un secreto que te pidieron no contar?",
 "¿Has exagerado una historia para que parezca mejor?",
 "¿Has hecho un comentario sarcástico que alguien no entendió?",
 "¿Has culpado al tráfico aunque saliste tarde de casa?",
@@ -50,14 +48,13 @@ const QUESTIONS = [
 "¿Has dicho “te queda genial” cuando claramente no era así?",
 "¿Has dicho “no soy cotilla pero…” justo antes de cotillear?",
 "¿Has escuchado un chisme con mucho interés aunque fingías lo contrario?",
-"¿Has contado algo confidencial “solo a una persona”?",
+"¿Has contado un secreto que te pidieron no contar?",
 "¿Has soltado una indirecta esperando que alguien la entienda?",
 "¿Has enviado “perdón por contestar tarde” mientras estabas en línea todo el día?",
 "¿Has abierto la nevera ajena y has opinado sin que te preguntaran?",
 "¿Has dicho “no era por ti” justo después de lanzar una indirecta nuclear?",
 "¿Has subido una story triste esperando mensajes de “¿qué te pasa?”?",
 "¿Has pedido “una prueba” del postre y terminaste comiéndote medio plato?",
-"¿Has abierto la nevera de alguien sin pedir permiso?",
 "¿Has usado el cargador de alguien sin decir nada?",
 "¿Has enviado un 'ok' seco para cerrar una conversación incómoda?",
 "¿Has reenviado un pantallazo privado para reírte con otro grupo?",
@@ -101,7 +98,6 @@ const QUESTIONS = [
 "¿Has abierto una puerta empujando cuando ponía claramente “tirar” y alguien te estaba mirando?",
 "¿Has llamado “mamá” o “profe” a alguien que claramente no era tu madre ni tu profesor?",
 "¿Has dicho “tú también” cuando el camarero te dijo “que disfrutes la comida”?",
-"¿Has dejado un mensaje sin responder esperando que se olvide?",
 "¿Has visto un mensaje importante y decidiste contestar 'luego'… y nunca llegó?",
 "¿Has silenciado a alguien para no tener que interactuar con él?",
 "¿Has entrado en línea para otra cosa pero evitaste responder a alguien?"
@@ -138,8 +134,6 @@ const RAW_QUESTION_TRAITS = {
 "¿Has criticado algo que en realidad te gusta?": { RTS:4, NAR:3, ANC:2, DSC:1 },
 
 "¿Has dicho “no me gusta la polémica” justo antes de crear una?": { TRL:4, ANC:3, NAR:2, PAP:1 },
-"¿Has leído un mensaje y tardado en responder para parecer ocupado?": { WSP:4, NAR:3, PAP:2, RTS:1 },
-"¿Has contado un secreto que te pidieron no contar?": { TRL:4, RTS:3, PAP:2, DSC:1 },
 "¿Has exagerado una historia para que parezca mejor?": { NAR:4, PAP:3, RTS:2, TRL:1 },
 "¿Has hecho un comentario sarcástico que alguien no entendió?": { PAP:4, TRL:3, DSC:2, NAR:1 },
 "¿Has culpado al tráfico aunque saliste tarde de casa?": { RTS:4, PAP:3, NAR:2, DSC:1 },
@@ -190,7 +184,7 @@ const RAW_QUESTION_TRAITS = {
 "¿Has dicho “no soy cotilla pero…” justo antes de cotillear?": { TRL:4, PAP:3, NAR:2, DSC:1 },
 "¿Has escuchado un chisme con mucho interés aunque fingías lo contrario?": { TRL:4, PAP:3, NAR:2, DSC:1 },
 
-"¿Has contado algo confidencial “solo a una persona”?": { TRL:4, RTS:3, PAP:2, DSC:1 },
+"¿Has contado un secreto que te pidieron no contar?": { TRL:4, RTS:3, PAP:2, DSC:1 },
 "¿Has soltado una indirecta esperando que alguien la entienda?": { PAP:4, RTS:3, NAR:2, DSC:1 },
 
 "¿Has enviado “perdón por contestar tarde” mientras estabas en línea todo el día?": { WSP:4, RTS:3, PAP:2, NAR:1 },
@@ -200,7 +194,6 @@ const RAW_QUESTION_TRAITS = {
 "¿Has subido una story triste esperando mensajes de “¿qué te pasa?”?": { NAR:4, RTS:3, WSP:2, PAP:1 },
 
 "¿Has pedido “una prueba” del postre y terminaste comiéndote medio plato?": { RTS:4, ANC:3, DSC:2, TRL:1 },
-"¿Has abierto la nevera de alguien sin pedir permiso?": { ANC:4, DSC:3, RTS:2, TRL:1 },
 "¿Has usado el cargador de alguien sin decir nada?": { RTS:4, DSC:3, ANC:2, NAR:1 },
 
 "¿Has enviado un 'ok' seco para cerrar una conversación incómoda?": { WSP:4, PAP:3, DSC:2, RTS:1 },
@@ -262,7 +255,6 @@ const RAW_QUESTION_TRAITS = {
 "¿Has dicho “tú también” cuando el camarero te dijo “que disfrutes la comida”?": { DSC:4, PAP:3, NAR:2, RTS:1 },
 
 // ===== BOOST WSP (evasión / pasivo digital) =====
-"¿Has dejado un mensaje sin responder esperando que se olvide?": { WSP:4, RTS:3, PAP:2, DSC:1 },
 "¿Has visto un mensaje importante y decidiste contestar 'luego'… y nunca llegó?": { WSP:4, RTS:3, NAR:2, PAP:1 },
 "¿Has silenciado a alguien para no tener que interactuar con él?": { WSP:4, DSC:3, PAP:2, NAR:1 },
 "¿Has entrado en línea para otra cosa pero evitaste responder a alguien?": { WSP:4, RTS:3, PAP:2, NAR:1 }                                                               
