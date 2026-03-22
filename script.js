@@ -381,32 +381,8 @@ function createEmptyTraitScores() {
   }, {})
 }
 
-function normalizeQuestion(questionText) {
-  return questionText.toLowerCase()
-}
-
-function inferQuestionTraits(questionText) {
-  const normalized = normalizeQuestion(questionText)
-  const inferred = {}
-
-  const add = (trait, points) => {
-    inferred[trait] = (inferred[trait] || 0) + points
-  }
-
-  if (/(selfies|instagram|morritos|heroico|quedar mejor|tenías razón)/.test(normalized)) add("NAR", 2)
-  if (/(audio|mensaje|móvil|movil|whatsapp|emoji|meme|responder|te aviso|te escribo)/.test(normalized)) add("WSP", 2)
-  if (/(público|publico|transporte|dos asientos|mochila|altavoz|convivencia)/.test(normalized)) add("ANC", 2)
-  if (/(fingido|fingías|fingias|no sabías|no sabias|incomod|evitar saludar|escuchando)/.test(normalized)) add("DSC", 2)
-  if (/(pasivo-agresivo|indirecta|no pasa nada|haz lo que quieras|jajaja|qué raro|que raro)/.test(normalized)) add("PAP", 2)
-  if (/(colarte|pague|pagar|admitir un error|ambiguo|yo no fui|yo no dije eso|culpado al tráfico|trafico)/.test(normalized)) add("RTS", 2)
-  if (/(spoiler|chisme|broma|tropezó|tropezo|caos|malvado|cotilla)/.test(normalized)) add("TRL", 2)
-
-  const fallbackTraits = Object.keys(inferred).length > 0 ? inferred : { DSC: 1 }
-  return normalizeQuestionTraitsToFullScale(fallbackTraits)
-}
-
 function getQuestionTraits(questionText) {
-  return QUESTION_TRAITS[questionText] || inferQuestionTraits(questionText)
+  return QUESTION_TRAITS[questionText] || { DSC: 1 }
 }
 
 function getDominantTraitCode(questionText) {
