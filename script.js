@@ -152,16 +152,16 @@ function normalizeQuestionTraitsToFullScale(traits) {
 
 const RAW_QUESTION_TRAITS = {
 
-"¿Has cruzado la calle para evitar una conversación incómoda?": { DSC:4, PAP:3, WSP:2, NAR:1 },
-"¿Has dicho “te aviso” sabiendo que nunca avisarías?": { RTS:4, PAP:3, WSP:2, NAR:1 },
-"¿Has devuelto una llamada solo porque necesitabas algo?": { RTS:4, NAR:3, PAP:2, WSP:1 },
+"¿Has cruzado la calle para evitar una conversación incómoda?": { DSC:4, RTS:3, NAR:2, PSP:1 },
+"¿Has dicho “te aviso” sabiendo que nunca avisarías?": { RTS:4, PAP:3, DSC:2, ANC:1 },
+"¿Has devuelto una llamada solo porque necesitabas algo?": { RTS:4, NAR:3, PAP:2, TRL:1 },
 "¿Has respondido “qué pena” sin sentir ninguna pena?": { PAP:4, RTS:3, NAR:2, DSC:1 },
-"¿Has asentido fingiendo interés en una historia aburrida?": { PAP:4, DSC:3, RTS:2, NAR:1 },
-"¿Has interrumpido a alguien para contar tu propia historia?": { NAR:4, DSC:3, PAP:2, TRL:1 },
+"¿Has asentido fingiendo interés en una historia aburrida?": { RTS:4, DSC:3, PAP:2, NAR:1 },
+"¿Has interrumpido a alguien para contar tu propia historia?": { NAR:4, DSC:3, RTS:2, TRL:1 },
 "¿Has cogido la última porción diciendo “si nadie la quiere…”?": { RTS:4, DSC:3, NAR:2, ANC:1 },
-"¿Has criticado algo que en realidad te gusta?": { PAP:4, NAR:3, RTS:2, DSC:1 },
+"¿Has criticado algo que en realidad te gusta?": { RTS:4, NAR:3, ANC:2, DSC:1 },
 
-"¿Has dicho “no me gusta la polémica” justo antes de crear una?": { TRL:4, PAP:3, NAR:2, ANC:1 },
+"¿Has dicho “no me gusta la polémica” justo antes de crear una?": { TRL:4, ANC:3, NAR:2, PAP:1 },
 "¿Has leído un mensaje y tardado en responder para parecer ocupado?": { WSP:4, NAR:3, PAP:2, RTS:1 },
 "¿Has contado un secreto que te pidieron no contar?": { TRL:4, RTS:3, PAP:2, DSC:1 },
 "¿Has exagerado una historia para que parezca mejor?": { NAR:4, PAP:3, RTS:2, TRL:1 },
