@@ -122,6 +122,129 @@ const TRAITS = {
   TRL: "Troll doméstico"
 }
 
+const TRAIT_PROFILES = {
+  NAR: {
+    emoji: "🪞",
+    shortCode: "NAR",
+    title: "Narcisista compulsivo",
+    summary: "Eres el protagonista de todas las conversaciones… aunque nadie te haya dado ese papel.",
+    description: [
+      "No escuchas, esperas tu turno para hablar de ti.",
+      "Si algo pasa, tienes una versión mejor, más épica o más tuya.",
+      "Tu autoestima depende ligeramente de likes, atención y microvalidaciones constantes.",
+      "No manipulas la realidad… la editas para que encaje contigo como personaje principal."
+    ],
+    characteristics: [
+      "Interrumpes con naturalidad quirúrgica.",
+      "Exageras sin sentir que exageras.",
+      "Necesitas cerrar historias con “yo ya lo dije”."
+    ],
+    catchphrase: "“No quiero ser el centro de atención… pero…”"
+  },
+  WSP: {
+    emoji: "👻",
+    shortCode: "WSP",
+    title: "Terrorista del WhatsApp",
+    summary: "No discutes, no afrontas, no aclaras… gestionas conflictos desapareciendo como un profesional.",
+    description: [
+      "Tu chat es un campo de minas: entras, no respondes; lees, ignoras; prometes, no cumples.",
+      "Tu especialidad es generar ansiedad digital sin decir ni una palabra.",
+      "No eres mala persona… pero emocionalmente eres un “ya si eso luego” constante."
+    ],
+    characteristics: [
+      "“Perdón por contestar tarde” (mentira).",
+      "Ghosting suave, elegante y sostenido.",
+      "Respuestas mínimas para cerrar temas incómodos."
+    ],
+    catchphrase: "“Acabo de ver esto” (estabas online toda la tarde)"
+  },
+  DSC: {
+    emoji: "🫠",
+    shortCode: "DSC",
+    title: "Desastre social certificado",
+    summary: "Eres la prueba viviente de que interactuar con humanos no es una habilidad garantizada.",
+    description: [
+      "No generas incomodidad a propósito… pero te sale natural.",
+      "Cada interacción es un pequeño experimento social fallido.",
+      "No eres torpe… eres consistentemente inoportuno."
+    ],
+    characteristics: [
+      "Dices “igualmente” cuando no toca.",
+      "Haces contacto visual raro.",
+      "Te quedas atrapado en conversaciones sin saber salir."
+    ],
+    catchphrase: "“Bueno… jaja… en fin…” (silencio incómodo)"
+  },
+  ANC: {
+    emoji: "🚧",
+    shortCode: "ANC",
+    title: "Anarquista de la convivencia",
+    summary: "No rompes las normas… las ignoras con una confianza admirable.",
+    description: [
+      "Tu filosofía es: “si puedo hacerlo, lo hago… y ya si eso luego vemos”.",
+      "Te cuelas, ocupas espacio de más y tomas libertades que nadie te dio.",
+      "No buscas conflicto… pero eres una fuente constante de micro-caos social."
+    ],
+    characteristics: [
+      "“Solo es un momento” (nunca lo es).",
+      "Usas cosas ajenas sin preguntar.",
+      "Conviertes lo común en ligeramente incómodo."
+    ],
+    catchphrase: "“Bah, tampoco es para tanto”"
+  },
+  PAP: {
+    emoji: "🐍",
+    shortCode: "PAP",
+    title: "Pasivo-agresivo profesional",
+    summary: "No atacas de frente… disparas con indirectas envueltas en educación.",
+    description: [
+      "Eres el rey del “no pasa nada” (sí pasa), “haz lo que quieras” (pero haz lo correcto) y “te lo digo por tu bien” (nadie lo pidió).",
+      "No dices las cosas claras… pero consigues que el otro se sienta mal igual.",
+      "Tu comunicación es ambigua por diseño."
+    ],
+    characteristics: [
+      "Sarcasmo mal disimulado.",
+      "Comentarios con doble capa.",
+      "Indirectas que luego niegas."
+    ],
+    catchphrase: "“Yo no digo nada, eh…”"
+  },
+  RTS: {
+    emoji: "🧠",
+    shortCode: "RTS",
+    title: "Rata estratégica",
+    summary: "No eres egoísta… eres eficiente con tus propios intereses.",
+    description: [
+      "Siempre encuentras la forma de esforzarte menos, salir mejor y pagar menos (o nada).",
+      "No engañas… optimizas la situación hasta que deja de ser justa.",
+      "Tu moral no es mala… es flexible cuando conviene."
+    ],
+    characteristics: [
+      "Promesas que desaparecen.",
+      "Ayudas selectivas.",
+      "Excusas perfectamente funcionales."
+    ],
+    catchphrase: "“Sí sí, yo lo hago luego”"
+  },
+  TRL: {
+    emoji: "🔥",
+    shortCode: "TRL",
+    title: "Troll doméstico",
+    summary: "No generas drama… lo detectas, lo alimentas y lo disfrutas.",
+    description: [
+      "Eres ese pequeño empujón que convierte tensión en incendio.",
+      "Sueltas comentarios “sin querer”, difundes cosas “sin mala intención” y observas el caos con curiosidad científica.",
+      "No eres el problema… pero sin ti habría menos espectáculo."
+    ],
+    characteristics: [
+      "“No debería decir esto…” (lo dices).",
+      "Te encanta el salseo.",
+      "Disfrutas viendo cómo escala algo."
+    ],
+    catchphrase: "“Yo no quiero lío, pero…”"
+  }
+}
+
 const ANSWERS = [
   { label: "Sí", multiplier: 1 },
   { label: "A veces", multiplier: 0.5 },
@@ -337,6 +460,7 @@ const submitBtn = document.querySelector("#submitBtn")
 const quizSection = document.querySelector("#quiz")
 const resultSection = document.querySelector("#resultSection")
 const resultNode = document.querySelector("#result")
+const primaryTraitDetailsNode = document.querySelector("#primaryTraitDetails")
 const penitenceNode = document.querySelector("#penitence")
 const traitRadarNode = document.querySelector("#traitRadar")
 const questionMetaNode = document.querySelector("#questionMeta")
@@ -496,6 +620,33 @@ function renderTraitBreakdown(traitScores) {
     <div class="trait-breakdown-lines">
       ${breakdownItems.map(({ label, score }) => `<div class="trait-breakdown-line"><span>${label}</span><strong>${score}</strong></div>`).join("")}
     </div>
+  `
+}
+
+function renderPrimaryTraitDetails(traitCode, score) {
+  const traitProfile = TRAIT_PROFILES[traitCode]
+
+  if (!traitProfile) return ""
+
+  return `
+    <article class="primary-trait-card" aria-label="Características principales del rasgo dominante">
+      <div class="primary-trait-header">
+        <p class="primary-trait-kicker">Rasgo principal obtenido</p>
+        <h3>${traitProfile.emoji} ${traitProfile.shortCode} — ${traitProfile.title}</h3>
+        <p class="primary-trait-score">Afinidad estimada: <strong>${score.toFixed(1)}%</strong></p>
+      </div>
+      <p class="primary-trait-summary">${traitProfile.summary}</p>
+      <div class="primary-trait-copy">
+        ${traitProfile.description.map((paragraph) => `<p>${paragraph}</p>`).join("")}
+      </div>
+      <div class="primary-trait-features">
+        <div class="primary-trait-features-title">Características principales:</div>
+        <ul>
+          ${traitProfile.characteristics.map((item) => `<li>${item}</li>`).join("")}
+        </ul>
+      </div>
+      <p class="primary-trait-quote"><span>Frase típica:</span> ${traitProfile.catchphrase}</p>
+    </article>
   `
 }
 
@@ -730,6 +881,7 @@ function finishQuiz(trigger = "submit") {
 
   currentResult = {
     title: resultTitle,
+    topTraitCode,
     rawScores,
     maxScores,
     normalizedScores,
@@ -740,6 +892,9 @@ function finishQuiz(trigger = "submit") {
   }
 
   resultNode.textContent = `Resultado dominante: ${resultTitle} (${normalizedScores[topTraitCode].toFixed(1)}% de afinidad)`
+  if (primaryTraitDetailsNode) {
+    primaryTraitDetailsNode.innerHTML = renderPrimaryTraitDetails(topTraitCode, normalizedScores[topTraitCode])
+  }
   const breakdownNode = document.querySelector("#traitBreakdown") || document.createElement("div")
   breakdownNode.id = "traitBreakdown"
   breakdownNode.innerHTML = renderTraitBreakdown(normalizedScores)
