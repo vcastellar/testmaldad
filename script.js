@@ -282,41 +282,47 @@ const QUESTION_BANK = QUESTIONS.filter((question, index, allQuestions) => {
 
 const TRAIT_PENITENCES = {
   NAR: [
-    "48h sin cámara frontal ni selfies: hoy no eres el evento principal.",
-    "Sube una foto de algo bonito que no seas tú y resiste la tentación de colarte en el encuadre.",
-    "Felicita a 3 personas con entusiasmo real, sin girar la conversación hacia tu película."
+    "Durante 2 horas, cada vez que hables de ti debes añadir: “pero bueno, tampoco soy tan importante” en voz alta.",
+    "Graba un audio diciendo: “Hoy voy a intentar no ser el protagonista” y envíaselo a alguien random de tus chats.",
+    "Cuenta una anécdota tuya… pero cambiando el protagonista a otra persona ficticia sin avisar."
   ],
+
   WSP: [
-    "24h sin audios: si no cabe en texto, quizá tampoco hacía falta mandarlo.",
-    "Prohibidos los mensajes en ráfaga: una idea, un mensaje, una oportunidad para que el otro respire.",
-    "Cada “jajaja” deberá ir acompañado de una respuesta útil: se acabó el relleno premium."
+    "Responde a todos tus mensajes durante 1 hora empezando por “HE LEÍDO TU MENSAJE Y HE DECIDIDO RESPONDER” en mayúsculas.",
+    "Envía un “sigo vivo” a 3 conversaciones que llevas ignorando días.",
+    "Durante 30 minutos, cada respuesta tuya debe tardar EXACTAMENTE 17 segundos (ni uno más, ni uno menos)."
   ],
+
   DSC: [
-    "10 minutos de escucha total, sin móvil ni mirada perdida: presencia o nada.",
-    "Antes de opinar, responde algo útil o humano: sorprende al mundo.",
-    "Cero ghosting hoy: si desapareces, que sea solo de la cobertura, no de tu dignidad."
+    "Mantén contacto visual con alguien 2 segundos más de lo normal… y luego asiente lentamente.",
+    "Empieza una conversación con: “No sé muy bien cómo empezar esto, pero aquí voy” y sigue sin explicar nada.",
+    "Despídete de alguien… y vuelve a despedirte 10 segundos después como si nada."
   ],
+
   ANC: [
-    "Haz una fila completa sin colarte, bufar ni mirar como si te debieran algo.",
-    "En transporte público, mochila en el regazo y codos en modo civilizado.",
-    "Deja un espacio más limpio de como lo encontraste: compensa años de caos vecinal."
+    "Pulsa el botón del ascensor una sola vez… y luego susurra “confío en ti” mientras lo miras.",
+    "Deja pasar a alguien y haz un gesto exageradamente ceremonioso como si fueras un mayordomo.",
+    "Si estás en un sitio público, recoloca algo torcido con total seriedad como si fuera una misión crítica."
   ],
+
   PAP: [
-    "Cambia una indirecta venenosa por una frase clara y adulta. Sí, hoy toca valentía.",
-    "24h sin “haz lo que quieras”, “nada” ni silencios teatrales con premio oculto.",
-    "Pide lo que necesitas sin guion, sin castigo y sin convertirlo en una obra dramática."
+    "Di una frase completamente directa… y luego añade: “esto es raro para mí, lo sé”.",
+    "Cuando vayas a lanzar una indirecta, sustitúyela por: “voy a decirlo sin drama:” y dilo.",
+    "Responde a algo incómodo con total claridad… y luego quédate en silencio sin suavizarlo."
   ],
+
   RTS: [
-    "Paga tu parte exacta sin cálculo ninja, redondeos mágicos ni desapariciones tácticas.",
-    "Admite un error completo, limpio y sin añadir un “pero” traicionero al final.",
-    "Pide un favor de frente: nada de culpa, chantaje emocional ni manipulación gourmet."
+    "Admite un error diciendo: “he intentado hacer ingeniería social… y no ha salido bien”.",
+    "Haz un favor sin que te lo pidan… y cuando termines di en voz baja: “equilibrio restaurado”.",
+    "Paga algo sin calcular… y murmura: “hoy no soy una rata”."
   ],
+
   TRL: [
-    "24h sin spoilers, sin chismes y sin encender incendios por deporte.",
-    "No remates el fallo ajeno con ironía: hoy tu lengua va sin gasolina.",
-    "Convierte una pulla que te pida el cuerpo en un cumplido honesto. Que duela, pero por crecer."
+    "Cuando veas un drama interesante, míralo fijamente y di: “no alimentaré esto”… y luego sal del chat.",
+    "Si escuchas un chisme, responde: “esta información es demasiado poderosa para mí” y cállate.",
+    "Cuando tengas una broma perfecta, sonríe, niega con la cabeza… y no la hagas."
   ]
-}
+};
 
 const QUESTIONS_TO_SHOW = 15
 
