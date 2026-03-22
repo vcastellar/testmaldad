@@ -24,7 +24,6 @@ const QUESTIONS = [
 "¿Has repetido un chisme empezando por “no debería decir esto…”?",
 
 "¿Has soltado un spoiler sin avisar?",
-"¿Has ocupado más espacio del necesario en transporte público?",
 "¿Has intentado colarte sutilmente en una fila?",
 "¿Has usado “solo es un momento” para justificar algo molesto?",
 "¿Has puesto cara de inocente después de causar un pequeño caos?",
@@ -53,7 +52,6 @@ const QUESTIONS = [
 "¿Has fingido no ver un mensaje para no responder?",
 "¿Has visto una serie con alguien y luego seguiste viéndola sin esa persona?",
 "¿Has fingido que sabías algo que en realidad no tenías ni idea?",
-"¿Has ocupado dos asientos en transporte público con tu mochila?",
 "¿Has dicho “salgo ya” cuando aún estabas en pijama?",
 
 "¿Has dicho “no pasa nada” esperando claramente que sí pase algo?",
