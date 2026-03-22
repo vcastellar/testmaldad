@@ -379,8 +379,40 @@ function createEmptyTraitScores() {
   }, {})
 }
 
+function canonicalizeQuestionText(questionText) {
+  return questionText
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[“”]/g, '"')
+    .replace(/[‘’]/g, "'")
+    .replace(/\.\.\./g, "…")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase()
+}
+
+const DEFAULT_QUESTION_TRAITS = { DSC: 1 }
+const MAX_AFFIRMATIVE_MULTIPLIER = Math.max(...ANSWERS.map(({ multiplier }) => multiplier))
+const CANONICAL_QUESTION_TRAITS = Object.fromEntries(
+  Object.entries(QUESTION_TRAITS).map(([questionText, traits]) => [canonicalizeQuestionText(questionText), traits])
+)
+const INDEX_ALIGNED_QUESTION_TRAITS = Object.fromEntries(
+  QUESTIONS.map((questionText, index) => {
+    const indexFallbackTraits = Object.values(QUESTION_TRAITS)[index]
+    const resolvedTraits = QUESTION_TRAITS[questionText]
+      || CANONICAL_QUESTION_TRAITS[canonicalizeQuestionText(questionText)]
+      || indexFallbackTraits
+      || DEFAULT_QUESTION_TRAITS
+
+    return [questionText, resolvedTraits]
+  })
+)
+
 function getQuestionTraits(questionText) {
-  return QUESTION_TRAITS[questionText] || { DSC: 1 }
+  return QUESTION_TRAITS[questionText]
+    || CANONICAL_QUESTION_TRAITS[canonicalizeQuestionText(questionText)]
+    || INDEX_ALIGNED_QUESTION_TRAITS[questionText]
+    || DEFAULT_QUESTION_TRAITS
 }
 
 function getDominantTraitCode(questionText) {
@@ -419,7 +451,7 @@ function calculateTraitScores() {
     const questionTraits = getQuestionTraits(questionText)
 
     Object.entries(questionTraits).forEach(([traitCode, points]) => {
-      maxScores[traitCode] += points
+      maxScores[traitCode] += points * MAX_AFFIRMATIVE_MULTIPLIER
     })
 
     const multiplier = answersByIndex.get(questionIndex) || 0
