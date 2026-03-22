@@ -576,10 +576,15 @@ function renderTraitRadar(traitScores) {
   `
 }
 
+const TEST_URL = "https://vcastellar.github.io/testmaldad/"
+
 function getShareMessage() {
   if (!currentResult) return ""
 
-  return `Según el Test Científico de Maldad Humana soy: ${currentResult.title}.\nPerfil por dimensiones:\n${currentResult.breakdownForShare}\nPenitencias impuestas:\n${currentResult.penitenceForShare}`
+  return `Rasgo principal: ${currentResult.title}.
+Penitencia impuesta:
+${currentResult.penitenceForShare}
+Haz el test: ${TEST_URL}`
 }
 
 function shareWhatsApp() {
