@@ -388,20 +388,60 @@ function getQuestionTraits(questionText) {
   return QUESTION_TRAITS[questionText] || inferQuestionTraits(questionText)
 }
 
+function getDominantTraitCode(questionText) {
+  const questionTraits = getQuestionTraits(questionText)
+
+  return Object.entries(questionTraits).reduce((bestTrait, [traitCode, points]) => {
+    if (!bestTrait) return traitCode
+    return points > questionTraits[bestTrait] ? traitCode : bestTrait
+  }, null)
+}
+
+function getBalancedQuestionQuota(count = QUESTIONS_TO_SHOW) {
+  const traitCodes = Object.keys(TRAITS)
+  const quota = createEmptyTraitScores()
+  const basePerTrait = Math.floor(count / traitCodes.length)
+  let remaining = count - (basePerTrait * traitCodes.length)
+
+  traitCodes.forEach((traitCode) => {
+    quota[traitCode] = basePerTrait
+  })
+
+  shuffleArray([...traitCodes]).forEach((traitCode) => {
+    if (remaining <= 0) return
+    quota[traitCode] += 1
+    remaining -= 1
+  })
+
+  return quota
+}
+
 function calculateTraitScores() {
-  const traitScores = createEmptyTraitScores()
+  const rawScores = createEmptyTraitScores()
+  const maxScores = createEmptyTraitScores()
 
   selectedQuestions.forEach((questionText, questionIndex) => {
+    const questionTraits = getQuestionTraits(questionText)
+
+    Object.entries(questionTraits).forEach(([traitCode, points]) => {
+      maxScores[traitCode] += points
+    })
+
     const multiplier = answersByIndex.get(questionIndex) || 0
     if (multiplier === 0) return
 
-    const questionTraits = getQuestionTraits(questionText)
     Object.entries(questionTraits).forEach(([traitCode, points]) => {
-      traitScores[traitCode] += points * multiplier
+      rawScores[traitCode] += points * multiplier
     })
   })
 
-  return traitScores
+  const normalizedScores = Object.keys(rawScores).reduce((acc, traitCode) => {
+    const ceiling = maxScores[traitCode]
+    acc[traitCode] = ceiling > 0 ? (rawScores[traitCode] / ceiling) * 100 : 0
+    return acc
+  }, {})
+
+  return { rawScores, maxScores, normalizedScores }
 }
 
 function getTopTraitCode(traitScores) {
@@ -414,9 +454,9 @@ function getTopTraitCode(traitScores) {
 function formatTraitBreakdown(traitScores) {
   const sorted = Object.entries(traitScores)
     .sort((a, b) => b[1] - a[1])
-    .map(([code, score]) => `${TRAITS[code]}: ${score.toFixed(1)} pts`)
+    .map(([code, score]) => `${TRAITS[code]}: ${score.toFixed(1)}%`)
 
-  return `Perfil por dimensiones: ${sorted.join(" · ")}`
+  return `Perfil equilibrado por dimensiones: ${sorted.join(" · ")}`
 }
 
 function buildRadarPolygonPoints(values, cx, cy, radius, maxValue) {
@@ -468,12 +508,12 @@ function renderTraitRadar(traitScores) {
 
     return `
       <text class="radar-label" x="${x.toFixed(2)}" y="${y.toFixed(2)}" text-anchor="${textAnchor}">${code}</text>
-      <text class="radar-score" x="${x.toFixed(2)}" y="${(y + 14).toFixed(2)}" text-anchor="${textAnchor}">${score.toFixed(1)} pts</text>
+      <text class="radar-score" x="${x.toFixed(2)}" y="${(y + 14).toFixed(2)}" text-anchor="${textAnchor}">${score.toFixed(1)}%</text>
     `
   }).join("")
 
   traitRadarNode.innerHTML = `
-    <svg viewBox="0 0 ${size} ${size}" role="img" aria-label="Diagrama de estrella con puntuación por dimensión">
+    <svg viewBox="0 0 ${size} ${size}" role="img" aria-label="Diagrama de estrella con afinidad equilibrada por dimensión">
       ${gridPolygons}
       ${axes}
       <polygon class="radar-shape" points="${dataPoints}" />
@@ -518,13 +558,33 @@ function pickRandomQuestions(count = QUESTIONS_TO_SHOW) {
     throw new Error(`No hay suficientes preguntas para mostrar ${count} elementos.`)
   }
 
-  const selectedIndexes = new Set()
+  const groupedQuestions = QUESTION_BANK.reduce((acc, questionText) => {
+    const dominantTraitCode = getDominantTraitCode(questionText)
+    acc[dominantTraitCode] = acc[dominantTraitCode] || []
+    acc[dominantTraitCode].push(questionText)
+    return acc
+  }, {})
 
-  while (selectedIndexes.size < count) {
-    selectedIndexes.add(Math.floor(Math.random() * QUESTION_BANK.length))
+  Object.values(groupedQuestions).forEach((questions) => shuffleArray(questions))
+
+  const quota = getBalancedQuestionQuota(count)
+  const selectedQuestionsSet = []
+
+  Object.entries(quota).forEach(([traitCode, traitQuota]) => {
+    const pool = groupedQuestions[traitCode] || []
+    selectedQuestionsSet.push(...pool.slice(0, traitQuota))
+  })
+
+  if (selectedQuestionsSet.length < count) {
+    const leftovers = Object.values(groupedQuestions)
+      .flat()
+      .filter((questionText) => !selectedQuestionsSet.includes(questionText))
+
+    shuffleArray(leftovers)
+    selectedQuestionsSet.push(...leftovers.slice(0, count - selectedQuestionsSet.length))
   }
 
-  return Array.from(selectedIndexes, (index) => QUESTION_BANK[index])
+  return shuffleArray(selectedQuestionsSet).slice(0, count)
 }
 
 function resetQuizState() {
@@ -537,7 +597,7 @@ function resetQuizState() {
 
 function renderQuestions() {
   if (questionMetaNode) {
-    questionMetaNode.textContent = `Mostrando ${selectedQuestions.length} preguntas aleatorias en esta ronda.`
+    questionMetaNode.textContent = `Mostrando ${selectedQuestions.length} preguntas con reparto equilibrado entre categorías.`
   }
 
   selectedQuestions.forEach((questionText, questionIndex) => {
@@ -601,20 +661,22 @@ function finishQuiz(trigger = "submit") {
   disableRemainingQuestions()
   updateSubmitButton()
 
-  const traitScores = calculateTraitScores()
-  const topTraitCode = getTopTraitCode(traitScores)
+  const { rawScores, maxScores, normalizedScores } = calculateTraitScores()
+  const topTraitCode = getTopTraitCode(normalizedScores)
   const resultTitle = TRAITS[topTraitCode]
-  const breakdown = formatTraitBreakdown(traitScores)
-  renderTraitRadar(traitScores)
+  const breakdown = formatTraitBreakdown(normalizedScores)
+  renderTraitRadar(normalizedScores)
 
   currentResult = {
     title: resultTitle,
-    traitScores,
+    rawScores,
+    maxScores,
+    normalizedScores,
     breakdown,
     penitence: TRAIT_PENITENCES[topTraitCode]
   }
 
-  resultNode.textContent = `Resultado dominante: ${resultTitle}`
+  resultNode.textContent = `Resultado dominante: ${resultTitle} (${normalizedScores[topTraitCode].toFixed(1)}% de afinidad)`
   const breakdownNode = document.querySelector("#traitBreakdown") || document.createElement("div")
   breakdownNode.id = "traitBreakdown"
   breakdownNode.textContent = breakdown
