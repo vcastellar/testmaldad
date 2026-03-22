@@ -301,13 +301,41 @@ const QUESTION_BANK = QUESTIONS.filter((question, index, allQuestions) => {
 })
 
 const TRAIT_PENITENCES = {
-  NAR: "Penitencia anti-ego (modo tierra): 1) 48h sin cámara frontal ni selfies, 2) sube una foto de algo bonito que no seas tú, 3) felicita a 3 personas sin meter un “yo también”.",
-  WSP: "Penitencia anti-spam (modo monje): 1) 24h sin audios, 2) nada de mensajes en ráfaga: un texto, una idea, 3) si escribes “jajaja”, añade una respuesta real detrás.",
-  DSC: "Penitencia de reconexión humana: 1) 10 minutos de escucha total sin móvil, 2) responde con algo útil antes de opinar, 3) cero ghosting durante hoy.",
-  ANC: "Penitencia de convivencia extrema: 1) haz una fila completa sin colarte ni suspirar, 2) mochila en el regazo en transporte, 3) deja un espacio más limpio de como lo encontraste.",
-  PAP: "Penitencia desintoxicante de indirectas: 1) cambia una indirecta por una frase clara, 2) prohíbete el “haz lo que quieras” por 24h, 3) pide lo que necesitas sin teatro.",
-  RTS: "Penitencia anti-manipulación: 1) paga tu parte exacta sin cálculos creativos, 2) admite un error sin “pero…”, 3) pide un favor sin culpa ni chantaje emocional.",
-  TRL: "Penitencia anti-caos social: 1) 24h sin spoilers ni chismes jugosos, 2) no remates fallos ajenos con ironía, 3) transforma una pulla en un cumplido honesto."
+  NAR: [
+    "48h sin cámara frontal ni selfies: hoy no eres el evento principal.",
+    "Sube una foto de algo bonito que no seas tú y resiste la tentación de colarte en el encuadre.",
+    "Felicita a 3 personas con entusiasmo real, sin girar la conversación hacia tu película."
+  ],
+  WSP: [
+    "24h sin audios: si no cabe en texto, quizá tampoco hacía falta mandarlo.",
+    "Prohibidos los mensajes en ráfaga: una idea, un mensaje, una oportunidad para que el otro respire.",
+    "Cada “jajaja” deberá ir acompañado de una respuesta útil: se acabó el relleno premium."
+  ],
+  DSC: [
+    "10 minutos de escucha total, sin móvil ni mirada perdida: presencia o nada.",
+    "Antes de opinar, responde algo útil o humano: sorprende al mundo.",
+    "Cero ghosting hoy: si desapareces, que sea solo de la cobertura, no de tu dignidad."
+  ],
+  ANC: [
+    "Haz una fila completa sin colarte, bufar ni mirar como si te debieran algo.",
+    "En transporte público, mochila en el regazo y codos en modo civilizado.",
+    "Deja un espacio más limpio de como lo encontraste: compensa años de caos vecinal."
+  ],
+  PAP: [
+    "Cambia una indirecta venenosa por una frase clara y adulta. Sí, hoy toca valentía.",
+    "24h sin “haz lo que quieras”, “nada” ni silencios teatrales con premio oculto.",
+    "Pide lo que necesitas sin guion, sin castigo y sin convertirlo en una obra dramática."
+  ],
+  RTS: [
+    "Paga tu parte exacta sin cálculo ninja, redondeos mágicos ni desapariciones tácticas.",
+    "Admite un error completo, limpio y sin añadir un “pero” traicionero al final.",
+    "Pide un favor de frente: nada de culpa, chantaje emocional ni manipulación gourmet."
+  ],
+  TRL: [
+    "24h sin spoilers, sin chismes y sin encender incendios por deporte.",
+    "No remates el fallo ajeno con ironía: hoy tu lengua va sin gasolina.",
+    "Convierte una pulla que te pida el cuerpo en un cumplido honesto. Que duela, pero por crecer."
+  ]
 }
 
 const QUESTIONS_TO_SHOW = 20
@@ -452,11 +480,37 @@ function getTopTraitCode(traitScores) {
 }
 
 function formatTraitBreakdown(traitScores) {
-  const sorted = Object.entries(traitScores)
+  return Object.entries(traitScores)
     .sort((a, b) => b[1] - a[1])
-    .map(([code, score]) => `${TRAITS[code]}: ${score.toFixed(1)}%`)
+    .map(([code, score]) => ({
+      code,
+      label: TRAITS[code],
+      score: `${score.toFixed(1)}%`
+    }))
+}
 
-  return `Perfil equilibrado por dimensiones: ${sorted.join(" · ")}`
+function renderTraitBreakdown(traitScores) {
+  const breakdownItems = formatTraitBreakdown(traitScores)
+
+  return `
+    <div class="trait-breakdown-title">Perfil equilibrado por dimensiones:</div>
+    <div class="trait-breakdown-lines">
+      ${breakdownItems.map(({ label, score }) => `<div class="trait-breakdown-line"><span>${label}</span><strong>${score}</strong></div>`).join("")}
+    </div>
+  `
+}
+
+function renderPenitence(penitenceItems = []) {
+  return `
+    <div class="penitence-title">Tus tres penitencias oficiales:</div>
+    <div class="penitence-lines">
+      ${penitenceItems.map((item, index) => `<div class="penitence-line"><span class="penitence-number">${index + 1}.</span><span>${item}</span></div>`).join("")}
+    </div>
+  `
+}
+
+function formatPenitenceForShare(penitenceItems = []) {
+  return penitenceItems.map((item, index) => `${index + 1}) ${item}`).join("\n")
 }
 
 function buildRadarPolygonPoints(values, cx, cy, radius, maxValue) {
@@ -525,7 +579,7 @@ function renderTraitRadar(traitScores) {
 function getShareMessage() {
   if (!currentResult) return ""
 
-  return `Según el Test Científico de Maldad Humana soy: ${currentResult.title}.\n${currentResult.breakdown}\nPenitencia impuesta: ${currentResult.penitence}`
+  return `Según el Test Científico de Maldad Humana soy: ${currentResult.title}.\nPerfil por dimensiones:\n${currentResult.breakdownForShare}\nPenitencias impuestas:\n${currentResult.penitenceForShare}`
 }
 
 function shareWhatsApp() {
@@ -665,6 +719,9 @@ function finishQuiz(trigger = "submit") {
   const topTraitCode = getTopTraitCode(normalizedScores)
   const resultTitle = TRAITS[topTraitCode]
   const breakdown = formatTraitBreakdown(normalizedScores)
+  const breakdownForShare = breakdown.map(({ label, score }) => `${label}: ${score}`).join("\n")
+  const penitenceItems = TRAIT_PENITENCES[topTraitCode]
+  const penitenceForShare = formatPenitenceForShare(penitenceItems)
   renderTraitRadar(normalizedScores)
 
   currentResult = {
@@ -673,16 +730,18 @@ function finishQuiz(trigger = "submit") {
     maxScores,
     normalizedScores,
     breakdown,
-    penitence: TRAIT_PENITENCES[topTraitCode]
+    breakdownForShare,
+    penitence: penitenceItems,
+    penitenceForShare
   }
 
   resultNode.textContent = `Resultado dominante: ${resultTitle} (${normalizedScores[topTraitCode].toFixed(1)}% de afinidad)`
   const breakdownNode = document.querySelector("#traitBreakdown") || document.createElement("div")
   breakdownNode.id = "traitBreakdown"
-  breakdownNode.textContent = breakdown
+  breakdownNode.innerHTML = renderTraitBreakdown(normalizedScores)
   resultNode.insertAdjacentElement("afterend", breakdownNode)
 
-  penitenceNode.textContent = currentResult.penitence
+  penitenceNode.innerHTML = renderPenitence(currentResult.penitence)
   resultSection.classList.remove("hidden")
 
   requestAnimationFrame(() => {
