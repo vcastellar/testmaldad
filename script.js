@@ -338,7 +338,7 @@ const TRAIT_PENITENCES = {
   ]
 }
 
-const QUESTIONS_TO_SHOW = 20
+const QUESTIONS_TO_SHOW = 15
 
 const questionsContainer = document.querySelector("#questions")
 const startBtn = document.querySelector("#startBtn")
