@@ -101,145 +101,6 @@ const QUESTIONS = [
 "¿Has entrado en línea para otra cosa pero evitaste responder a alguien?"
 
 ]
-// Reglas de puntuación base.
-const RAW_QUESTION_TRAITS = {
-
-{
-"¿Has cruzado la calle para evitar una conversación incómoda?": { DSC:4, RTS:3, NAR:2, PSP:1 },
-"¿Has dicho “te aviso” sabiendo que nunca avisarías?": { RTS:4, PAP:3, DSC:2, ANC:1 },
-"¿Has devuelto una llamada solo porque necesitabas algo?": { RTS:4, NAR:3, PAP:2, TRL:1 },
-"¿Has respondido “qué pena” sin sentir ninguna pena?": { PAP:4, RTS:3, NAR:2, DSC:1 },
-"¿Has asentido fingiendo interés en una historia aburrida?": { RTS:4, DSC:3, PAP:2, NAR:1 },
-"¿Has interrumpido a alguien para contar tu propia historia?": { NAR:4, DSC:3, RTS:2, TRL:1 },
-"¿Has cogido la última porción diciendo “si nadie la quiere…”?": { RTS:4, DSC:3, NAR:2, ANC:1 },
-"¿Has criticado algo que en realidad te gusta?": { RTS:4, NAR:3, ANC:2, DSC:1 },
-
-"¿Has dicho “no me gusta la polémica” justo antes de crear una?": { TRL:4, ANC:3, NAR:2, PAP:1 },
-"¿Has leído un mensaje y tardado en responder para parecer ocupado?": { WSP:4, NAR:3, PAP:2, RTS:1 },
-"¿Has contado un secreto que te pidieron no contar?": { TRL:4, RTS:3, PAP:2, DSC:1 },
-"¿Has exagerado una historia para que parezca mejor?": { NAR:4, PAP:3, RTS:2, TRL:1 },
-"¿Has hecho un comentario sarcástico que alguien no entendió?": { PAP:4, TRL:3, DSC:2, NAR:1 },
-"¿Has culpado al tráfico aunque saliste tarde de casa?": { RTS:4, PAP:3, NAR:2, DSC:1 },
-"¿Has prometido algo que sabías que no cumplirías?": { RTS:4, PAP:3, NAR:2, TRL:1 },
-
-"¿Has mirado el móvil para evitar una conversación incómoda?": { WSP:4, DSC:3, PAP:2, NAR:1 },
-
-"¿Has hecho una broma a costa de alguien presente?": { TRL:4, PAP:3, ANC:2, DSC:1 },
-"¿Has repetido un chisme empezando por “no debería decir esto…”?": { TRL:4, PAP:3, DSC:2, ANC:1 },
-"¿Has soltado un spoiler sin avisar?": { TRL:4, PAP:3, DSC:2, ANC:1 },
-
-"¿Has ocupado más espacio del necesario en transporte público?": { ANC:4, DSC:3, PAP:2, NAR:1 },
-"¿Has intentado colarte sutilmente en una fila?": { ANC:4, RTS:3, DSC:2, TRL:1 },
-"¿Has usado “solo es un momento” para justificar algo molesto?": { ANC:4, RTS:3, PAP:2, DSC:1 },
-"¿Has puesto cara de inocente después de causar un pequeño caos?": { RTS:4, TRL:3, PAP:2, NAR:1 },
-"¿Has dejado que otro pague una cuenta que podríais haber dividido?": { RTS:4, DSC:3, PAP:2, NAR:1 },
-"¿Has aceptado comida gratis sin ofrecer pagar?": { RTS:4, DSC:3, NAR:2, PAP:1 },
-
-"¿Has hecho un comentario pasivo-agresivo?": { PAP:4, RTS:3, NAR:2, DSC:1 },
-"¿Has fingido estar ocupado para evitar ayudar?": { RTS:4, PAP:3, DSC:2, NAR:1 },
-"¿Has respondido con un meme para evitar una conversación seria?": { WSP:4, PAP:3, TRL:2, NAR:1 },
-
-"¿Has enviado un mensaje ambiguo para que otro lo interprete?": { PAP:4, RTS:3, TRL:2, NAR:1 },
-"¿Has cambiado de tema para evitar admitir un error?": { RTS:4, NAR:3, PAP:2, TRL:1 },
-"¿Has dicho “qué ilusión verte” cuando no te hacía ninguna ilusión?": { PAP:4, RTS:3, NAR:2, DSC:1 },
-"¿Has dicho “yo invito la próxima” esperando que nadie lo recuerde?": { RTS:4, PAP:3, NAR:2, DSC:1 },
-"¿Has visto una serie con alguien y luego seguiste viéndola sin esa persona?": { RTS:4, NAR:3, PAP:2, TRL:1 },
-"¿Has fingido que sabías algo que en realidad no tenías ni idea?": { NAR:4, PAP:3, RTS:2, DSC:1 },
-
-"¿Has ocupado dos asientos en transporte público con tu mochila?": { ANC:4, DSC:3, PAP:2, NAR:1 },
-"¿Has dicho “salgo ya” cuando aún estabas en pijama?": { WSP:4, RTS:3, PAP:2, NAR:1 },
-
-"¿Has dicho “no pasa nada” esperando claramente que sí pase algo?": { PAP:4, RTS:3, NAR:2, DSC:1 },
-"¿Has respondido “haz lo que quieras” esperando que no lo hagan?": { PAP:4, RTS:3, NAR:2, DSC:1 },
-
-"¿Has soltado un “yo ya lo dije” después de que algo saliera mal?": { NAR:4, PAP:3, RTS:2, TRL:1 },
-"¿Has hecho una broma pasivo-agresiva que parecía un cumplido?": { PAP:4, TRL:3, NAR:2, RTS:1 },
-"¿Has dicho “qué raro…” insinuando que alguien hizo algo mal?": { PAP:4, TRL:3, NAR:2, DSC:1 },
-
-"¿Has dicho “solo una cosa rápida” y luego hablaste diez minutos?": { NAR:4, PAP:3, DSC:2, RTS:1 },
-"¿Has contado una historia exagerando tu papel heroico?": { NAR:4, PAP:3, RTS:2, TRL:1 },
-"¿Has omitido un detalle importante para parecer más listo?": { NAR:4, RTS:3, PAP:2, DSC:1 },
-
-"¿Has dicho “todo el mundo dice que…” cuando no era cierto?": { PAP:4, RTS:3, NAR:2, DSC:1 },
-"¿Has dicho “sí, claro” esperando que no te pidan hacerlo?": { RTS:4, PAP:3, DSC:2, NAR:1 },
-
-"¿Has dicho “te queda genial” cuando claramente no era así?": { PAP:4, TRL:3, NAR:2, RTS:1 },
-"¿Has dicho “no soy cotilla pero…” justo antes de cotillear?": { TRL:4, PAP:3, NAR:2, DSC:1 },
-"¿Has escuchado un chisme con mucho interés aunque fingías lo contrario?": { TRL:4, PAP:3, NAR:2, DSC:1 },
-
-"¿Has contado algo confidencial “solo a una persona”?": { TRL:4, RTS:3, PAP:2, DSC:1 },
-"¿Has soltado una indirecta esperando que alguien la entienda?": { PAP:4, RTS:3, NAR:2, DSC:1 },
-
-"¿Has enviado “perdón por contestar tarde” mientras estabas en línea todo el día?": { WSP:4, RTS:3, PAP:2, NAR:1 },
-
-"¿Has abierto la nevera ajena y has opinado sin que te preguntaran?": { ANC:4, NAR:3, DSC:2, TRL:1 },
-"¿Has dicho “no era por ti” justo después de lanzar una indirecta nuclear?": { PAP:4, TRL:3, RTS:2, NAR:1 },
-"¿Has subido una story triste esperando mensajes de “¿qué te pasa?”?": { NAR:4, RTS:3, WSP:2, PAP:1 },
-
-"¿Has pedido “una prueba” del postre y terminaste comiéndote medio plato?": { RTS:4, ANC:3, DSC:2, TRL:1 },
-"¿Has abierto la nevera de alguien sin pedir permiso?": { ANC:4, DSC:3, RTS:2, TRL:1 },
-"¿Has usado el cargador de alguien sin decir nada?": { RTS:4, DSC:3, ANC:2, NAR:1 },
-
-"¿Has enviado un 'ok' seco para cerrar una conversación incómoda?": { WSP:4, PAP:3, DSC:2, RTS:1 },
-"¿Has reenviado un pantallazo privado para reírte con otro grupo?": { TRL:4, WSP:3, PAP:2, RTS:1 },
-
-"¿Has mirado quién dio like antes de decidir si darlo tú también?": { NAR:4, PAP:3, RTS:2, DSC:1 },
-"¿Has dicho “yo me encargo” y luego desapareciste?": { RTS:4, WSP:3, DSC:2, PAP:1 },
-
-"¿Has respondido 'ya lo miraré' sabiendo que no lo harías?": { RTS:4, WSP:3, PAP:2, DSC:1 },
-"¿Has fingido reír para cortar un chiste?": { PAP:4, DSC:3, RTS:2, TRL:1 },
-"¿Has dejado una conversación grupal cuando se volvió incómoda?": { WSP:4, DSC:3, PAP:2, NAR:1 },
-
-"¿Has corregido algo en Google solo para tener razón?": { NAR:4, PAP:3, DSC:2, TRL:1 },
-"¿Has dicho 'era sarcasmo' cuando no lo era?": { PAP:4, TRL:3, RTS:2, NAR:1 },
-
-"¿Has respondido tarde a propósito para parecer más importante?": { NAR:4, WSP:3, PAP:2, RTS:1 },
-"¿Has dejado que otro se lleve la culpa por algo tuyo?": { RTS:4, TRL:3, PAP:2, NAR:1 },
-
-"¿Has usado 'te lo digo por tu bien' antes de criticar?": { PAP:4, RTS:3, NAR:2, DSC:1 },
-"¿Has contado algo esperando impresionar?": { NAR:4, PAP:3, RTS:2, TRL:1 },
-
-"¿Has pensado que alguien hablaba demasiado mientras tú hacías lo mismo?": { NAR:4, DSC:3, PAP:2, TRL:1 },
-
-"¿Has soltado una bomba en un chat y luego lo silenciaste?": { WSP:4, TRL:3, RTS:2, PAP:1 },
-
-"¿Has dicho 'no soy experto pero…' antes de opinar con seguridad?": { NAR:4, PAP:3, DSC:2, RTS:1 },
-"¿Has dejado de responder esperando que el problema desaparezca?": { WSP:4, RTS:3, PAP:2, DSC:1 },
-
-"¿Has hecho una pregunta solo para poder hablar tú después?": { NAR:4, PAP:3, DSC:2, TRL:1 },
-
-"¿Has disfrutado viendo discusiones absurdas en internet?": { TRL:4, PAP:3, DSC:2, NAR:1 },
-"¿Has seguido un drama online solo por morbo?": { TRL:4, PAP:3, DSC:2, NAR:1 },
-
-"¿Has respondido con un GIF para no pensar una respuesta?": { WSP:4, PAP:3, DSC:2, TRL:1 },
-"¿Has metido cizaña entre dos personas y luego fingido sorpresa?": { TRL:4, PAP:3, RTS:2, NAR:1 },
-
-"¿Has disfrutado viendo cómo explotaba un drama ajeno?": { TRL:4, PAP:3, NAR:2, DSC:1 },
-"¿Has seguido mirando algo sabiendo que acabaría mal?": { TRL:4, PAP:3, DSC:2, NAR:1 },
-
-"¿Publicas selfies haciendo morritos?": { NAR:4, DSC:3, PAP:2, TRL:1 },
-"¿Publicas en Instagram tu tostada de aguacate?": { NAR:4, PAP:3, DSC:2, TRL:1 },
-                                                                
- // ===== BOOST ANC (conducta social / molestia entorno) =====
-"¿Has dejado una puerta abierta sabiendo que molestaba a alguien?": { ANC:4, DSC:3, PAP:2, NAR:1 },
-"¿Has ocupado un sitio “reservado” pensando que nadie lo usaría?": { ANC:4, RTS:3, DSC:2, TRL:1 },
-"¿Has dejado basura en un sitio público “porque ya estaba sucio”?": { ANC:4, RTS:3, PAP:2, DSC:1 },
-"¿Has hablado por teléfono en voz alta sin importar quién escuchaba?": { ANC:4, DSC:3, WSP:2, PAP:1 },
-
-// ===== BOOST DSC (torpeza social / awkwardness) =====
-"¿Has saludado a alguien que no te estaba saludando a ti?": { DSC:4, PAP:3, NAR:2, TRL:1 },
-"¿Has intentado salir de una conversación y te quedaste atrapado más tiempo?": { DSC:4, WSP:3, PAP:2, NAR:1 },
-"¿Has hecho contacto visual incómodo demasiado tiempo?": { DSC:4, PAP:3, NAR:2, RTS:1 },
-"¿Has dicho algo y te arrepentiste justo después de decirlo?": { DSC:4, PAP:3, RTS:2, NAR:1 },
-
-// ===== BOOST WSP (evasión / pasivo digital) =====
-"¿Has dejado un mensaje sin responder esperando que se olvide?": { WSP:4, RTS:3, PAP:2, DSC:1 },
-"¿Has visto un mensaje importante y decidiste contestar 'luego'… y nunca llegó?": { WSP:4, RTS:3, NAR:2, PAP:1 },
-"¿Has silenciado a alguien para no tener que interactuar con él?": { WSP:4, DSC:3, PAP:2, NAR:1 },
-"¿Has entrado en línea para otra cosa pero evitaste responder a alguien?": { WSP:4, RTS:3, PAP:2, NAR:1 }                                                               
-}
-}
-
 const TRAITS = {
   NAR: "Narcisista compulsivo",
   WSP: "Terrorista del WhatsApp",
@@ -256,29 +117,12 @@ const ANSWERS = [
   { label: "No", multiplier: 0 }
 ]
 
-function normalizeQuestionTraitsToFullScale(traits) {
-  const rawToFullScale = {
-    0: 1,
-    1: 3,
-    2: 5,
-    3: 7
-  }
-
-  return Object.keys(TRAITS).reduce((acc, traitKey) => {
-    const rawValue = traits[traitKey] ?? 0
-    acc[traitKey] = rawToFullScale[rawValue] ?? 1
-    return acc
-  }, {})
-}
-
 // ------------------------------
 // Pesos iniciales de cada pregunta
 // ------------------------------
 
 const RAW_QUESTION_TRAITS = {
-
-{
-"¿Has cruzado la calle para evitar una conversación incómoda?": { DSC:4, RTS:3, NAR:2, PSP:1 },
+"¿Has cruzado la calle para evitar una conversación incómoda?": { DSC:4, RTS:3, NAR:2, PAP:1 },
 "¿Has dicho “te aviso” sabiendo que nunca avisarías?": { RTS:4, PAP:3, DSC:2, ANC:1 },
 "¿Has devuelto una llamada solo porque necesitabas algo?": { RTS:4, NAR:3, PAP:2, TRL:1 },
 "¿Has respondido “qué pena” sin sentir ninguna pena?": { PAP:4, RTS:3, NAR:2, DSC:1 },
@@ -410,7 +254,6 @@ const RAW_QUESTION_TRAITS = {
 "¿Has visto un mensaje importante y decidiste contestar 'luego'… y nunca llegó?": { WSP:4, RTS:3, NAR:2, PAP:1 },
 "¿Has silenciado a alguien para no tener que interactuar con él?": { WSP:4, DSC:3, PAP:2, NAR:1 },
 "¿Has entrado en línea para otra cosa pero evitaste responder a alguien?": { WSP:4, RTS:3, PAP:2, NAR:1 }                                                               
-}
 }
 
 // ------------------------------
