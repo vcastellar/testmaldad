@@ -47,7 +47,6 @@ const QUESTIONS = [
   "¿Has dicho “tú también” cuando el camarero te dijo “que disfrutes la comida”?",
 
   // Preguntas de convivencia, espacio compartido y pequeñas anarquías
-  "¿Has ocupado más espacio del necesario en transporte público?",
   "¿Has intentado colarte sutilmente en una fila?",
   "¿Has usado “solo es un momento” para justificar algo molesto?",
   "¿Has ocupado dos asientos en transporte público con tu mochila?",
@@ -181,7 +180,6 @@ const RAW_QUESTION_TRAITS = {
   "¿Has dicho “tú también” cuando el camarero te dijo “que disfrutes la comida”?": { DSC:4, PAP:3, NAR:2, RTS:1 },
 
   // Preguntas de convivencia, espacio compartido y pequeñas anarquías
-  "¿Has ocupado más espacio del necesario en transporte público?": { ANC:4, DSC:3, PAP:2, NAR:1 },
   "¿Has intentado colarte sutilmente en una fila?": { ANC:4, RTS:3, DSC:2, TRL:1 },
   "¿Has usado “solo es un momento” para justificar algo molesto?": { ANC:4, RTS:3, PAP:2, DSC:1 },
   "¿Has ocupado dos asientos en transporte público con tu mochila?": { ANC:4, DSC:3, PAP:2, NAR:1 },
