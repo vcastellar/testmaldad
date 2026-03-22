@@ -247,17 +247,26 @@ const RAW_QUESTION_TRAITS = {
 }
 
 // ------------------------------
-// Normalización automática
+// Normalización conservadora
 // ------------------------------
 
 function normalizeQuestionTraitsToFullScale(traits) {
-
   const maxWeight = Math.max(...Object.values(traits))
-
   const normalized = {}
 
+  if (!Number.isFinite(maxWeight) || maxWeight <= 0) {
+    return { ...traits }
+  }
+
+  // Si la pregunta ya está definida dentro de una escala razonable, mantenemos
+  // los pesos originales para no inflar rasgos secundarios y no suavizar tanto
+  // la diferencia entre categorías.
+  if (maxWeight <= 5) {
+    return { ...traits }
+  }
+
   Object.entries(traits).forEach(([trait, weight]) => {
-    normalized[trait] = Math.round((weight / maxWeight) * 5)
+    normalized[trait] = Math.max(1, Number(((weight / maxWeight) * 5).toFixed(2)))
   })
 
   return normalized
