@@ -132,7 +132,7 @@ const ANSWERS = [
 // Pesos iniciales de cada pregunta
 // ------------------------------
 
-const QUESTION_TRAITS = {
+const RAW_QUESTION_TRAITS = {
   // Ego / protagonismo (NAR dominante)
   "¿Has interrumpido a alguien para contar tu propia historia?": { NAR:4, DSC:1 },
   "¿Has exagerado una historia para que parezca mejor?": { NAR:4, PAP:2 },
