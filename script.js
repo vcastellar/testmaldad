@@ -1,12 +1,12 @@
 // Banco completo de preguntas del test satírico.
 const QUESTIONS = [
 
-"¿Has fingido no ver a alguien para evitar saludarlo?",
+"¿Has dejado que otro se lleve la bronca por una liada tuya mientras ponías cara de santo?",
 "¿Has cruzado la calle para evitar una conversación incómoda?",
 "¿Has dicho “te aviso” sabiendo que nunca avisarías?",
 "¿Has devuelto una llamada solo porque necesitabas algo?",
 "¿Has respondido “qué pena” sin sentir ninguna pena?",
-"¿Has dado un consejo que tú mismo no seguirías?",
+"¿Has removido un drama ajeno solo para ver cómo explotaba desde primera fila?",
 "¿Has asentido fingiendo interés en una historia aburrida?",
 "¿Has interrumpido a alguien para contar tu propia historia?",
 "¿Has cogido la última porción diciendo “si nadie la quiere…”?",
@@ -76,7 +76,7 @@ const QUESTIONS = [
 "¿Has escuchado un chisme con mucho interés aunque fingías lo contrario?",
 "¿Has contado algo confidencial “solo a una persona”?",
 "¿Has soltado una indirecta esperando que alguien la entienda?",
-"¿Has respondido con un emoji para evitar seguir hablando?",
+"¿Has soltado una bomba en el chat y luego silenciaste el grupo para no dar explicaciones?",
 
 "¿Alguna vez has pensado: “esto es un poco malvado… pero nadie se dará cuenta”?",
 "¿Publicas selfies haciendo morritos?",
@@ -89,9 +89,9 @@ const QUESTIONS = [
 "¿Has abierto la nevera de alguien sin pedir permiso?",
 "¿Has usado el cargador de alguien sin decir nada?",
 "¿Has enviado un 'ok' seco para cerrar una conversación incómoda?",
-"¿Has respondido a un mensaje importante solo con un emoji?",
+"¿Has reenviado un pantallazo privado para reírte un rato con otro grupo?",
 "¿Has mirado quién dio like antes de decidir si darlo tú también?",
-"¿Has fingido saber de qué hablaban en una reunión?",
+"¿Has dicho “yo me encargo” de algo y luego desapareciste hasta que alguien lo resolvió?",
 "¿Has hecho scroll en el móvil mientras alguien te contaba algo serio?",
 "¿Has respondido 'ya lo miraré' sabiendo que no lo harías?",
 "¿Has fingido reír para que alguien dejara de contar un chiste?",
@@ -109,7 +109,7 @@ const QUESTIONS = [
 "¿Has seguido leyendo un drama online solo por puro morbo?",
 "¿Has fingido estar ocupado para evitar que te asignaran una tarea?",
 "¿Has respondido con un GIF para evitar tener que pensar una respuesta?",
-"¿Has mirado el móvil solo para evitar contacto visual?",
+"¿Has metido cizaña entre dos personas y luego preguntado “uy, ¿qué ha pasado?”?",
 "¿Has pensado 'esto va a acabar mal'… y aun así seguiste mirando?"
 
 ]
@@ -152,12 +152,10 @@ function normalizeQuestionTraitsToFullScale(traits) {
 
 const RAW_QUESTION_TRAITS = {
 
-"¿Has fingido no ver a alguien para evitar saludarlo?": { DSC:4, PAP:3, RTS:2, NAR:1 },
 "¿Has cruzado la calle para evitar una conversación incómoda?": { DSC:4, PAP:3, WSP:2, NAR:1 },
 "¿Has dicho “te aviso” sabiendo que nunca avisarías?": { RTS:4, PAP:3, WSP:2, NAR:1 },
 "¿Has devuelto una llamada solo porque necesitabas algo?": { RTS:4, NAR:3, PAP:2, WSP:1 },
 "¿Has respondido “qué pena” sin sentir ninguna pena?": { PAP:4, RTS:3, NAR:2, DSC:1 },
-"¿Has dado un consejo que tú mismo no seguirías?": { RTS:4, PAP:3, NAR:2, DSC:1 },
 "¿Has asentido fingiendo interés en una historia aburrida?": { PAP:4, DSC:3, RTS:2, NAR:1 },
 "¿Has interrumpido a alguien para contar tu propia historia?": { NAR:4, DSC:3, PAP:2, TRL:1 },
 "¿Has cogido la última porción diciendo “si nadie la quiere…”?": { RTS:4, DSC:3, NAR:2, ANC:1 },
@@ -227,7 +225,6 @@ const RAW_QUESTION_TRAITS = {
 "¿Has escuchado un chisme con mucho interés aunque fingías lo contrario?": { TRL:4, PAP:3, NAR:2, DSC:1 },
 "¿Has contado algo confidencial “solo a una persona”?": { TRL:4, RTS:3, PAP:2, DSC:1 },
 "¿Has soltado una indirecta esperando que alguien la entienda?": { PAP:4, RTS:3, NAR:2, DSC:1 },
-"¿Has respondido con un emoji para evitar seguir hablando?": { WSP:4, PAP:3, DSC:2, NAR:1 },
 
 "¿Alguna vez has pensado: “esto es un poco malvado… pero nadie se dará cuenta”?": { TRL:4, RTS:3, PAP:2, NAR:1 },
 "¿Publicas selfies haciendo morritos?": { NAR:4, DSC:3, PAP:2, TRL:1 },
@@ -237,12 +234,12 @@ const RAW_QUESTION_TRAITS = {
 "¿Has dicho “no era por ti” justo después de lanzar una indirecta nuclear?": { PAP:4, TRL:3, RTS:2, NAR:1 },
 "¿Has subido una story triste esperando mensajes de “¿qué te pasa?”?": { NAR:4, RTS:3, WSP:2, PAP:1 },
 "¿Has pedido “una prueba” del postre y terminaste comiéndote medio plato?": { RTS:4, ANC:3, DSC:2, TRL:1 },
-"¿Has abierto la nevera ajena sin pedir permiso?": { ANC:4, DSC:3, RTS:2, TRL:1 },
+"¿Has abierto la nevera de alguien sin pedir permiso?": { ANC:4, DSC:3, RTS:2, TRL:1 },
 "¿Has usado el cargador de alguien sin decir nada?": { RTS:4, DSC:3, ANC:2, NAR:1 },
 "¿Has enviado un 'ok' seco para cerrar una conversación incómoda?": { WSP:4, PAP:3, DSC:2, RTS:1 },
-"¿Has respondido a un mensaje importante solo con un emoji?": { WSP:4, PAP:3, DSC:2, NAR:1 },
+"¿Has reenviado un pantallazo privado para reírte un rato con otro grupo?": { TRL:4, WSP:3, PAP:2, RTS:1 },
 "¿Has mirado quién dio like antes de decidir si darlo tú también?": { NAR:4, PAP:3, RTS:2, DSC:1 },
-"¿Has fingido saber de qué hablaban en una reunión?": { NAR:4, DSC:3, PAP:2, RTS:1 },
+"¿Has dicho “yo me encargo” de algo y luego desapareciste hasta que alguien lo resolvió?": { RTS:4, WSP:3, DSC:2, PAP:1 },
 "¿Has hecho scroll en el móvil mientras alguien te contaba algo serio?": { DSC:4, WSP:3, PAP:2, NAR:1 },
 "¿Has respondido 'ya lo miraré' sabiendo que no lo harías?": { RTS:4, WSP:3, PAP:2, DSC:1 },
 "¿Has fingido reír para que alguien dejara de contar un chiste?": { PAP:4, DSC:3, RTS:2, TRL:1 },
@@ -250,22 +247,20 @@ const RAW_QUESTION_TRAITS = {
 "¿Has corregido algo en Google delante de alguien solo para tener razón?": { NAR:4, PAP:3, DSC:2, TRL:1 },
 "¿Has dicho 'era sarcasmo' cuando en realidad no lo era?": { PAP:4, TRL:3, RTS:2, NAR:1 },
 "¿Has respondido tarde a propósito para parecer más importante?": { NAR:4, WSP:3, PAP:2, RTS:1 },
-"¿Has hecho como que no viste a alguien que te estaba saludando desde lejos?": { DSC:4, PAP:3, RTS:2, NAR:1 },
+"¿Has dejado que otro se lleve la bronca por una liada tuya mientras ponías cara de santo?": { RTS:4, TRL:3, PAP:2, NAR:1 },
 "¿Has usado la frase 'te lo digo por tu bien' antes de criticar algo?": { PAP:4, RTS:3, NAR:2, DSC:1 },
 "¿Has contado una historia esperando secretamente impresionar a alguien?": { NAR:4, PAP:3, RTS:2, TRL:1 },
 "¿Has pensado que alguien estaba hablando demasiado… mientras tú hablabas más?": { NAR:4, DSC:3, PAP:2, TRL:1 },
-"¿Has abierto un mensaje y luego esperado horas para responder?": { WSP:4, PAP:3, NAR:2, RTS:1 },
+"¿Has soltado una bomba en el chat y luego silenciaste el grupo para no dar explicaciones?": { WSP:4, TRL:3, RTS:2, PAP:1 },
 "¿Has dicho 'no soy experto pero…' antes de opinar con mucha seguridad?": { NAR:4, PAP:3, DSC:2, RTS:1 },
-"¿Has respondido 'lo vemos' sabiendo que no lo veríais jamás?": { RTS:4, WSP:3, PAP:2, DSC:1 },
 "¿Has dejado de responder esperando que el problema se resolviera solo?": { WSP:4, RTS:3, PAP:2, DSC:1 },
 "¿Has hecho una pregunta solo para poder hablar tú después?": { NAR:4, PAP:3, DSC:2, TRL:1 },
 "¿Has disfrutado viendo una discusión absurda en internet?": { TRL:4, PAP:3, DSC:2, NAR:1 },
 "¿Has seguido leyendo un drama online solo por puro morbo?": { TRL:4, PAP:3, DSC:2, NAR:1 },
-"¿Has dicho 'interesante...' cuando claramente no lo era?": { PAP:4, DSC:3, NAR:2, RTS:1 },
 "¿Has fingido estar ocupado para evitar que te asignaran una tarea?": { RTS:4, DSC:3, PAP:2, NAR:1 },
 "¿Has respondido con un GIF para evitar tener que pensar una respuesta?": { WSP:4, PAP:3, DSC:2, TRL:1 },
-"¿Has mirado el móvil solo para evitar contacto visual?": { DSC:4, WSP:3, PAP:2, NAR:1 },
-"¿Has dado un consejo que tú mismo jamás seguirías?": { RTS:4, PAP:3, NAR:2, DSC:1 },
+"¿Has metido cizaña entre dos personas y luego preguntado “uy, ¿qué ha pasado?”?": { TRL:4, PAP:3, RTS:2, NAR:1 },
+"¿Has removido un drama ajeno solo para ver cómo explotaba desde primera fila?": { TRL:4, PAP:3, NAR:2, DSC:1 },
 "¿Has pensado 'esto va a acabar mal'… y aun así seguiste mirando?": { TRL:4, PAP:3, DSC:2, NAR:1 }
 }
 
