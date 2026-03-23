@@ -474,54 +474,176 @@ body.device-mobile .primary-trait-summary{
 
 .affiliate-books {
   margin-top: 40px;
-  padding: 20px;
-  border-top: 2px dashed #ccc;
+  padding: 24px;
+  border: 1px solid rgba(255, 209, 102, 0.22);
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255, 209, 102, 0.08), rgba(17, 17, 17, 0.96));
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+}
+
+.affiliate-header {
+  max-width: 720px;
+  margin: 0 auto 18px;
+}
+
+.affiliate-books h3 {
+  margin: 0 0 10px;
+  color: #ffd166;
 }
 
 .affiliate-intro {
-  font-size: 0.95rem;
-  opacity: 0.8;
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.82);
 }
 
 .books {
   display: grid;
-  gap: 15px;
-  margin-top: 15px;
+  gap: 16px;
+  margin-top: 18px;
 }
 
 .book {
   display: block;
-  padding: 15px;
-  border-radius: 10px;
-  background: #111;
+  padding: 18px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(18, 18, 18, 0.96), rgba(39, 39, 39, 0.92));
+  border: 1px solid rgba(255, 255, 255, 0.08);
   color: #fff;
+  text-align: left;
   text-decoration: none;
-  transition: transform 0.15s ease, background 0.15s ease;
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
 }
 
-.book:hover {
-  transform: scale(1.02);
-  background: #1a1a1a;
+.book:hover,
+.book:focus-visible {
+  transform: translateY(-3px);
+  border-color: rgba(255, 209, 102, 0.42);
+  background: linear-gradient(135deg, rgba(25, 25, 25, 0.98), rgba(48, 48, 48, 0.95));
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.34);
+}
+
+.book:focus-visible {
+  outline: 2px solid rgba(255, 209, 102, 0.65);
+  outline-offset: 3px;
+}
+
+.book-kicker {
+  margin-bottom: 10px;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffd166;
+}
+
+.book-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .book-title {
-  font-weight: bold;
-  margin-bottom: 5px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.book-arrow {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(255, 209, 102, 0.12);
+  color: #ffd166;
+  font-size: 1.05rem;
 }
 
 .book-desc {
-  font-size: 0.9rem;
-  opacity: 0.85;
+  margin-top: 10px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.book-cta-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .book-cta {
-  margin-top: 8px;
-  font-size: 0.85rem;
-  opacity: 0.7;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #ffd166;
+}
+
+.book-note {
+  font-size: 0.76rem;
+  color: rgba(255, 255, 255, 0.55);
 }
 
 .affiliate-disclaimer {
-  font-size: 0.75rem;
-  margin-top: 15px;
-  opacity: 0.6;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px auto 0;
+  padding: 12px 16px;
+  max-width: 760px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.affiliate-disclaimer-label {
+  font-weight: 700;
+  color: #ffd166;
+}
+
+.affiliate-disclaimer-separator {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+body.device-mobile .affiliate-books {
+  padding: 18px 16px;
+  border-radius: 18px;
+}
+
+body.device-mobile .book {
+  padding: 16px;
+}
+
+body.device-mobile .book-title {
+  font-size: 1.04rem;
+}
+
+body.device-mobile .book-cta-wrap,
+body.device-mobile .affiliate-disclaimer {
+  align-items: flex-start;
+}
+
+body.device-mobile .book-cta-wrap {
+  flex-direction: column;
+}
+
+body.device-mobile .affiliate-disclaimer {
+  border-radius: 16px;
+  justify-content: flex-start;
+}
+
+body.device-mobile .affiliate-disclaimer-separator {
+  display: none;
 }
