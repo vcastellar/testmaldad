@@ -452,7 +452,8 @@ const TRAIT_PENITENCES = {
   ]
 };
 
-const QUESTIONS_TO_SHOW = 20
+const QUESTIONS_PER_TRAIT_BLOCK = 3
+const QUESTIONS_TO_SHOW = Object.keys(TRAITS).length * QUESTIONS_PER_TRAIT_BLOCK
 
 const questionsContainer = document.querySelector("#questions")
 const startBtn = document.querySelector("#startBtn")
@@ -548,23 +549,13 @@ function getDominantTraitCode(questionText) {
   }, null)
 }
 
-function getBalancedQuestionQuota(count = QUESTIONS_TO_SHOW) {
-  const traitCodes = Object.keys(TRAITS)
-  const quota = createEmptyTraitScores()
-  const basePerTrait = Math.floor(count / traitCodes.length)
-  let remaining = count - (basePerTrait * traitCodes.length)
-
-  traitCodes.forEach((traitCode) => {
-    quota[traitCode] = basePerTrait
-  })
-
-  shuffleArray([...traitCodes]).forEach((traitCode) => {
-    if (remaining <= 0) return
-    quota[traitCode] += 1
-    remaining -= 1
-  })
-
-  return quota
+function getTraitQuestionGroups() {
+  return QUESTION_BANK.reduce((acc, questionText) => {
+    const dominantTraitCode = getDominantTraitCode(questionText)
+    acc[dominantTraitCode] = acc[dominantTraitCode] || []
+    acc[dominantTraitCode].push(questionText)
+    return acc
+  }, {})
 }
 
 function calculateTraitScores() {
@@ -762,42 +753,25 @@ function shuffleArray(array) {
   return array
 }
 
-function pickRandomQuestions(count = QUESTIONS_TO_SHOW) {
-  if (QUESTION_BANK.length < count) {
-    throw new Error(`No hay suficientes preguntas para mostrar ${count} elementos.`)
-  }
-
-  const groupedQuestions = QUESTION_BANK.reduce((acc, questionText) => {
-    const dominantTraitCode = getDominantTraitCode(questionText)
-    acc[dominantTraitCode] = acc[dominantTraitCode] || []
-    acc[dominantTraitCode].push(questionText)
-    return acc
-  }, {})
-
-  Object.values(groupedQuestions).forEach((questions) => shuffleArray(questions))
-
-  const quota = getBalancedQuestionQuota(count)
+function pickRandomQuestions() {
+  const groupedQuestions = getTraitQuestionGroups()
   const selectedQuestionsSet = []
 
-  Object.entries(quota).forEach(([traitCode, traitQuota]) => {
-    const pool = groupedQuestions[traitCode] || []
-    selectedQuestionsSet.push(...pool.slice(0, traitQuota))
+  Object.keys(TRAITS).forEach((traitCode) => {
+    const pool = shuffleArray([...(groupedQuestions[traitCode] || [])])
+
+    if (pool.length < QUESTIONS_PER_TRAIT_BLOCK) {
+      throw new Error(`No hay suficientes preguntas para el rasgo ${traitCode}.`)
+    }
+
+    selectedQuestionsSet.push(...pool.slice(0, QUESTIONS_PER_TRAIT_BLOCK))
   })
 
-  if (selectedQuestionsSet.length < count) {
-    const leftovers = Object.values(groupedQuestions)
-      .flat()
-      .filter((questionText) => !selectedQuestionsSet.includes(questionText))
-
-    shuffleArray(leftovers)
-    selectedQuestionsSet.push(...leftovers.slice(0, count - selectedQuestionsSet.length))
-  }
-
-  return shuffleArray(selectedQuestionsSet).slice(0, count)
+  return shuffleArray(selectedQuestionsSet)
 }
 
 function resetQuizState() {
-  selectedQuestions = pickRandomQuestions(QUESTIONS_TO_SHOW)
+  selectedQuestions = pickRandomQuestions()
   answersByIndex = new Map()
   quizLocked = false
   currentResult = null
@@ -806,7 +780,7 @@ function resetQuizState() {
 
 function renderQuestions() {
   if (questionMetaNode) {
-    questionMetaNode.textContent = `Mostrando ${selectedQuestions.length} preguntas con reparto equilibrado entre categorías.`
+    questionMetaNode.textContent = `Mostrando ${selectedQuestions.length} preguntas: ${QUESTIONS_PER_TRAIT_BLOCK} aleatorias por cada rasgo.`
   }
 
   selectedQuestions.forEach((questionText, questionIndex) => {
@@ -815,7 +789,8 @@ function renderQuestions() {
     card.dataset.index = String(questionIndex)
 
     const title = document.createElement("p")
-    title.textContent = `${questionIndex + 1}. ${questionText}`
+    const dominantTraitCode = getDominantTraitCode(questionText)
+    title.textContent = `${questionIndex + 1}. [${dominantTraitCode}] ${questionText}`
 
     const answersWrapper = document.createElement("div")
     answersWrapper.className = "answers"
