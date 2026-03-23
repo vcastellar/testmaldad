@@ -453,7 +453,8 @@ const TRAIT_PENITENCES = {
 };
 
 const QUESTIONS_PER_TRAIT_BLOCK = 3
-const QUESTIONS_TO_SHOW = Object.keys(TRAITS).length * QUESTIONS_PER_TRAIT_BLOCK
+const TRAIT_CODES = Object.keys(TRAITS)
+const QUESTIONS_TO_SHOW = TRAIT_CODES.length * QUESTIONS_PER_TRAIT_BLOCK
 
 const questionsContainer = document.querySelector("#questions")
 const startBtn = document.querySelector("#startBtn")
@@ -498,7 +499,7 @@ window.addEventListener("resize", applyDeviceMode)
 window.addEventListener("orientationchange", applyDeviceMode)
 
 function createEmptyTraitScores() {
-  return Object.keys(TRAITS).reduce((acc, key) => {
+  return TRAIT_CODES.reduce((acc, key) => {
     acc[key] = 0
     return acc
   }, {})
@@ -593,7 +594,7 @@ function getTopTraitCode(traitScores) {
   }, null)
 }
 
-function formatTraitBreakdown(traitScores) {
+function buildTraitBreakdownItems(traitScores) {
   return Object.entries(traitScores)
     .sort((a, b) => b[1] - a[1])
     .map(([code, score]) => ({
@@ -604,7 +605,7 @@ function formatTraitBreakdown(traitScores) {
 }
 
 function renderTraitBreakdown(traitScores) {
-  const breakdownItems = formatTraitBreakdown(traitScores)
+  const breakdownItems = buildTraitBreakdownItems(traitScores)
 
   return `
     <div class="trait-breakdown-title">Perfil equilibrado por dimensiones:</div>
@@ -757,7 +758,7 @@ function pickRandomQuestions() {
   const groupedQuestions = getTraitQuestionGroups()
   const selectedQuestionsSet = []
 
-  Object.keys(TRAITS).forEach((traitCode) => {
+  TRAIT_CODES.forEach((traitCode) => {
     const pool = shuffleArray([...(groupedQuestions[traitCode] || [])])
 
     if (pool.length < QUESTIONS_PER_TRAIT_BLOCK) {
@@ -778,36 +779,46 @@ function resetQuizState() {
   questionsContainer.innerHTML = ""
 }
 
+function createQuestionTitle(questionText, questionIndex) {
+  const title = document.createElement("p")
+  const dominantTraitCode = getDominantTraitCode(questionText)
+  title.textContent = `${questionIndex + 1}. [${dominantTraitCode}] ${questionText}`
+  return title
+}
+
+function createAnswerButton(questionIndex, answer) {
+  const button = document.createElement("button")
+  button.type = "button"
+  button.className = "answer-btn"
+  button.textContent = answer.label
+  button.addEventListener("click", () => handleAnswer(questionIndex, answer.multiplier, button))
+  return button
+}
+
+function createQuestionCard(questionText, questionIndex) {
+  const card = document.createElement("article")
+  card.className = "question"
+  card.dataset.index = String(questionIndex)
+
+  const answersWrapper = document.createElement("div")
+  answersWrapper.className = "answers"
+  ANSWERS.forEach((answer) => {
+    answersWrapper.appendChild(createAnswerButton(questionIndex, answer))
+  })
+
+  card.appendChild(createQuestionTitle(questionText, questionIndex))
+  card.appendChild(answersWrapper)
+
+  return card
+}
+
 function renderQuestions() {
   if (questionMetaNode) {
     questionMetaNode.textContent = `Mostrando ${selectedQuestions.length} preguntas: ${QUESTIONS_PER_TRAIT_BLOCK} aleatorias por cada rasgo.`
   }
 
-  selectedQuestions.forEach((questionText, questionIndex) => {
-    const card = document.createElement("article")
-    card.className = "question"
-    card.dataset.index = String(questionIndex)
-
-    const title = document.createElement("p")
-    const dominantTraitCode = getDominantTraitCode(questionText)
-    title.textContent = `${questionIndex + 1}. [${dominantTraitCode}] ${questionText}`
-
-    const answersWrapper = document.createElement("div")
-    answersWrapper.className = "answers"
-
-    ANSWERS.forEach(({ label, multiplier }) => {
-      const button = document.createElement("button")
-      button.type = "button"
-      button.className = "answer-btn"
-      button.textContent = label
-      button.addEventListener("click", () => handleAnswer(questionIndex, multiplier, button))
-      answersWrapper.appendChild(button)
-    })
-
-    card.appendChild(title)
-    card.appendChild(answersWrapper)
-    questionsContainer.appendChild(card)
-  })
+  const questionCards = selectedQuestions.map((questionText, questionIndex) => createQuestionCard(questionText, questionIndex))
+  questionCards.forEach((card) => questionsContainer.appendChild(card))
 
   updateSubmitButton()
 }
@@ -836,6 +847,59 @@ function handleAnswer(questionIndex, multiplier, clickedButton) {
   updateSubmitButton()
 }
 
+function buildQuizResult(scoreSummary) {
+  const { rawScores, maxScores, normalizedScores } = scoreSummary
+  const topTraitCode = getTopTraitCode(normalizedScores)
+  const resultTitle = TRAITS[topTraitCode]
+  const breakdown = buildTraitBreakdownItems(normalizedScores)
+  const penitenceItems = TRAIT_PENITENCES[topTraitCode]
+
+  return {
+    title: resultTitle,
+    topTraitCode,
+    rawScores,
+    maxScores,
+    normalizedScores,
+    breakdown,
+    breakdownForShare: breakdown.map(({ label, score }) => `${label}: ${score}`).join("\n"),
+    penitence: penitenceItems,
+    penitenceForShare: formatPenitenceForShare(penitenceItems)
+  }
+}
+
+function renderResultBreakdown(traitScores) {
+  const breakdownNode = document.querySelector("#traitBreakdown") || document.createElement("div")
+  breakdownNode.id = "traitBreakdown"
+  breakdownNode.innerHTML = renderTraitBreakdown(traitScores)
+  resultNode.insertAdjacentElement("afterend", breakdownNode)
+}
+
+function setShareHandlers() {
+  document.querySelector("#shareWhatsapp").onclick = shareWhatsApp
+  document.querySelector("#shareFacebook").onclick = shareFacebook
+  document.querySelector("#shareInstagram").onclick = shareInstagram
+}
+
+function renderQuizResult() {
+  const { topTraitCode, title, normalizedScores, penitence } = currentResult
+
+  resultNode.textContent = `Resultado dominante: ${title} (${normalizedScores[topTraitCode].toFixed(1)}% de afinidad)`
+
+  if (primaryTraitDetailsNode) {
+    primaryTraitDetailsNode.innerHTML = renderPrimaryTraitDetails(topTraitCode, normalizedScores[topTraitCode])
+  }
+
+  renderResultBreakdown(normalizedScores)
+  penitenceNode.innerHTML = renderPenitence(penitence)
+  renderTraitRadar(normalizedScores)
+  resultSection.classList.remove("hidden")
+  setShareHandlers()
+
+  requestAnimationFrame(() => {
+    resultSection.scrollIntoView({ behavior: "smooth", block: "start" })
+  })
+}
+
 function finishQuiz(trigger = "submit") {
   // Solo permitimos calcular resultados al enviar el cuestionario completo.
   // Esto evita atajos de "resultado inmediato" al responder afirmativamente.
@@ -845,47 +909,8 @@ function finishQuiz(trigger = "submit") {
   disableRemainingQuestions()
   updateSubmitButton()
 
-  const { rawScores, maxScores, normalizedScores } = calculateTraitScores()
-  const topTraitCode = getTopTraitCode(normalizedScores)
-  const resultTitle = TRAITS[topTraitCode]
-  const breakdown = formatTraitBreakdown(normalizedScores)
-  const breakdownForShare = breakdown.map(({ label, score }) => `${label}: ${score}`).join("\n")
-  const penitenceItems = TRAIT_PENITENCES[topTraitCode]
-  const penitenceForShare = formatPenitenceForShare(penitenceItems)
-  renderTraitRadar(normalizedScores)
-
-  currentResult = {
-    title: resultTitle,
-    topTraitCode,
-    rawScores,
-    maxScores,
-    normalizedScores,
-    breakdown,
-    breakdownForShare,
-    penitence: penitenceItems,
-    penitenceForShare
-  }
-
-  resultNode.textContent = `Resultado dominante: ${resultTitle} (${normalizedScores[topTraitCode].toFixed(1)}% de afinidad)`
-  if (primaryTraitDetailsNode) {
-    primaryTraitDetailsNode.innerHTML = renderPrimaryTraitDetails(topTraitCode, normalizedScores[topTraitCode])
-  }
-  const breakdownNode = document.querySelector("#traitBreakdown") || document.createElement("div")
-  breakdownNode.id = "traitBreakdown"
-  breakdownNode.innerHTML = renderTraitBreakdown(normalizedScores)
-  resultNode.insertAdjacentElement("afterend", breakdownNode)
-
-  penitenceNode.innerHTML = renderPenitence(currentResult.penitence)
-  resultSection.classList.remove("hidden")
-
-  requestAnimationFrame(() => {
-    resultSection.scrollIntoView({ behavior: "smooth", block: "start" })
-  })
-
-  document.querySelector("#shareWhatsapp").onclick = shareWhatsApp
-  document.querySelector("#shareFacebook").onclick = shareFacebook
-  document.querySelector("#shareInstagram").onclick = shareInstagram
-
+  currentResult = buildQuizResult(calculateTraitScores())
+  renderQuizResult()
 }
 
 startBtn.addEventListener("click", () => {
