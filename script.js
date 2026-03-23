@@ -18,6 +18,9 @@ const QUESTIONS = [
   "¿Has hecho una pregunta solo para poder hablar tú después?",
   "¿Publicas selfies haciendo morritos?",
   "¿Publicas en Instagram tu tostada de aguacate?",
+  "¿Has repetido una foto veinte veces hasta que pareciera un anuncio de ti?",
+  "¿Has contado un problema tuyo esperando que te dijeran “eres increíble por aguantar tanto”?",
+  "¿Has mirado una foto de grupo y pensado primero “yo salgo bien, perfecto”?",
 
   // Preguntas de evasión, pasivo-agresividad y caos digital por chat
   "¿Has mirado el móvil para evitar una conversación incómoda?",
@@ -32,6 +35,9 @@ const QUESTIONS = [
   "¿Has visto un mensaje importante y decidiste contestar 'luego'… y nunca llegó?",
   "¿Has silenciado a alguien para no tener que interactuar con él?",
   "¿Has entrado en línea para otra cosa pero evitaste responder a alguien?",
+  "¿Has visto un mensaje largo y has decidido que tu yo del futuro cargue con eso?",
+  "¿Has respondido “luego te cuento” para no contar absolutamente nada?",
+  "¿Has visto una llamada venir y has esperado a que colgara para escribir “¿todo bien?”?",
 
   // Preguntas de torpeza, incomodidad y desastre social cotidiano
   "¿Has cruzado la calle para evitar una conversación incómoda?",
@@ -45,6 +51,9 @@ const QUESTIONS = [
   "¿Has abierto una puerta empujando cuando ponía claramente “tirar” y alguien te estaba mirando?",
   "¿Has llamado “mamá” o “profe” a alguien que claramente no era tu madre ni tu profesor?",
   "¿Has dicho “tú también” cuando el camarero te dijo “que disfrutes la comida”?",
+  "¿Has empezado a hablar y te has dado cuenta a mitad de que nadie te estaba escuchando?",
+  "¿Has intentado irte de un sitio con naturalidad y casi vuelves a entrar por la puerta equivocada?",
+  "¿Has dicho un nombre con total seguridad y era otro completamente distinto?",
 
   // Preguntas de convivencia, espacio compartido y pequeñas anarquías
   "¿Has intentado colarte sutilmente en una fila?",
@@ -55,6 +64,9 @@ const QUESTIONS = [
   "¿Has ocupado un sitio “reservado” pensando que nadie lo usaría?",
   "¿Has dejado basura en un sitio público “porque ya estaba sucio”?",
   "¿Has hablado por teléfono en voz alta sin importar quién escuchaba?",
+  "¿Has cambiado la música de todos sin preguntar porque la tuya era “mejor”?",
+  "¿Has puesto el móvil con sonido en un lugar silencioso porque “será un segundo”?",
+  "¿Has cogido sitio de más en el sofá como si fueras un emperador romano?",
 
   // Preguntas de indirectas, pullas y comunicación pasivo-agresiva
   "¿Has respondido “qué pena” sin sentir ninguna pena?",
@@ -73,6 +85,9 @@ const QUESTIONS = [
   "¿Has fingido reír para cortar un chiste?",
   "¿Has dicho 'era sarcasmo' cuando no lo era?",
   "¿Has usado 'te lo digo por tu bien' antes de criticar?",
+  "¿Has dicho “vale, perfecto” cuando en realidad estabas abriendo una lista mental de agravios?",
+  "¿Has soltado un “qué valiente” que sonaba a elogio pero era veneno?",
+  "¿Has rematado un mensaje borde con un “😊” para fingir paz diplomática?",
 
   // Preguntas de conveniencia, escaqueo y ventaja estratégica
   "¿Has dicho “te aviso” sabiendo que nunca avisarías?",
@@ -95,6 +110,9 @@ const QUESTIONS = [
   "¿Has dicho “yo me encargo” y luego desapareciste?",
   "¿Has respondido 'ya lo miraré' sabiendo que no lo harías?",
   "¿Has dejado que otro se lleve la culpa por algo tuyo?",
+  "¿Has ido a comprar con gente y te has esfumado justo al repartir las bolsas?",
+  "¿Has dicho “luego te hago Bizum” esperando que la historia muriera ahí?",
+  "¿Has ofrecido ayuda cuando ya estaba casi todo hecho?",
 
   // Preguntas de provocación, chisme y disfrute del caos ajeno
   "¿Has dicho “no me gusta la polémica” justo antes de crear una?",
@@ -110,6 +128,9 @@ const QUESTIONS = [
   "¿Has metido cizaña entre dos personas y luego fingido sorpresa?",
   "¿Has disfrutado viendo cómo explotaba un drama ajeno?",
   "¿Has seguido mirando algo sabiendo que acabaría mal?",
+  "¿Has enseñado un mensaje privado a alguien solo para decir “mira esta joya”?",
+  "¿Has preguntado “qué ha pasado” sabiendo que eso iba a reactivar todo el drama?",
+  "¿Has enviado un “uff” a un chat solo para que todos preguntaran qué pasaba?",
 
 ]
 const TRAITS = {
@@ -274,6 +295,9 @@ const RAW_QUESTION_TRAITS = {
   "¿Has hecho una pregunta solo para poder hablar tú después?": { NAR:4 },
   "¿Publicas selfies haciendo morritos?": { NAR:4, DSC:1 },
   "¿Publicas en Instagram tu tostada de aguacate?": { NAR:4, PAP:1 },
+  "¿Has repetido una foto veinte veces hasta que pareciera un anuncio de ti?": { NAR:4, DSC:1 },
+  "¿Has contado un problema tuyo esperando que te dijeran “eres increíble por aguantar tanto”?": { NAR:4, PAP:2 },
+  "¿Has mirado una foto de grupo y pensado primero “yo salgo bien, perfecto”?": { NAR:4, DSC:2 },
 
   // Evasión / ghosting (WSP dominante)
   "¿Has mirado el móvil para evitar una conversación incómoda?": { WSP:4, DSC:1 },
@@ -288,6 +312,9 @@ const RAW_QUESTION_TRAITS = {
   "¿Has visto un mensaje importante y decidiste contestar 'luego'… y nunca llegó?": { WSP:4, RTS:2 },
   "¿Has silenciado a alguien para no tener que interactuar con él?": { WSP:4 },
   "¿Has entrado en línea para otra cosa pero evitaste responder a alguien?": { WSP:4, RTS:1 },
+  "¿Has visto un mensaje largo y has decidido que tu yo del futuro cargue con eso?": { WSP:4, PAP:1 },
+  "¿Has respondido “luego te cuento” para no contar absolutamente nada?": { WSP:4, PAP:2 },
+  "¿Has visto una llamada venir y has esperado a que colgara para escribir “¿todo bien?”?": { WSP:4, DSC:1 },
 
   // Torpeza social (DSC dominante)
   "¿Has cruzado la calle para evitar una conversación incómoda?": { DSC:4, WSP:2 },
@@ -301,6 +328,9 @@ const RAW_QUESTION_TRAITS = {
   "¿Has empujado una puerta que decía “tirar”?": { DSC:4 },
   "¿Has llamado “mamá” o “profe” a alguien que no lo era?": { DSC:4 },
   "¿Has dicho “tú también” al camarero?": { DSC:4 },
+  "¿Has empezado a hablar y te has dado cuenta a mitad de que nadie te estaba escuchando?": { DSC:4 },
+  "¿Has intentado irte de un sitio con naturalidad y casi vuelves a entrar por la puerta equivocada?": { DSC:4, NAR:1 },
+  "¿Has dicho un nombre con total seguridad y era otro completamente distinto?": { DSC:4, WSP:1 },
 
   // Convivencia / anarquía (ANC dominante)
   "¿Has intentado colarte sutilmente en una fila?": { ANC:4, RTS:2 },
@@ -311,6 +341,9 @@ const RAW_QUESTION_TRAITS = {
   "¿Has ocupado un sitio “reservado”?": { ANC:4, RTS:2 },
   "¿Has dejado basura “porque ya estaba sucio”?": { ANC:4, RTS:2 },
   "¿Has hablado por teléfono en voz alta sin importar?": { ANC:4, NAR:1 },
+  "¿Has cambiado la música de todos sin preguntar porque la tuya era “mejor”?": { ANC:4, NAR:2 },
+  "¿Has puesto el móvil con sonido en un lugar silencioso porque “será un segundo”?": { ANC:4, RTS:2 },
+  "¿Has cogido sitio de más en el sofá como si fueras un emperador romano?": { ANC:4, DSC:1 },
 
   // Pasivo-agresivo (PAP dominante)
   "¿Has respondido “qué pena” sin sentirlo?": { PAP:4 },
@@ -329,6 +362,9 @@ const RAW_QUESTION_TRAITS = {
   "¿Has fingido reír para cortar un chiste?": { PAP:4 },
   "¿Has dicho 'era sarcasmo' cuando no lo era?": { PAP:4 },
   "¿Has usado 'te lo digo por tu bien' antes de criticar?": { PAP:4, RTS:1 },
+  "¿Has dicho “vale, perfecto” cuando en realidad estabas abriendo una lista mental de agravios?": { PAP:4, RTS:1 },
+  "¿Has soltado un “qué valiente” que sonaba a elogio pero era veneno?": { PAP:4, TRL:1 },
+  "¿Has rematado un mensaje borde con un “😊” para fingir paz diplomática?": { PAP:4, WSP:1 },
 
   // Conveniencia / egoísmo estratégico (RTS dominante)
   "¿Has dicho “te aviso” sabiendo que no lo harías?": { RTS:4, PAP:2 },
@@ -351,6 +387,9 @@ const RAW_QUESTION_TRAITS = {
   "¿Has dicho “yo me encargo” y desaparecido?": { RTS:4, WSP:2 },
   "¿Has dicho 'ya lo miraré' sabiendo que no lo harías?": { RTS:4, WSP:2 },
   "¿Has dejado que otro cargue con tu culpa?": { RTS:4, TRL:2 },
+  "¿Has ido a comprar con gente y te has esfumado justo al repartir las bolsas?": { RTS:4, ANC:1 },
+  "¿Has dicho “luego te hago Bizum” esperando que la historia muriera ahí?": { RTS:4, ANC:2 },
+  "¿Has ofrecido ayuda cuando ya estaba casi todo hecho?": { RTS:4, PAP:1 },
 
   // Troll / caos / drama (TRL dominante)
   "¿Has dicho “no me gusta la polémica” justo antes de crear una?": { TRL:4, PAP:1 },
@@ -365,7 +404,10 @@ const RAW_QUESTION_TRAITS = {
   "¿Has seguido un drama solo por morbo?": { TRL:4 },
   "¿Has metido cizaña y luego fingido sorpresa?": { TRL:4, PAP:2 },
   "¿Has disfrutado viendo explotar un drama ajeno?": { TRL:4 },
-  "¿Has seguido mirando algo sabiendo que acabaría mal?": { TRL:4 }
+  "¿Has seguido mirando algo sabiendo que acabaría mal?": { TRL:4 },
+  "¿Has enseñado un mensaje privado a alguien solo para decir “mira esta joya”?": { TRL:4, PAP:1 },
+  "¿Has preguntado “qué ha pasado” sabiendo que eso iba a reactivar todo el drama?": { TRL:4, PAP:2 },
+  "¿Has enviado un “uff” a un chat solo para que todos preguntaran qué pasaba?": { TRL:4, PAP:1 }
 };
 // ------------------------------
 // Normalización conservadora
