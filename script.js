@@ -765,9 +765,12 @@ const TEST_URL = "https://vcastellar.github.io/testmaldad/"
 function getShareMessage() {
   if (!currentResult) return ""
 
-  return `Rasgo principal: ${currentResult.title}.
-Penitencia impuesta:
-${currentResult.penitenceForShare}
+  const traitProfile = TRAIT_PROFILES[currentResult.topTraitCode]
+  const summary = traitProfile?.summary || "Descubre mi rasgo principal en el test."
+
+  return `Mi resultado en el test:
+El rasgo principal: *${currentResult.title}*
+Perfil del rasgo principal: ${summary}
 Haz el test: ${TEST_URL}`
 }
 
