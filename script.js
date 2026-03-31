@@ -826,8 +826,7 @@ function resetQuizState() {
 
 function createQuestionTitle(questionText, questionIndex) {
   const title = document.createElement("p")
-  const dominantTraitCode = getDominantTraitCode(questionText)
-  title.textContent = `${questionIndex + 1}. [${dominantTraitCode}] ${questionText}`
+  title.textContent = `${questionIndex + 1}. ${questionText}`
   return title
 }
 
