@@ -204,6 +204,29 @@ color:#b9b9b9;
 font-size:14px;
 }
 
+.privacy-note{
+max-width:860px;
+margin:10px auto 0;
+text-align:left;
+font-size:12px;
+color:#9fa7ad;
+}
+
+.privacy-note summary{
+cursor:pointer;
+display:inline-block;
+color:#b9b9b9;
+}
+
+.privacy-note p{
+margin:8px 0;
+line-height:1.5;
+}
+
+.privacy-note a{
+color:#cde7ff;
+}
+
 main, header, section{
 box-sizing:border-box;
 }
