@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>Test Científico de Malignidad Humana | Quiz divertido online</title>
 <meta name="description" content="Haz el Test Acientífico de Malignidad Humana, un quiz satírico en español para descubrir tu nivel de malignidad moderna y compartir el resultado con amigos.">
 <meta name="robots" content="index,follow,max-image-preview:large">
@@ -20,7 +23,7 @@
 <meta name="twitter:title" content="Test Científico de Malignidad Humana">
 <meta name="twitter:description" content="Descubre tu nivel de malignidad humana con este quiz científico (más o menos).">
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=11">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -211,6 +214,28 @@ La humanidad depende de ello.
   </details>
 </footer>
 
-<script src="script.js?v=10"></script>
+<script>
+(function ensureLatestRelease() {
+  const RELEASE_VERSION = "2026-03-31-v11";
+  const STORAGE_KEY = "testmaldad_release_version";
+  const HAS_RELOADED_KEY = "testmaldad_release_reloaded";
+
+  const previousVersion = localStorage.getItem(STORAGE_KEY);
+  const hasReloaded = localStorage.getItem(HAS_RELOADED_KEY) === RELEASE_VERSION;
+
+  if (previousVersion && previousVersion !== RELEASE_VERSION && !hasReloaded) {
+    localStorage.setItem(HAS_RELOADED_KEY, RELEASE_VERSION);
+    localStorage.setItem(STORAGE_KEY, RELEASE_VERSION);
+
+    const separator = window.location.search ? "&" : "?";
+    window.location.replace(`${window.location.pathname}${window.location.search}${separator}v=${encodeURIComponent(RELEASE_VERSION)}`);
+    return;
+  }
+
+  localStorage.setItem(STORAGE_KEY, RELEASE_VERSION);
+  localStorage.removeItem(HAS_RELOADED_KEY);
+})();
+</script>
+<script src="script.js?v=11"></script>
 </body>
 </html>
