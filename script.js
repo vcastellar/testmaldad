@@ -196,7 +196,7 @@ const TRAIT_PROFILES = {
     ],
     catchphrase: "“Bueno… jaja… en fin…” (silencio incómodo)"
   },
-  FRCC: {
+  FRC: {
     emoji: "🚧",
     shortCode: "FRC",
     title: "Freelance de la convivencia",
