@@ -750,6 +750,11 @@ function renderTraitRadar(traitScores) {
     `
   }).join("")
 
+  const legendItems = entries.map(([code]) => {
+    const category = TRAITS[code] || code
+    return `<li><strong>${code}</strong>: ${category}</li>`
+  }).join("")
+
   traitRadarNode.innerHTML = `
     <svg viewBox="0 0 ${size} ${size}" role="img" aria-label="Diagrama de estrella con afinidad equilibrada por dimensión">
       ${gridPolygons}
@@ -757,6 +762,12 @@ function renderTraitRadar(traitScores) {
       <polygon class="radar-shape" points="${dataPoints}" />
       ${labels}
     </svg>
+    <div class="radar-legend" aria-label="Leyenda de etiquetas del diagrama de estrella">
+      <h4>Leyenda de etiquetas</h4>
+      <ul>
+        ${legendItems}
+      </ul>
+    </div>
   `
 }
 
