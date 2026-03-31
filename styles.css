@@ -166,6 +166,29 @@ display:block;
 .radar-label{fill:#e8f4ff;font-size:12px;font-weight:bold;}
 .radar-score{fill:#ffd166;font-size:11px;}
 
+.radar-legend{
+margin-top:14px;
+padding:12px;
+background:#131313;
+border:1px solid #2e2e2e;
+border-radius:10px;
+text-align:left;
+}
+
+.radar-legend h4{
+margin:0 0 8px;
+font-size:15px;
+color:#ffd166;
+}
+
+.radar-legend ul{
+margin:0;
+padding-left:18px;
+color:#e8f4ff;
+line-height:1.5;
+}
+
+
 
 .device-mode{
 margin:16px auto 4px;
