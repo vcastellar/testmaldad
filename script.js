@@ -199,7 +199,7 @@ const TRAIT_PROFILES = {
   FRC: {
     emoji: "🚧",
     shortCode: "FRC",
-    title: "FreelFRCe de la convivencia",
+    title: "Freelance de la convivencia",
     summary: "No rompes las normas… las ignoras con una confianza admirable.",
     description: [
       "Tu filosofía es: “si puedo hacerlo, lo hago… y ya si eso luego vemos”.",
