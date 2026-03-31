@@ -135,9 +135,9 @@ const QUESTIONS = [
 ]
 const TRAITS = {
   NAR: "Narcisista compulsivo",
-  WSP: "Terrorista del WhatsApp",
+  ADD: "Agente del Desorden Digital",
   DSC: "Desastre social certificado",
-  ANC: "Anarquista de la convivencia",
+  FRC: "Freelance de la convivencia",
   PAP: "Pasivo-agresivo profesional",
   RTS: "Rata estratégica",
   TRL: "Troll doméstico"
@@ -164,8 +164,8 @@ const TRAIT_PROFILES = {
   },
   WSP: {
     emoji: "👻",
-    shortCode: "WSP",
-    title: "Terrorista del WhatsApp",
+    shortCode: "ADD",
+    title: "Agente del Desorden Digital",
     summary: "No discutes, no afrontas, no aclaras… gestionas conflictos desapareciendo como un profesional.",
     description: [
       "Tu chat es un campo de minas: entras, no respondes; lees, ignoras; prometes, no cumples.",
@@ -196,10 +196,10 @@ const TRAIT_PROFILES = {
     ],
     catchphrase: "“Bueno… jaja… en fin…” (silencio incómodo)"
   },
-  ANC: {
+  FRCC: {
     emoji: "🚧",
-    shortCode: "ANC",
-    title: "Anarquista de la convivencia",
+    shortCode: "FRC",
+    title: "Freelance de la convivencia",
     summary: "No rompes las normas… las ignoras con una confianza admirable.",
     description: [
       "Tu filosofía es: “si puedo hacerlo, lo hago… y ya si eso luego vemos”.",
@@ -457,7 +457,7 @@ const TRAIT_PENITENCES = {
     "Cuenta una anécdota tuya… pero cambiando el protagonista a otra persona ficticia sin avisar."
   ],
 
-  WSP: [
+  ADD: [
     "Responde a todos tus mensajes durante 1 hora empezando por “HE LEÍDO TU MENSAJE Y HE DECIDIDO RESPONDER” en mayúsculas.",
     "Envía un “sigo vivo” a 3 conversaciones que llevas ignorando días.",
     "Durante 30 minutos, cada respuesta tuya debe tardar EXACTAMENTE 17 segundos (ni uno más, ni uno menos)."
