@@ -1,4 +1,4 @@
-// Banco completo de preguntas del test satírico.
+// BFRCo completo de preguntas del test satírico.
 const QUESTIONS = [
   // Preguntas de ego, protagonismo y necesidad de validación
   "¿Has interrumpido a alguien para contar tu propia historia?",
@@ -137,7 +137,7 @@ const TRAITS = {
   NAR: "Narcisista compulsivo",
   ADD: "Agente del Desorden Digital",
   DSC: "Desastre social certificado",
-  FRC: "Freelance de la convivencia",
+  FRC: "FreelFRCe de la convivencia",
   PAP: "Pasivo-agresivo profesional",
   RTS: "Rata estratégica",
   TRL: "Troll doméstico"
@@ -162,7 +162,7 @@ const TRAIT_PROFILES = {
     ],
     catchphrase: "“No quiero ser el centro de atención… pero…”"
   },
-  WSP: {
+  ADD: {
     emoji: "👻",
     shortCode: "ADD",
     title: "Agente del Desorden Digital",
@@ -199,7 +199,7 @@ const TRAIT_PROFILES = {
   FRC: {
     emoji: "🚧",
     shortCode: "FRC",
-    title: "Freelance de la convivencia",
+    title: "FreelFRCe de la convivencia",
     summary: "No rompes las normas… las ignoras con una confianza admirable.",
     description: [
       "Tu filosofía es: “si puedo hacerlo, lo hago… y ya si eso luego vemos”.",
@@ -285,10 +285,10 @@ const RAW_QUESTION_TRAITS = {
   "¿Has dicho “solo una cosa rápida” y luego hablaste diez minutos?": { NAR:4, DSC:1 },
   "¿Has contado una historia exagerando tu papel heroico?": { NAR:4, PAP:2 },
   "¿Has omitido un detalle importante para parecer más listo?": { NAR:4, RTS:2 },
-  "¿Has subido una story triste esperando mensajes de “¿qué te pasa?”?": { NAR:4, WSP:2 },
+  "¿Has subido una story triste esperando mensajes de “¿qué te pasa?”?": { NAR:4, ADD:2 },
   "¿Has mirado quién dio like antes de decidir si darlo tú también?": { NAR:4, PAP:1 },
   "¿Has corregido algo en Google solo para tener razón?": { NAR:4 },
-  "¿Has respondido tarde a propósito para parecer más importante?": { NAR:4, WSP:2 },
+  "¿Has respondido tarde a propósito para parecer más importante?": { NAR:4, ADD:2 },
   "¿Has contado algo esperando impresionar?": { NAR:4, PAP:2 },
   "¿Has pensado que alguien hablaba demasiado mientras tú hacías lo mismo?": { NAR:4, DSC:1 },
   "¿Has dicho 'no soy experto pero…' antes de opinar con seguridad?": { NAR:4, PAP:1 },
@@ -299,27 +299,27 @@ const RAW_QUESTION_TRAITS = {
   "¿Has contado un problema tuyo esperando que te dijeran “eres increíble por aguantar tanto”?": { NAR:4, PAP:2 },
   "¿Has mirado una foto de grupo y pensado primero “yo salgo bien, perfecto”?": { NAR:4, DSC:2 },
 
-  // Evasión / ghosting (WSP dominante)
-  "¿Has mirado el móvil para evitar una conversación incómoda?": { WSP:4, DSC:1 },
-  "¿Has respondido con un meme para evitar una conversación seria?": { WSP:4, PAP:1 },
-  "¿Has dicho “salgo ya” cuando aún estabas en pijama?": { WSP:4, RTS:2 },
-  "¿Has enviado “perdón por contestar tarde” mientras estabas en línea todo el día?": { WSP:4, RTS:2 },
-  "¿Has enviado un 'ok' seco para cerrar una conversación incómoda?": { WSP:4, PAP:2 },
-  "¿Has dejado una conversación grupal cuando se volvió incómoda?": { WSP:4, DSC:1 },
-  "¿Has soltado una bomba en un chat y luego lo silenciaste?": { WSP:4, TRL:2 },
-  "¿Has dejado de responder esperando que el problema desaparezca?": { WSP:4 },
-  "¿Has respondido con un GIF para no pensar una respuesta?": { WSP:4, PAP:1 },
-  "¿Has visto un mensaje importante y decidiste contestar 'luego'… y nunca llegó?": { WSP:4, RTS:2 },
-  "¿Has silenciado a alguien para no tener que interactuar con él?": { WSP:4 },
-  "¿Has entrado en línea para otra cosa pero evitaste responder a alguien?": { WSP:4, RTS:1 },
-  "¿Has visto un mensaje largo y has decidido que tu yo del futuro cargue con eso?": { WSP:4, PAP:1 },
-  "¿Has respondido “luego te cuento” para no contar absolutamente nada?": { WSP:4, PAP:2 },
-  "¿Has visto una llamada venir y has esperado a que colgara para escribir “¿todo bien?”?": { WSP:4, DSC:1 },
+  // Evasión / ghosting (ADD dominante)
+  "¿Has mirado el móvil para evitar una conversación incómoda?": { ADD:4, DSC:1 },
+  "¿Has respondido con un meme para evitar una conversación seria?": { ADD:4, PAP:1 },
+  "¿Has dicho “salgo ya” cuando aún estabas en pijama?": { ADD:4, RTS:2 },
+  "¿Has enviado “perdón por contestar tarde” mientras estabas en línea todo el día?": { ADD:4, RTS:2 },
+  "¿Has enviado un 'ok' seco para cerrar una conversación incómoda?": { ADD:4, PAP:2 },
+  "¿Has dejado una conversación grupal cuando se volvió incómoda?": { ADD:4, DSC:1 },
+  "¿Has soltado una bomba en un chat y luego lo silenciaste?": { ADD:4, TRL:2 },
+  "¿Has dejado de responder esperando que el problema desaparezca?": { ADD:4 },
+  "¿Has respondido con un GIF para no pensar una respuesta?": { ADD:4, PAP:1 },
+  "¿Has visto un mensaje importante y decidiste contestar 'luego'… y nunca llegó?": { ADD:4, RTS:2 },
+  "¿Has silenciado a alguien para no tener que interactuar con él?": { ADD:4 },
+  "¿Has entrado en línea para otra cosa pero evitaste responder a alguien?": { ADD:4, RTS:1 },
+  "¿Has visto un mensaje largo y has decidido que tu yo del futuro cargue con eso?": { ADD:4, PAP:1 },
+  "¿Has respondido “luego te cuento” para no contar absolutamente nada?": { ADD:4, PAP:2 },
+  "¿Has visto una llamada venir y has esperado a que colgara para escribir “¿todo bien?”?": { ADD:4, DSC:1 },
 
   // Torpeza social (DSC dominante)
-  "¿Has cruzado la calle para evitar una conversación incómoda?": { DSC:4, WSP:2 },
+  "¿Has cruzado la calle para evitar una conversación incómoda?": { DSC:4, ADD:2 },
   "¿Has saludado a alguien que no te estaba saludando a ti?": { DSC:4 },
-  "¿Has intentado salir de una conversación y te quedaste atrapado más tiempo?": { DSC:4, WSP:2 },
+  "¿Has intentado salir de una conversación y te quedaste atrapado más tiempo?": { DSC:4, ADD:2 },
   "¿Has hecho contacto visual incómodo demasiado tiempo?": { DSC:4 },
   "¿Has dicho algo y te arrepentiste justo después de decirlo?": { DSC:4, PAP:1 },
   "¿Has fingido que entendías un chiste y remataste con una risa fuera de tiempo?": { DSC:4 },
@@ -330,20 +330,20 @@ const RAW_QUESTION_TRAITS = {
   "¿Has dicho “tú también” al camarero?": { DSC:4 },
   "¿Has empezado a hablar y te has dado cuenta a mitad de que nadie te estaba escuchando?": { DSC:4 },
   "¿Has intentado irte de un sitio con naturalidad y casi vuelves a entrar por la puerta equivocada?": { DSC:4, NAR:1 },
-  "¿Has dicho un nombre con total seguridad y era otro completamente distinto?": { DSC:4, WSP:1 },
+  "¿Has dicho un nombre con total seguridad y era otro completamente distinto?": { DSC:4, ADD:1 },
 
-  // Convivencia / anarquía (ANC dominante)
-  "¿Has intentado colarte sutilmente en una fila?": { ANC:4, RTS:2 },
-  "¿Has usado “solo es un momento” para justificar algo molesto?": { ANC:4, RTS:2 },
-  "¿Has ocupado dos asientos con tu mochila?": { ANC:4, DSC:1 },
-  "¿Has abierto la nevera ajena y opinado?": { ANC:4, NAR:1 },
-  "¿Has dejado una puerta abierta sabiendo que molestaba?": { ANC:4 },
-  "¿Has ocupado un sitio “reservado”?": { ANC:4, RTS:2 },
-  "¿Has dejado basura “porque ya estaba sucio”?": { ANC:4, RTS:2 },
-  "¿Has hablado por teléfono en voz alta sin importar?": { ANC:4, NAR:1 },
-  "¿Has cambiado la música de todos sin preguntar porque la tuya era “mejor”?": { ANC:4, NAR:2 },
-  "¿Has puesto el móvil con sonido en un lugar silencioso porque “será un segundo”?": { ANC:4, RTS:2 },
-  "¿Has cogido sitio de más en el sofá como si fueras un emperador romano?": { ANC:4, DSC:1 },
+  // Convivencia / anarquía (FRC dominante)
+  "¿Has intentado colarte sutilmente en una fila?": { FRC:4, RTS:2 },
+  "¿Has usado “solo es un momento” para justificar algo molesto?": { FRC:4, RTS:2 },
+  "¿Has ocupado dos asientos con tu mochila?": { FRC:4, DSC:1 },
+  "¿Has abierto la nevera ajena y opinado?": { FRC:4, NAR:1 },
+  "¿Has dejado una puerta abierta sabiendo que molestaba?": { FRC:4 },
+  "¿Has ocupado un sitio “reservado”?": { FRC:4, RTS:2 },
+  "¿Has dejado basura “porque ya estaba sucio”?": { FRC:4, RTS:2 },
+  "¿Has hablado por teléfono en voz alta sin importar?": { FRC:4, NAR:1 },
+  "¿Has cambiado la música de todos sin preguntar porque la tuya era “mejor”?": { FRC:4, NAR:2 },
+  "¿Has puesto el móvil con sonido en un lugar silencioso porque “será un segundo”?": { FRC:4, RTS:2 },
+  "¿Has cogido sitio de más en el sofá como si fueras un emperador romano?": { FRC:4, DSC:1 },
 
   // Pasivo-agresivo (PAP dominante)
   "¿Has respondido “qué pena” sin sentirlo?": { PAP:4 },
@@ -364,13 +364,13 @@ const RAW_QUESTION_TRAITS = {
   "¿Has usado 'te lo digo por tu bien' antes de criticar?": { PAP:4, RTS:1 },
   "¿Has dicho “vale, perfecto” cuando en realidad estabas abriendo una lista mental de agravios?": { PAP:4, RTS:1 },
   "¿Has soltado un “qué valiente” que sonaba a elogio pero era veneno?": { PAP:4, TRL:1 },
-  "¿Has rematado un mensaje borde con un “😊” para fingir paz diplomática?": { PAP:4, WSP:1 },
+  "¿Has rematado un mensaje borde con un “😊” para fingir paz diplomática?": { PAP:4, ADD:1 },
 
   // Conveniencia / egoísmo estratégico (RTS dominante)
   "¿Has dicho “te aviso” sabiendo que no lo harías?": { RTS:4, PAP:2 },
   "¿Has devuelto una llamada solo porque necesitabas algo?": { RTS:4, NAR:2 },
   "¿Has fingido interés en una historia aburrida?": { RTS:4, DSC:1 },
-  "¿Has cogido la última porción con excusa?": { RTS:4, ANC:2 },
+  "¿Has cogido la última porción con excusa?": { RTS:4, FRC:2 },
   "¿Has criticado algo que en realidad te gusta?": { RTS:4, NAR:2 },
   "¿Has culpado al tráfico aunque saliste tarde?": { RTS:4, PAP:2 },
   "¿Has prometido algo que no cumplirías?": { RTS:4, PAP:2 },
@@ -382,13 +382,13 @@ const RAW_QUESTION_TRAITS = {
   "¿Has dicho “yo invito la próxima” esperando que se olvide?": { RTS:4, PAP:2 },
   "¿Has seguido una serie sin la persona con la que la veías?": { RTS:4 },
   "¿Has dicho “sí claro” esperando no hacerlo?": { RTS:4, PAP:2 },
-  "¿Has pedido “una prueba” y comido medio plato?": { RTS:4, ANC:2 },
-  "¿Has usado el cargador de alguien sin decir nada?": { RTS:4, ANC:1 },
-  "¿Has dicho “yo me encargo” y desaparecido?": { RTS:4, WSP:2 },
-  "¿Has dicho 'ya lo miraré' sabiendo que no lo harías?": { RTS:4, WSP:2 },
+  "¿Has pedido “una prueba” y comido medio plato?": { RTS:4, FRC:2 },
+  "¿Has usado el cargador de alguien sin decir nada?": { RTS:4, FRC:1 },
+  "¿Has dicho “yo me encargo” y desaparecido?": { RTS:4, ADD:2 },
+  "¿Has dicho 'ya lo miraré' sabiendo que no lo harías?": { RTS:4, ADD:2 },
   "¿Has dejado que otro cargue con tu culpa?": { RTS:4, TRL:2 },
-  "¿Has ido a comprar con gente y te has esfumado justo al repartir las bolsas?": { RTS:4, ANC:1 },
-  "¿Has dicho “luego te hago Bizum” esperando que la historia muriera ahí?": { RTS:4, ANC:2 },
+  "¿Has ido a comprar con gente y te has esfumado justo al repartir las bolsas?": { RTS:4, FRC:1 },
+  "¿Has dicho “luego te hago Bizum” esperando que la historia muriera ahí?": { RTS:4, FRC:2 },
   "¿Has ofrecido ayuda cuando ya estaba casi todo hecho?": { RTS:4, PAP:1 },
 
   // Troll / caos / drama (TRL dominante)
@@ -399,7 +399,7 @@ const RAW_QUESTION_TRAITS = {
   "¿Has dicho “no soy cotilla pero…” antes de cotillear?": { TRL:4 },
   "¿Has escuchado un chisme con interés fingiendo lo contrario?": { TRL:4, PAP:1 },
   "¿Has contado un secreto que te pidieron guardar?": { TRL:4, RTS:2 },
-  "¿Has reenviado un pantallazo privado?": { TRL:4, WSP:1 },
+  "¿Has reenviado un pantallazo privado?": { TRL:4, ADD:1 },
   "¿Has disfrutado viendo discusiones absurdas online?": { TRL:4 },
   "¿Has seguido un drama solo por morbo?": { TRL:4 },
   "¿Has metido cizaña y luego fingido sorpresa?": { TRL:4, PAP:2 },
@@ -469,7 +469,7 @@ const TRAIT_PENITENCES = {
     "Despídete de alguien… y vuelve a despedirte 10 segundos después como si nada."
   ],
 
-  ANC: [
+  FRC: [
     "Pulsa el botón del ascensor una sola vez… y luego susurra “confío en ti” mientras lo miras.",
     "Deja pasar a alguien y haz un gesto exageradamente ceremonioso como si fueras un mayordomo.",
     "Si estás en un sitio público, recoloca algo torcido con total seriedad como si fuera una misión crítica."
@@ -742,11 +742,11 @@ function renderTraitRadar(traitScores) {
     const labelRadius = radius + 28
     const x = cx + Math.cos(angle) * labelRadius
     const y = cy + Math.sin(angle) * labelRadius
-    const textAnchor = x < cx - 10 ? "end" : x > cx + 10 ? "start" : "middle"
+    const textFRChor = x < cx - 10 ? "end" : x > cx + 10 ? "start" : "middle"
 
     return `
-      <text class="radar-label" x="${x.toFixed(2)}" y="${y.toFixed(2)}" text-anchor="${textAnchor}">${code}</text>
-      <text class="radar-score" x="${x.toFixed(2)}" y="${(y + 14).toFixed(2)}" text-anchor="${textAnchor}">${score.toFixed(1)}%</text>
+      <text class="radar-label" x="${x.toFixed(2)}" y="${y.toFixed(2)}" text-FRChor="${textFRChor}">${code}</text>
+      <text class="radar-score" x="${x.toFixed(2)}" y="${(y + 14).toFixed(2)}" text-FRChor="${textFRChor}">${score.toFixed(1)}%</text>
     `
   }).join("")
 
