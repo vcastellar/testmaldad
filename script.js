@@ -137,7 +137,7 @@ const TRAITS = {
   NAR: "Narcisista compulsivo",
   ADD: "Agente del Desorden Digital",
   DSC: "Desastre social certificado",
-  FRC: "FreelFRCe de la convivencia",
+  FRC: "Freelance de la convivencia",
   PAP: "Pasivo-agresivo profesional",
   RTS: "Rata estratégica",
   TRL: "Troll doméstico"
