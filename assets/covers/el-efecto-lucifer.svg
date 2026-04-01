@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="470" viewBox="0 0 300 470" role="img" aria-label="Portada ilustrativa de El efecto Lucifer">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#1f2937"/>
+    </linearGradient>
+  </defs>
+  <rect width="300" height="470" fill="url(#bg)" rx="16"/>
+  <rect x="18" y="18" width="264" height="434" fill="none" stroke="#f59e0b" stroke-opacity="0.7" rx="12"/>
+  <text x="150" y="185" text-anchor="middle" fill="#fbbf24" font-size="28" font-family="Arial, Helvetica, sans-serif" font-weight="700">EL EFECTO</text>
+  <text x="150" y="220" text-anchor="middle" fill="#fbbf24" font-size="36" font-family="Arial, Helvetica, sans-serif" font-weight="800">LUCIFER</text>
+  <text x="150" y="285" text-anchor="middle" fill="#d1d5db" font-size="16" font-family="Arial, Helvetica, sans-serif">Portada ilustrativa</text>
+  <text x="150" y="315" text-anchor="middle" fill="#9ca3af" font-size="14" font-family="Arial, Helvetica, sans-serif">Test de Malignidad Humana</text>
+</svg>
