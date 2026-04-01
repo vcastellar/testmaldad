@@ -532,6 +532,11 @@ body.device-mobile .primary-trait-summary{
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
 }
 
+.affiliate-books--prestart {
+  max-width: 860px;
+  margin: 28px auto 0;
+}
+
 .affiliate-header {
   max-width: 720px;
   margin: 0 auto 18px;
