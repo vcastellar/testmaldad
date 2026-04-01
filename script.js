@@ -771,7 +771,7 @@ function renderTraitRadar(traitScores) {
   `
 }
 
-const TEST_URL = "https://vcastellar.github.io/testmaldad/"
+const TEST_URL = "https://testmalignidadhumana.com/"
 
 function getShareMessage() {
   if (!currentResult) return ""
