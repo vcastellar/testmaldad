@@ -540,37 +540,6 @@ applyDeviceMode()
 window.addEventListener("resize", applyDeviceMode)
 window.addEventListener("orientationchange", applyDeviceMode)
 
-function setupBookCoverFallbacks() {
-  const bookCovers = document.querySelectorAll(".book-cover")
-
-  bookCovers.forEach((cover) => {
-    const image = cover.querySelector("img")
-    if (!image) return
-
-    const fallbackTitle = cover.dataset.bookTitle || "Portada no disponible"
-
-    const activateFallback = () => {
-      if (cover.classList.contains("cover-fallback")) return
-
-      cover.classList.add("cover-fallback")
-      cover.setAttribute("role", "img")
-      cover.setAttribute("aria-label", `Portada no disponible de ${fallbackTitle}`)
-      cover.insertAdjacentHTML(
-        "beforeend",
-        `<span class="book-cover-fallback-emoji" aria-hidden="true">📘</span><span class="book-cover-fallback-label">${fallbackTitle}</span>`
-      )
-    }
-
-    image.addEventListener("error", activateFallback, { once: true })
-
-    if (image.complete && image.naturalWidth === 0) {
-      activateFallback()
-    }
-  })
-}
-
-setupBookCoverFallbacks()
-
 function createEmptyTraitScores() {
   return TRAIT_CODES.reduce((acc, key) => {
     acc[key] = 0
@@ -802,7 +771,7 @@ function renderTraitRadar(traitScores) {
   `
 }
 
-const TEST_URL = "https://testmalignidadhumana.com/"
+const TEST_URL = "https://vcastellar.github.io/testmaldad/"
 
 function getShareMessage() {
   if (!currentResult) return ""
