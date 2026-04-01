@@ -572,6 +572,21 @@ body.device-mobile .primary-trait-summary{
   transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
 }
 
+.book-cover {
+  display: flex;
+  justify-content: center;
+  margin: 2px 0 12px;
+}
+
+.book-cover img {
+  width: 110px;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 14px rgba(0, 0, 0, 0.35);
+  background: rgba(255, 255, 255, 0.06);
+}
+
 .book:hover,
 .book:focus-visible {
   transform: translateY(-3px);
@@ -684,6 +699,10 @@ body.device-mobile .book {
 
 body.device-mobile .book-title {
   font-size: 1.04rem;
+}
+
+body.device-mobile .book-cover img {
+  width: 96px;
 }
 
 body.device-mobile .book-cta-wrap,
