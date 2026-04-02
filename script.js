@@ -509,11 +509,23 @@ const penitenceNode = document.querySelector("#penitence")
 const traitRadarNode = document.querySelector("#traitRadar")
 const questionMetaNode = document.querySelector("#questionMeta")
 const deviceModeNode = document.querySelector("#deviceMode")
+const affiliateSidebarNode = document.querySelector(".affiliate-sidebar")
+const affiliateSidebarCloseBtn = document.querySelector(".affiliate-sidebar-close")
 
 let selectedQuestions = []
 let answersByIndex = new Map()
 let quizLocked = false
 let currentResult = null
+
+function hideAffiliateSidebar() {
+  if (!affiliateSidebarNode) return
+  affiliateSidebarNode.classList.add("is-hidden")
+  document.body.classList.add("affiliate-sidebar-dismissed")
+}
+
+if (affiliateSidebarCloseBtn) {
+  affiliateSidebarCloseBtn.addEventListener("click", hideAffiliateSidebar)
+}
 
 
 function detectDeviceMode() {
