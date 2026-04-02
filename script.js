@@ -901,6 +901,21 @@ function disableRemainingQuestions() {
   })
 }
 
+function moveFocusToNextQuestionOnMobile(currentQuestionIndex) {
+  if (detectDeviceMode() !== "mobile") return
+
+  const nextCard = questionsContainer.querySelector(`.question[data-index="${currentQuestionIndex + 1}"]`)
+  if (!nextCard) return
+
+  const nextAnswerButton = nextCard.querySelector(".answer-btn")
+  if (!nextAnswerButton) return
+
+  nextCard.scrollIntoView({ behavior: "smooth", block: "center" })
+  requestAnimationFrame(() => {
+    nextAnswerButton.focus({ preventScroll: true })
+  })
+}
+
 function handleAnswer(questionIndex, multiplier, clickedButton) {
   if (quizLocked) return
 
@@ -912,6 +927,7 @@ function handleAnswer(questionIndex, multiplier, clickedButton) {
   clickedButton.classList.add("selected")
 
   updateSubmitButton()
+  moveFocusToNextQuestionOnMobile(questionIndex)
 }
 
 function buildQuizResult(scoreSummary) {
