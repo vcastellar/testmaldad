@@ -704,6 +704,16 @@ body.device-mobile .affiliate-disclaimer-separator {
   display: none;
 }
 
+/* En smartphone el banner lateral nunca debe mostrarse */
+body.device-mobile .affiliate-sidebar {
+  display: none !important;
+}
+
+body.device-mobile {
+  padding-right: 0;
+  padding-bottom: 0;
+}
+
 /* Banner lateral de afiliados persistente */
 body{
 padding-right:300px;
@@ -822,5 +832,15 @@ flex:1;
 display:inline-flex;
 align-items:center;
 justify-content:center;
+}
+}
+
+@media (max-width: 768px){
+body{
+padding-bottom:0;
+}
+
+.affiliate-sidebar{
+display:none !important;
 }
 }
