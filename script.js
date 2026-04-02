@@ -509,11 +509,23 @@ const penitenceNode = document.querySelector("#penitence")
 const traitRadarNode = document.querySelector("#traitRadar")
 const questionMetaNode = document.querySelector("#questionMeta")
 const deviceModeNode = document.querySelector("#deviceMode")
+const affiliateSidebarNode = document.querySelector(".affiliate-sidebar")
+const affiliateSidebarCloseBtn = document.querySelector(".affiliate-sidebar-close")
 
 let selectedQuestions = []
 let answersByIndex = new Map()
 let quizLocked = false
 let currentResult = null
+
+function hideAffiliateSidebar() {
+  if (!affiliateSidebarNode) return
+  affiliateSidebarNode.classList.add("is-hidden")
+  document.body.classList.add("affiliate-sidebar-dismissed")
+}
+
+if (affiliateSidebarCloseBtn) {
+  affiliateSidebarCloseBtn.addEventListener("click", hideAffiliateSidebar)
+}
 
 
 function detectDeviceMode() {
@@ -889,6 +901,21 @@ function disableRemainingQuestions() {
   })
 }
 
+function moveFocusToNextQuestionOnMobile(currentQuestionIndex) {
+  if (detectDeviceMode() !== "mobile") return
+
+  const nextCard = questionsContainer.querySelector(`.question[data-index="${currentQuestionIndex + 1}"]`)
+  if (!nextCard) return
+
+  const nextAnswerButton = nextCard.querySelector(".answer-btn")
+  if (!nextAnswerButton) return
+
+  nextCard.scrollIntoView({ behavior: "smooth", block: "center" })
+  requestAnimationFrame(() => {
+    nextAnswerButton.focus({ preventScroll: true })
+  })
+}
+
 function handleAnswer(questionIndex, multiplier, clickedButton) {
   if (quizLocked) return
 
@@ -900,6 +927,7 @@ function handleAnswer(questionIndex, multiplier, clickedButton) {
   clickedButton.classList.add("selected")
 
   updateSubmitButton()
+  moveFocusToNextQuestionOnMobile(questionIndex)
 }
 
 function buildQuizResult(scoreSummary) {

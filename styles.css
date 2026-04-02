@@ -703,3 +703,144 @@ body.device-mobile .affiliate-disclaimer {
 body.device-mobile .affiliate-disclaimer-separator {
   display: none;
 }
+
+/* En smartphone el banner lateral nunca debe mostrarse */
+body.device-mobile .affiliate-sidebar {
+  display: none !important;
+}
+
+body.device-mobile {
+  padding-right: 0;
+  padding-bottom: 0;
+}
+
+/* Banner lateral de afiliados persistente */
+body{
+padding-right:300px;
+}
+
+.affiliate-sidebar{
+position:fixed;
+right:16px;
+top:50%;
+transform:translateY(-50%);
+width:260px;
+background:#1a1a1a;
+border:1px solid #303030;
+border-radius:12px;
+padding:14px;
+text-align:left;
+z-index:50;
+box-shadow:0 10px 26px rgba(0,0,0,.4);
+}
+
+.affiliate-sidebar.is-hidden{
+display:none;
+}
+
+.affiliate-sidebar-close{
+display:none;
+margin:0 0 8px auto;
+padding:4px 8px;
+background:#2a2a2a;
+border:1px solid #3d3d3d;
+border-radius:999px;
+font-size:12px;
+line-height:1;
+}
+
+.affiliate-sidebar-close:hover{
+background:#393939;
+}
+
+.affiliate-sidebar h2{
+margin:0 0 6px;
+font-size:15px;
+color:#ffd166;
+}
+
+.affiliate-sidebar-intro,
+.affiliate-sidebar-note{
+margin:0;
+font-size:12px;
+line-height:1.4;
+color:#d8d8d8;
+}
+
+.affiliate-sidebar-links{
+display:flex;
+flex-direction:column;
+gap:10px;
+margin:10px 0;
+}
+
+.affiliate-sidebar-link{
+display:flex;
+flex-direction:column;
+gap:5px;
+background:#252525;
+border:1px solid #3a3a3a;
+border-radius:8px;
+padding:10px;
+text-decoration:none;
+}
+
+.affiliate-sidebar-link:hover{
+border-color:#ff4d4d;
+background:#2d2d2d;
+}
+
+.affiliate-sidebar-title{
+font-size:13px;
+color:#fff;
+font-weight:700;
+}
+
+.affiliate-sidebar-cta{
+font-size:12px;
+color:#ffd166;
+}
+
+@media (max-width: 1200px){
+body{
+padding-right:0;
+padding-bottom:170px;
+}
+
+body.affiliate-sidebar-dismissed{
+padding-bottom:0;
+}
+
+.affiliate-sidebar{
+left:10px;
+right:10px;
+top:auto;
+bottom:8px;
+transform:none;
+width:auto;
+}
+
+.affiliate-sidebar-links{
+flex-direction:row;
+}
+
+.affiliate-sidebar-link{
+flex:1;
+}
+
+.affiliate-sidebar-close{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+}
+}
+
+@media (max-width: 768px){
+body{
+padding-bottom:0;
+}
+
+.affiliate-sidebar{
+display:none !important;
+}
+}
