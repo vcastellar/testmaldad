@@ -593,6 +593,15 @@ body.device-mobile .primary-trait-summary{
   color: #ffd166;
 }
 
+.book-cover {
+  display: block;
+  width: min(180px, 100%);
+  height: auto;
+  border-radius: 8px;
+  margin: 0 0 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.32);
+}
+
 .book-title-row {
   display: flex;
   align-items: flex-start;
@@ -794,6 +803,16 @@ background:#2d2d2d;
 font-size:13px;
 color:#fff;
 font-weight:700;
+}
+
+.affiliate-sidebar-cover{
+display:block;
+width:100%;
+max-width:120px;
+height:auto;
+border-radius:6px;
+margin:0 0 2px;
+box-shadow:0 6px 14px rgba(0,0,0,.35);
 }
 
 .affiliate-sidebar-cta{
