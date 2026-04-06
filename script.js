@@ -509,24 +509,11 @@ const penitenceNode = document.querySelector("#penitence")
 const traitRadarNode = document.querySelector("#traitRadar")
 const questionMetaNode = document.querySelector("#questionMeta")
 const deviceModeNode = document.querySelector("#deviceMode")
-const affiliateSidebarNode = document.querySelector(".affiliate-sidebar")
-const affiliateSidebarCloseBtn = document.querySelector(".affiliate-sidebar-close")
 
 let selectedQuestions = []
 let answersByIndex = new Map()
 let quizLocked = false
 let currentResult = null
-
-function hideAffiliateSidebar() {
-  if (!affiliateSidebarNode) return
-  affiliateSidebarNode.classList.add("is-hidden")
-  document.body.classList.add("affiliate-sidebar-dismissed")
-}
-
-if (affiliateSidebarCloseBtn) {
-  affiliateSidebarCloseBtn.addEventListener("click", hideAffiliateSidebar)
-}
-
 
 function detectDeviceMode() {
   const ua = navigator.userAgent || ""
@@ -901,10 +888,14 @@ function disableRemainingQuestions() {
   })
 }
 
-function moveFocusToNextQuestionOnMobile(currentQuestionIndex) {
-  if (detectDeviceMode() !== "mobile") return
+function moveFocusToNextQuestion(currentQuestionIndex) {
+  const questionCards = Array.from(questionsContainer.querySelectorAll(".question"))
 
-  const nextCard = questionsContainer.querySelector(`.question[data-index="${currentQuestionIndex + 1}"]`)
+  const nextCard = questionCards.find((card) => {
+    const cardIndex = Number(card.dataset.index)
+    return cardIndex > currentQuestionIndex && !answersByIndex.has(cardIndex)
+  })
+
   if (!nextCard) return
 
   const nextAnswerButton = nextCard.querySelector(".answer-btn")
@@ -927,7 +918,7 @@ function handleAnswer(questionIndex, multiplier, clickedButton) {
   clickedButton.classList.add("selected")
 
   updateSubmitButton()
-  moveFocusToNextQuestionOnMobile(questionIndex)
+  moveFocusToNextQuestion(questionIndex)
 }
 
 function buildQuizResult(scoreSummary) {
