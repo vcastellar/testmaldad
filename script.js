@@ -22,7 +22,7 @@ const QUESTIONS = [
   "¿Has contado un problema tuyo esperando que te dijeran “eres increíble por aguantar tanto”?",
   "¿Has mirado una foto de grupo y pensado primero “yo salgo bien, perfecto”?",
 
-  // Preguntas de evasión, pasivo-agresividad y caos digital por chat
+  // * Preguntas de evasión, pasivo-agresividad y caos digital por chat (bloque asteriscado)
   "¿Has mirado el móvil para evitar una conversación incómoda?",
   "¿Has respondido con un meme para evitar una conversación seria?",
   "¿Has dicho “salgo ya” cuando aún estabas en pijama?",
@@ -55,7 +55,7 @@ const QUESTIONS = [
   "¿Has intentado irte de un sitio con naturalidad y casi vuelves a entrar por la puerta equivocada?",
   "¿Has dicho un nombre con total seguridad y era otro completamente distinto?",
 
-  // Preguntas de convivencia, espacio compartido y pequeñas anarquías
+  // * Preguntas de convivencia, espacio compartido y pequeñas anarquías (bloque asteriscado)
   "¿Has intentado colarte sutilmente en una fila?",
   "¿Has usado “solo es un momento” para justificar algo molesto?",
   "¿Has ocupado dos asientos en transporte público con tu mochila?",
@@ -134,12 +134,10 @@ const QUESTIONS = [
 
 ]
 const TRAITS = {
-  NAR: "Narcisista compulsivo",
-  ADD: "Agente del Desorden Digital",
-  DSC: "Desastre social certificado",
-  FRC: "Freelance de la convivencia",
-  PAP: "Pasivo-agresivo profesional",
   RTS: "Rata estratégica",
+  NAR: "Narcisista compulsivo",
+  DSC: "Desastre social certificado",
+  PAP: "Pasivo-agresivo profesional",
   TRL: "Troll doméstico"
 }
 
@@ -299,7 +297,7 @@ const RAW_QUESTION_TRAITS = {
   "¿Has contado un problema tuyo esperando que te dijeran “eres increíble por aguantar tanto”?": { NAR:4, PAP:2 },
   "¿Has mirado una foto de grupo y pensado primero “yo salgo bien, perfecto”?": { NAR:4, DSC:2 },
 
-  // Evasión / ghosting (ADD dominante)
+  // * Evasión / ghosting (ADD dominante, bloque asteriscado)
   "¿Has mirado el móvil para evitar una conversación incómoda?": { ADD:4, DSC:1 },
   "¿Has respondido con un meme para evitar una conversación seria?": { ADD:4, PAP:1 },
   "¿Has dicho “salgo ya” cuando aún estabas en pijama?": { ADD:4, RTS:2 },
@@ -332,7 +330,7 @@ const RAW_QUESTION_TRAITS = {
   "¿Has intentado irte de un sitio con naturalidad y casi vuelves a entrar por la puerta equivocada?": { DSC:4, NAR:1 },
   "¿Has dicho un nombre con total seguridad y era otro completamente distinto?": { DSC:4, ADD:1 },
 
-  // Convivencia / anarquía (FRC dominante)
+  // * Convivencia / anarquía (FRC dominante, bloque asteriscado)
   "¿Has intentado colarte sutilmente en una fila?": { FRC:4, RTS:2 },
   "¿Has usado “solo es un momento” para justificar algo molesto?": { FRC:4, RTS:2 },
   "¿Has ocupado dos asientos con tu mochila?": { FRC:4, DSC:1 },
@@ -497,6 +495,7 @@ const TRAIT_PENITENCES = {
 const QUESTIONS_PER_TRAIT_BLOCK = 3
 const TRAIT_CODES = Object.keys(TRAITS)
 const QUESTIONS_TO_SHOW = TRAIT_CODES.length * QUESTIONS_PER_TRAIT_BLOCK
+const ACTIVE_TRAIT_CODES = new Set(TRAIT_CODES)
 
 const questionsContainer = document.querySelector("#questions")
 const startBtn = document.querySelector("#startBtn")
@@ -608,6 +607,7 @@ function calculateTraitScores() {
     const questionTraits = getQuestionTraits(questionText)
 
     Object.entries(questionTraits).forEach(([traitCode, points]) => {
+      if (!ACTIVE_TRAIT_CODES.has(traitCode)) return
       maxScores[traitCode] += points * MAX_AFFIRMATIVE_MULTIPLIER
     })
 
@@ -615,6 +615,7 @@ function calculateTraitScores() {
     if (multiplier === 0) return
 
     Object.entries(questionTraits).forEach(([traitCode, points]) => {
+      if (!ACTIVE_TRAIT_CODES.has(traitCode)) return
       rawScores[traitCode] += points * multiplier
     })
   })
