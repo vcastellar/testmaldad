@@ -23,21 +23,22 @@ const QUESTIONS = [
   "¿Has mirado una foto de grupo y pensado primero “yo salgo bien, perfecto”?",
 
   // Preguntas de evasión, pasivo-agresividad y caos digital por chat
-  "¿Has mirado el móvil para evitar una conversación incómoda?",
-  "¿Has respondido con un meme para evitar una conversación seria?",
-  "¿Has dicho “salgo ya” cuando aún estabas en pijama?",
-  "¿Has enviado “perdón por contestar tarde” mientras estabas en línea todo el día?",
-  "¿Has enviado un 'ok' seco para cerrar una conversación incómoda?",
-  "¿Has dejado una conversación grupal cuando se volvió incómoda?",
-  "¿Has soltado una bomba en un chat y luego lo silenciaste?",
-  "¿Has dejado de responder esperando que el problema desaparezca?",
-  "¿Has respondido con un GIF para no pensar una respuesta?",
-  "¿Has visto un mensaje importante y decidiste contestar 'luego'… y nunca llegó?",
-  "¿Has silenciado a alguien para no tener que interactuar con él?",
-  "¿Has entrado en línea para otra cosa pero evitaste responder a alguien?",
-  "¿Has visto un mensaje largo y has decidido que tu yo del futuro cargue con eso?",
-  "¿Has respondido “luego te cuento” para no contar absolutamente nada?",
-  "¿Has visto una llamada venir y has esperado a que colgara para escribir “¿todo bien?”?",
+  // Comentadas temporalmente para mantener el test en 5 categorías (no borrar).
+  // "¿Has mirado el móvil para evitar una conversación incómoda?",
+  // "¿Has respondido con un meme para evitar una conversación seria?",
+  // "¿Has dicho “salgo ya” cuando aún estabas en pijama?",
+  // "¿Has enviado “perdón por contestar tarde” mientras estabas en línea todo el día?",
+  // "¿Has enviado un 'ok' seco para cerrar una conversación incómoda?",
+  // "¿Has dejado una conversación grupal cuando se volvió incómoda?",
+  // "¿Has soltado una bomba en un chat y luego lo silenciaste?",
+  // "¿Has dejado de responder esperando que el problema desaparezca?",
+  // "¿Has respondido con un GIF para no pensar una respuesta?",
+  // "¿Has visto un mensaje importante y decidiste contestar 'luego'… y nunca llegó?",
+  // "¿Has silenciado a alguien para no tener que interactuar con él?",
+  // "¿Has entrado en línea para otra cosa pero evitaste responder a alguien?",
+  // "¿Has visto un mensaje largo y has decidido que tu yo del futuro cargue con eso?",
+  // "¿Has respondido “luego te cuento” para no contar absolutamente nada?",
+  // "¿Has visto una llamada venir y has esperado a que colgara para escribir “¿todo bien?”?",
 
   // Preguntas de torpeza, incomodidad y desastre social cotidiano
   "¿Has cruzado la calle para evitar una conversación incómoda?",
@@ -56,17 +57,18 @@ const QUESTIONS = [
   "¿Has dicho un nombre con total seguridad y era otro completamente distinto?",
 
   // Preguntas de convivencia, espacio compartido y pequeñas anarquías
-  "¿Has intentado colarte sutilmente en una fila?",
-  "¿Has usado “solo es un momento” para justificar algo molesto?",
-  "¿Has ocupado dos asientos en transporte público con tu mochila?",
-  "¿Has abierto la nevera ajena y has opinado sin que te preguntaran?",
-  "¿Has dejado una puerta abierta sabiendo que molestaba a alguien?",
-  "¿Has ocupado un sitio “reservado” pensando que nadie lo usaría?",
-  "¿Has dejado basura en un sitio público “porque ya estaba sucio”?",
-  "¿Has hablado por teléfono en voz alta sin importar quién escuchaba?",
-  "¿Has cambiado la música de todos sin preguntar porque la tuya era “mejor”?",
-  "¿Has puesto el móvil con sonido en un lugar silencioso porque “será un segundo”?",
-  "¿Has cogido sitio de más en el sofá como si fueras un emperador romano?",
+  // Comentadas temporalmente para mantener el test en 5 categorías (no borrar).
+  // "¿Has intentado colarte sutilmente en una fila?",
+  // "¿Has usado “solo es un momento” para justificar algo molesto?",
+  // "¿Has ocupado dos asientos en transporte público con tu mochila?",
+  // "¿Has abierto la nevera ajena y has opinado sin que te preguntaran?",
+  // "¿Has dejado una puerta abierta sabiendo que molestaba a alguien?",
+  // "¿Has ocupado un sitio “reservado” pensando que nadie lo usaría?",
+  // "¿Has dejado basura en un sitio público “porque ya estaba sucio”?",
+  // "¿Has hablado por teléfono en voz alta sin importar quién escuchaba?",
+  // "¿Has cambiado la música de todos sin preguntar porque la tuya era “mejor”?",
+  // "¿Has puesto el móvil con sonido en un lugar silencioso porque “será un segundo”?",
+  // "¿Has cogido sitio de más en el sofá como si fueras un emperador romano?",
 
   // Preguntas de indirectas, pullas y comunicación pasivo-agresiva
   "¿Has respondido “qué pena” sin sentir ninguna pena?",
@@ -135,9 +137,7 @@ const QUESTIONS = [
 ]
 const TRAITS = {
   NAR: "Narcisista compulsivo",
-  ADD: "Agente del Desorden Digital",
   DSC: "Desastre social certificado",
-  FRC: "Freelance de la convivencia",
   PAP: "Pasivo-agresivo profesional",
   RTS: "Rata estratégica",
   TRL: "Troll doméstico"
