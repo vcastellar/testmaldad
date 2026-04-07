@@ -646,7 +646,14 @@ body.device-mobile .primary-trait-summary{
 .book-link-text {
   flex: 1;
   font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.62);
+  color: #0f0f0f;
+  background: linear-gradient(135deg, #ffe08a, #ffc24a);
+  border: 1px solid rgba(255, 209, 102, 0.95);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.01em;
 }
 
 .book-note {
