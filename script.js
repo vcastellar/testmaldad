@@ -22,7 +22,7 @@ const QUESTIONS = [
   "¿Has contado un problema tuyo esperando que te dijeran “eres increíble por aguantar tanto”?",
   "¿Has mirado una foto de grupo y pensado primero “yo salgo bien, perfecto”?",
 
-  // * Preguntas de evasión, pasivo-agresividad y caos digital por chat (bloque asteriscado)
+  /* Preguntas de evasión, pasivo-agresividad y caos digital por chat (bloque asteriscado)
   "¿Has mirado el móvil para evitar una conversación incómoda?",
   "¿Has respondido con un meme para evitar una conversación seria?",
   "¿Has dicho “salgo ya” cuando aún estabas en pijama?",
@@ -37,7 +37,7 @@ const QUESTIONS = [
   "¿Has entrado en línea para otra cosa pero evitaste responder a alguien?",
   "¿Has visto un mensaje largo y has decidido que tu yo del futuro cargue con eso?",
   "¿Has respondido “luego te cuento” para no contar absolutamente nada?",
-  "¿Has visto una llamada venir y has esperado a que colgara para escribir “¿todo bien?”?",
+  "¿Has visto una llamada venir y has esperado a que colgara para escribir “¿todo bien?”?",*/
 
   // Preguntas de torpeza, incomodidad y desastre social cotidiano
   "¿Has cruzado la calle para evitar una conversación incómoda?",
@@ -55,7 +55,7 @@ const QUESTIONS = [
   "¿Has intentado irte de un sitio con naturalidad y casi vuelves a entrar por la puerta equivocada?",
   "¿Has dicho un nombre con total seguridad y era otro completamente distinto?",
 
-  // * Preguntas de convivencia, espacio compartido y pequeñas anarquías (bloque asteriscado)
+  /* Preguntas de convivencia, espacio compartido y pequeñas anarquías (bloque asteriscado)
   "¿Has intentado colarte sutilmente en una fila?",
   "¿Has usado “solo es un momento” para justificar algo molesto?",
   "¿Has ocupado dos asientos en transporte público con tu mochila?",
@@ -66,7 +66,7 @@ const QUESTIONS = [
   "¿Has hablado por teléfono en voz alta sin importar quién escuchaba?",
   "¿Has cambiado la música de todos sin preguntar porque la tuya era “mejor”?",
   "¿Has puesto el móvil con sonido en un lugar silencioso porque “será un segundo”?",
-  "¿Has cogido sitio de más en el sofá como si fueras un emperador romano?",
+  "¿Has cogido sitio de más en el sofá como si fueras un emperador romano?",*/
 
   // Preguntas de indirectas, pullas y comunicación pasivo-agresiva
   "¿Has respondido “qué pena” sin sentir ninguna pena?",
@@ -160,7 +160,7 @@ const TRAIT_PROFILES = {
     ],
     catchphrase: "“No quiero ser el centro de atención… pero…”"
   },
-  ADD: {
+  /*ADD: {
     emoji: "👻",
     shortCode: "ADD",
     title: "Agente del Desorden Digital",
@@ -176,7 +176,7 @@ const TRAIT_PROFILES = {
       "Respuestas mínimas para cerrar temas incómodos."
     ],
     catchphrase: "“Acabo de ver esto” (estabas online toda la tarde)"
-  },
+  },*/
   DSC: {
     emoji: "🫠",
     shortCode: "DSC",
@@ -194,7 +194,7 @@ const TRAIT_PROFILES = {
     ],
     catchphrase: "“Bueno… jaja… en fin…” (silencio incómodo)"
   },
-  FRC: {
+  /*FRC: {
     emoji: "🚧",
     shortCode: "FRC",
     title: "Freelance de la convivencia",
@@ -210,7 +210,7 @@ const TRAIT_PROFILES = {
       "Conviertes lo común en ligeramente incómodo."
     ],
     catchphrase: "“Bah, tampoco es para tanto”"
-  },
+  },*/
   PAP: {
     emoji: "🐍",
     shortCode: "PAP",
@@ -297,7 +297,7 @@ const RAW_QUESTION_TRAITS = {
   "¿Has contado un problema tuyo esperando que te dijeran “eres increíble por aguantar tanto”?": { NAR:4, PAP:2 },
   "¿Has mirado una foto de grupo y pensado primero “yo salgo bien, perfecto”?": { NAR:4, DSC:2 },
 
-  // * Evasión / ghosting (ADD dominante, bloque asteriscado)
+  /* Evasión / ghosting (ADD dominante, bloque asteriscado)
   "¿Has mirado el móvil para evitar una conversación incómoda?": { ADD:4, DSC:1 },
   "¿Has respondido con un meme para evitar una conversación seria?": { ADD:4, PAP:1 },
   "¿Has dicho “salgo ya” cuando aún estabas en pijama?": { ADD:4, RTS:2 },
@@ -312,7 +312,7 @@ const RAW_QUESTION_TRAITS = {
   "¿Has entrado en línea para otra cosa pero evitaste responder a alguien?": { ADD:4, RTS:1 },
   "¿Has visto un mensaje largo y has decidido que tu yo del futuro cargue con eso?": { ADD:4, PAP:1 },
   "¿Has respondido “luego te cuento” para no contar absolutamente nada?": { ADD:4, PAP:2 },
-  "¿Has visto una llamada venir y has esperado a que colgara para escribir “¿todo bien?”?": { ADD:4, DSC:1 },
+  "¿Has visto una llamada venir y has esperado a que colgara para escribir “¿todo bien?”?": { ADD:4, DSC:1 },*/
 
   // Torpeza social (DSC dominante)
   "¿Has cruzado la calle para evitar una conversación incómoda?": { DSC:4, ADD:2 },
@@ -330,7 +330,7 @@ const RAW_QUESTION_TRAITS = {
   "¿Has intentado irte de un sitio con naturalidad y casi vuelves a entrar por la puerta equivocada?": { DSC:4, NAR:1 },
   "¿Has dicho un nombre con total seguridad y era otro completamente distinto?": { DSC:4, ADD:1 },
 
-  // * Convivencia / anarquía (FRC dominante, bloque asteriscado)
+  /* Convivencia / anarquía (FRC dominante, bloque asteriscado)
   "¿Has intentado colarte sutilmente en una fila?": { FRC:4, RTS:2 },
   "¿Has usado “solo es un momento” para justificar algo molesto?": { FRC:4, RTS:2 },
   "¿Has ocupado dos asientos con tu mochila?": { FRC:4, DSC:1 },
@@ -341,7 +341,7 @@ const RAW_QUESTION_TRAITS = {
   "¿Has hablado por teléfono en voz alta sin importar?": { FRC:4, NAR:1 },
   "¿Has cambiado la música de todos sin preguntar porque la tuya era “mejor”?": { FRC:4, NAR:2 },
   "¿Has puesto el móvil con sonido en un lugar silencioso porque “será un segundo”?": { FRC:4, RTS:2 },
-  "¿Has cogido sitio de más en el sofá como si fueras un emperador romano?": { FRC:4, DSC:1 },
+  "¿Has cogido sitio de más en el sofá como si fueras un emperador romano?": { FRC:4, DSC:1 },*/
 
   // Pasivo-agresivo (PAP dominante)
   "¿Has respondido “qué pena” sin sentirlo?": { PAP:4 },
@@ -364,7 +364,7 @@ const RAW_QUESTION_TRAITS = {
   "¿Has soltado un “qué valiente” que sonaba a elogio pero era veneno?": { PAP:4, TRL:1 },
   "¿Has rematado un mensaje borde con un “😊” para fingir paz diplomática?": { PAP:4, ADD:1 },
 
-  // Conveniencia / egoísmo estratégico (RTS dominante)
+  /Conveniencia / egoísmo estratégico (RTS dominante)
   "¿Has dicho “te aviso” sabiendo que no lo harías?": { RTS:4, PAP:2 },
   "¿Has devuelto una llamada solo porque necesitabas algo?": { RTS:4, NAR:2 },
   "¿Has fingido interés en una historia aburrida?": { RTS:4, DSC:1 },
@@ -455,11 +455,11 @@ const TRAIT_PENITENCES = {
     "Cuenta una anécdota tuya… pero cambiando el protagonista a otra persona ficticia sin avisar."
   ],
 
-  ADD: [
+  /*ADD: [
     "Responde a todos tus mensajes durante 1 hora empezando por “HE LEÍDO TU MENSAJE Y HE DECIDIDO RESPONDER” en mayúsculas.",
     "Envía un “sigo vivo” a 3 conversaciones que llevas ignorando días.",
     "Durante 30 minutos, cada respuesta tuya debe tardar EXACTAMENTE 17 segundos (ni uno más, ni uno menos)."
-  ],
+  ],*/
 
   DSC: [
     "Mantén contacto visual con alguien 2 segundos más de lo normal… y luego asiente lentamente.",
@@ -467,11 +467,11 @@ const TRAIT_PENITENCES = {
     "Despídete de alguien… y vuelve a despedirte 10 segundos después como si nada."
   ],
 
-  FRC: [
+  /*FRC: [
     "Pulsa el botón del ascensor una sola vez… y luego susurra “confío en ti” mientras lo miras.",
     "Deja pasar a alguien y haz un gesto exageradamente ceremonioso como si fueras un mayordomo.",
     "Si estás en un sitio público, recoloca algo torcido con total seriedad como si fuera una misión crítica."
-  ],
+  ],*/
 
   PAP: [
     "Di una frase completamente directa… y luego añade: “esto es raro para mí, lo sé”.",
