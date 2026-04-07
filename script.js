@@ -60,23 +60,6 @@ const TRAIT_PROFILES = {
     ],
     catchphrase: "“Bueno… jaja… en fin…” (silencio incómodo)"
   },
-  FRC: {
-    emoji: "🚧",
-    shortCode: "FRC",
-    title: "Freelance de la convivencia",
-    summary: "No rompes las normas… las ignoras con una confianza admirable.",
-    description: [
-      "Tu filosofía es: “si puedo hacerlo, lo hago… y ya si eso luego vemos”.",
-      "Te cuelas, ocupas espacio de más y tomas libertades que nadie te dio.",
-      "No buscas conflicto… pero eres una fuente constante de micro-caos social."
-    ],
-    characteristics: [
-      "“Solo es un momento” (nunca lo es).",
-      "Usas cosas ajenas sin preguntar.",
-      "Conviertes lo común en ligeramente incómodo."
-    ],
-    catchphrase: "“Bah, tampoco es para tanto”"
-  },
   PAP: {
     emoji: "🐍",
     shortCode: "PAP",
@@ -196,18 +179,18 @@ const RAW_QUESTION_TRAITS = {
   "¿Has intentado irte de un sitio con naturalidad y casi vuelves a entrar por la puerta equivocada?": { DSC:4, NAR:1 },
   "¿Has dicho un nombre con total seguridad y era otro completamente distinto?": { DSC:4, ADD:1 },
 
-  // Convivencia / anarquía (FRC dominante)
-  "¿Has intentado colarte sutilmente en una fila?": { FRC:4, RTS:2 },
-  "¿Has usado “solo es un momento” para justificar algo molesto?": { FRC:4, RTS:2 },
-  "¿Has ocupado dos asientos con tu mochila?": { FRC:4, DSC:1 },
-  "¿Has abierto la nevera ajena y opinado?": { FRC:4, NAR:1 },
-  "¿Has dejado una puerta abierta sabiendo que molestaba?": { FRC:4 },
-  "¿Has ocupado un sitio “reservado”?": { FRC:4, RTS:2 },
-  "¿Has dejado basura “porque ya estaba sucio”?": { FRC:4, RTS:2 },
-  "¿Has hablado por teléfono en voz alta sin importar?": { FRC:4, NAR:1 },
-  "¿Has cambiado la música de todos sin preguntar porque la tuya era “mejor”?": { FRC:4, NAR:2 },
-  "¿Has puesto el móvil con sonido en un lugar silencioso porque “será un segundo”?": { FRC:4, RTS:2 },
-  "¿Has cogido sitio de más en el sofá como si fueras un emperador romano?": { FRC:4, DSC:1 },
+  // Convivencia / anarquía (reclasificadas en RTS)
+  "¿Has intentado colarte sutilmente en una fila?": { RTS:5 },
+  "¿Has usado “solo es un momento” para justificar algo molesto?": { RTS:5 },
+  "¿Has ocupado dos asientos con tu mochila?": { RTS:4, DSC:1 },
+  "¿Has abierto la nevera ajena y opinado?": { RTS:4, NAR:1 },
+  "¿Has dejado una puerta abierta sabiendo que molestaba?": { RTS:4 },
+  "¿Has ocupado un sitio “reservado”?": { RTS:5 },
+  "¿Has dejado basura “porque ya estaba sucio”?": { RTS:5 },
+  "¿Has hablado por teléfono en voz alta sin importar?": { RTS:4, NAR:1 },
+  "¿Has cambiado la música de todos sin preguntar porque la tuya era “mejor”?": { RTS:4, NAR:2 },
+  "¿Has puesto el móvil con sonido en un lugar silencioso porque “será un segundo”?": { RTS:5 },
+  "¿Has cogido sitio de más en el sofá como si fueras un emperador romano?": { RTS:4, DSC:1 },
 
   // Pasivo-agresivo (PAP dominante)
   "¿Has respondido “qué pena” sin sentirlo?": { PAP:4 },
@@ -234,7 +217,7 @@ const RAW_QUESTION_TRAITS = {
   "¿Has dicho “te aviso” sabiendo que no lo harías?": { RTS:4, PAP:2 },
   "¿Has devuelto una llamada solo porque necesitabas algo?": { RTS:4, NAR:2 },
   "¿Has fingido interés en una historia aburrida?": { RTS:4, DSC:1 },
-  "¿Has cogido la última porción con excusa?": { RTS:4, FRC:2 },
+  "¿Has cogido la última porción con excusa?": { RTS:4, DSC:1 },
   "¿Has criticado algo que en realidad te gusta?": { RTS:4, NAR:2 },
   "¿Has culpado al tráfico aunque saliste tarde?": { RTS:4, PAP:2 },
   "¿Has prometido algo que no cumplirías?": { RTS:4, PAP:2 },
@@ -246,13 +229,13 @@ const RAW_QUESTION_TRAITS = {
   "¿Has dicho “yo invito la próxima” esperando que se olvide?": { RTS:4, PAP:2 },
   "¿Has seguido una serie sin la persona con la que la veías?": { RTS:4 },
   "¿Has dicho “sí claro” esperando no hacerlo?": { RTS:4, PAP:2 },
-  "¿Has pedido “una prueba” y comido medio plato?": { RTS:4, FRC:2 },
-  "¿Has usado el cargador de alguien sin decir nada?": { RTS:4, FRC:1 },
+  "¿Has pedido “una prueba” y comido medio plato?": { RTS:4, DSC:1 },
+  "¿Has usado el cargador de alguien sin decir nada?": { RTS:4, PAP:1 },
   "¿Has dicho “yo me encargo” y desaparecido?": { RTS:4, ADD:2 },
   "¿Has dicho 'ya lo miraré' sabiendo que no lo harías?": { RTS:4, ADD:2 },
   "¿Has dejado que otro cargue con tu culpa?": { RTS:4, TRL:2 },
-  "¿Has ido a comprar con gente y te has esfumado justo al repartir las bolsas?": { RTS:4, FRC:1 },
-  "¿Has dicho “luego te hago Bizum” esperando que la historia muriera ahí?": { RTS:4, FRC:2 },
+  "¿Has ido a comprar con gente y te has esfumado justo al repartir las bolsas?": { RTS:4, DSC:1 },
+  "¿Has dicho “luego te hago Bizum” esperando que la historia muriera ahí?": { RTS:4, PAP:2 },
   "¿Has ofrecido ayuda cuando ya estaba casi todo hecho?": { RTS:4, PAP:1 },
 
   // Troll / caos / drama (TRL dominante)
@@ -333,12 +316,6 @@ const TRAIT_PENITENCES = {
     "Mantén contacto visual con alguien 2 segundos más de lo normal… y luego asiente lentamente.",
     "Empieza una conversación con: “No sé muy bien cómo empezar esto, pero aquí voy” y sigue sin explicar nada.",
     "Despídete de alguien… y vuelve a despedirte 10 segundos después como si nada."
-  ],
-
-  FRC: [
-    "Pulsa el botón del ascensor una sola vez… y luego susurra “confío en ti” mientras lo miras.",
-    "Deja pasar a alguien y haz un gesto exageradamente ceremonioso como si fueras un mayordomo.",
-    "Si estás en un sitio público, recoloca algo torcido con total seriedad como si fuera una misión crítica."
   ],
 
   PAP: [
@@ -607,11 +584,11 @@ function renderTraitRadar(traitScores) {
     const labelRadius = radius + 28
     const x = cx + Math.cos(angle) * labelRadius
     const y = cy + Math.sin(angle) * labelRadius
-    const textFRChor = x < cx - 10 ? "end" : x > cx + 10 ? "start" : "middle"
+    const textAnchor = x < cx - 10 ? "end" : x > cx + 10 ? "start" : "middle"
 
     return `
-      <text class="radar-label" x="${x.toFixed(2)}" y="${y.toFixed(2)}" text-FRChor="${textFRChor}">${code}</text>
-      <text class="radar-score" x="${x.toFixed(2)}" y="${(y + 14).toFixed(2)}" text-FRChor="${textFRChor}">${score.toFixed(1)}%</text>
+      <text class="radar-label" x="${x.toFixed(2)}" y="${y.toFixed(2)}" text-anchor="${textAnchor}">${code}</text>
+      <text class="radar-score" x="${x.toFixed(2)}" y="${(y + 14).toFixed(2)}" text-anchor="${textAnchor}">${score.toFixed(1)}%</text>
     `
   }).join("")
 
