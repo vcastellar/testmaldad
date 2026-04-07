@@ -1,143 +1,7 @@
-// BFRCo completo de preguntas del test satírico.
-const QUESTIONS = [
-  // Preguntas de ego, protagonismo y necesidad de validación
-  "¿Has interrumpido a alguien para contar tu propia historia?",
-  "¿Has exagerado una historia para que parezca mejor?",
-  "¿Has fingido que sabías algo que en realidad no tenías ni idea?",
-  "¿Has soltado un “yo ya lo dije” después de que algo saliera mal?",
-  "¿Has dicho “solo una cosa rápida” y luego hablaste diez minutos?",
-  "¿Has contado una historia exagerando tu papel heroico?",
-  "¿Has omitido un detalle importante para parecer más listo?",
-  "¿Has subido una story triste esperando mensajes de “¿qué te pasa?”?",
-  "¿Has mirado quién dio like antes de decidir si darlo tú también?",
-  "¿Has corregido algo en Google solo para tener razón?",
-  "¿Has respondido tarde a propósito para parecer más importante?",
-  "¿Has contado algo esperando impresionar?",
-  "¿Has pensado que alguien hablaba demasiado mientras tú hacías lo mismo?",
-  "¿Has dicho 'no soy experto pero…' antes de opinar con seguridad?",
-  "¿Has hecho una pregunta solo para poder hablar tú después?",
-  "¿Publicas selfies haciendo morritos?",
-  "¿Publicas en Instagram tu tostada de aguacate?",
-  "¿Has repetido una foto veinte veces hasta que pareciera un anuncio de ti?",
-  "¿Has contado un problema tuyo esperando que te dijeran “eres increíble por aguantar tanto”?",
-  "¿Has mirado una foto de grupo y pensado primero “yo salgo bien, perfecto”?",
-
-  // Preguntas de evasión, pasivo-agresividad y caos digital por chat
-  "¿Has mirado el móvil para evitar una conversación incómoda?",
-  "¿Has respondido con un meme para evitar una conversación seria?",
-  "¿Has dicho “salgo ya” cuando aún estabas en pijama?",
-  "¿Has enviado “perdón por contestar tarde” mientras estabas en línea todo el día?",
-  "¿Has enviado un 'ok' seco para cerrar una conversación incómoda?",
-  "¿Has dejado una conversación grupal cuando se volvió incómoda?",
-  "¿Has soltado una bomba en un chat y luego lo silenciaste?",
-  "¿Has dejado de responder esperando que el problema desaparezca?",
-  "¿Has respondido con un GIF para no pensar una respuesta?",
-  "¿Has visto un mensaje importante y decidiste contestar 'luego'… y nunca llegó?",
-  "¿Has silenciado a alguien para no tener que interactuar con él?",
-  "¿Has entrado en línea para otra cosa pero evitaste responder a alguien?",
-  "¿Has visto un mensaje largo y has decidido que tu yo del futuro cargue con eso?",
-  "¿Has respondido “luego te cuento” para no contar absolutamente nada?",
-  "¿Has visto una llamada venir y has esperado a que colgara para escribir “¿todo bien?”?",
-
-  // Preguntas de torpeza, incomodidad y desastre social cotidiano
-  "¿Has cruzado la calle para evitar una conversación incómoda?",
-  "¿Has saludado a alguien que no te estaba saludando a ti?",
-  "¿Has intentado salir de una conversación y te quedaste atrapado más tiempo?",
-  "¿Has hecho contacto visual incómodo demasiado tiempo?",
-  "¿Has dicho algo y te arrepentiste justo después de decirlo?",
-  "¿Has fingido que entendías un chiste y remataste con una risa fuera de tiempo?",
-  "¿Has respondido “igualmente” cuando te dijeron “buen provecho” o “feliz cumpleaños”?",
-  "¿Has intentado dar dos besos, la otra persona una mano y acabaste haciendo coreografía social?",
-  "¿Has abierto una puerta empujando cuando ponía claramente “tirar” y alguien te estaba mirando?",
-  "¿Has llamado “mamá” o “profe” a alguien que claramente no era tu madre ni tu profesor?",
-  "¿Has dicho “tú también” cuando el camarero te dijo “que disfrutes la comida”?",
-  "¿Has empezado a hablar y te has dado cuenta a mitad de que nadie te estaba escuchando?",
-  "¿Has intentado irte de un sitio con naturalidad y casi vuelves a entrar por la puerta equivocada?",
-  "¿Has dicho un nombre con total seguridad y era otro completamente distinto?",
-
-  // Preguntas de convivencia, espacio compartido y pequeñas anarquías
-  "¿Has intentado colarte sutilmente en una fila?",
-  "¿Has usado “solo es un momento” para justificar algo molesto?",
-  "¿Has ocupado dos asientos en transporte público con tu mochila?",
-  "¿Has abierto la nevera ajena y has opinado sin que te preguntaran?",
-  "¿Has dejado una puerta abierta sabiendo que molestaba a alguien?",
-  "¿Has ocupado un sitio “reservado” pensando que nadie lo usaría?",
-  "¿Has dejado basura en un sitio público “porque ya estaba sucio”?",
-  "¿Has hablado por teléfono en voz alta sin importar quién escuchaba?",
-  "¿Has cambiado la música de todos sin preguntar porque la tuya era “mejor”?",
-  "¿Has puesto el móvil con sonido en un lugar silencioso porque “será un segundo”?",
-  "¿Has cogido sitio de más en el sofá como si fueras un emperador romano?",
-
-  // Preguntas de indirectas, pullas y comunicación pasivo-agresiva
-  "¿Has respondido “qué pena” sin sentir ninguna pena?",
-  "¿Has hecho un comentario sarcástico que alguien no entendió?",
-  "¿Has hecho un comentario pasivo-agresivo?",
-  "¿Has enviado un mensaje ambiguo para que otro lo interprete?",
-  "¿Has dicho “qué ilusión verte” cuando no te hacía ninguna ilusión?",
-  "¿Has dicho “no pasa nada” esperando claramente que sí pase algo?",
-  "¿Has respondido “haz lo que quieras” esperando que no lo hagan?",
-  "¿Has hecho una broma pasivo-agresiva que parecía un cumplido?",
-  "¿Has dicho “qué raro…” insinuando que alguien hizo algo mal?",
-  "¿Has dicho “todo el mundo dice que…” cuando no era cierto?",
-  "¿Has dicho “te queda genial” cuando claramente no era así?",
-  "¿Has soltado una indirecta esperando que alguien la entienda?",
-  "¿Has dicho “no era por ti” justo después de lanzar una indirecta nuclear?",
-  "¿Has fingido reír para cortar un chiste?",
-  "¿Has dicho 'era sarcasmo' cuando no lo era?",
-  "¿Has usado 'te lo digo por tu bien' antes de criticar?",
-  "¿Has dicho “vale, perfecto” cuando en realidad estabas abriendo una lista mental de agravios?",
-  "¿Has soltado un “qué valiente” que sonaba a elogio pero era veneno?",
-  "¿Has rematado un mensaje borde con un “😊” para fingir paz diplomática?",
-
-  // Preguntas de conveniencia, escaqueo y ventaja estratégica
-  "¿Has dicho “te aviso” sabiendo que nunca avisarías?",
-  "¿Has devuelto una llamada solo porque necesitabas algo?",
-  "¿Has asentido fingiendo interés en una historia aburrida?",
-  "¿Has cogido la última porción diciendo “si nadie la quiere…”?",
-  "¿Has criticado algo que en realidad te gusta?",
-  "¿Has culpado al tráfico aunque saliste tarde de casa?",
-  "¿Has prometido algo que sabías que no cumplirías?",
-  "¿Has puesto cara de inocente después de causar un pequeño caos?",
-  "¿Has dejado que otro pague una cuenta que podríais haber dividido?",
-  "¿Has aceptado comida gratis sin ofrecer pagar?",
-  "¿Has fingido estar ocupado para evitar ayudar?",
-  "¿Has cambiado de tema para evitar admitir un error?",
-  "¿Has dicho “yo invito la próxima” esperando que nadie lo recuerde?",
-  "¿Has visto una serie con alguien y luego seguiste viéndola sin esa persona?",
-  "¿Has dicho “sí, claro” esperando que no te pidan hacerlo?",
-  "¿Has pedido “una prueba” del postre y terminaste comiéndote medio plato?",
-  "¿Has usado el cargador de alguien sin decir nada?",
-  "¿Has dicho “yo me encargo” y luego desapareciste?",
-  "¿Has respondido 'ya lo miraré' sabiendo que no lo harías?",
-  "¿Has dejado que otro se lleve la culpa por algo tuyo?",
-  "¿Has ido a comprar con gente y te has esfumado justo al repartir las bolsas?",
-  "¿Has dicho “luego te hago Bizum” esperando que la historia muriera ahí?",
-  "¿Has ofrecido ayuda cuando ya estaba casi todo hecho?",
-
-  // Preguntas de provocación, chisme y disfrute del caos ajeno
-  "¿Has dicho “no me gusta la polémica” justo antes de crear una?",
-  "¿Has hecho una broma a costa de alguien presente?",
-  "¿Has repetido un chisme empezando por “no debería decir esto…”?",
-  "¿Has soltado un spoiler sin avisar?",
-  "¿Has dicho “no soy cotilla pero…” justo antes de cotillear?",
-  "¿Has escuchado un chisme con mucho interés aunque fingías lo contrario?",
-  "¿Has contado un secreto que te pidieron no contar?",
-  "¿Has reenviado un pantallazo privado para reírte con otro grupo?",
-  "¿Has disfrutado viendo discusiones absurdas en internet?",
-  "¿Has seguido un drama online solo por morbo?",
-  "¿Has metido cizaña entre dos personas y luego fingido sorpresa?",
-  "¿Has disfrutado viendo cómo explotaba un drama ajeno?",
-  "¿Has seguido mirando algo sabiendo que acabaría mal?",
-  "¿Has enseñado un mensaje privado a alguien solo para decir “mira esta joya”?",
-  "¿Has preguntado “qué ha pasado” sabiendo que eso iba a reactivar todo el drama?",
-  "¿Has enviado un “uff” a un chat solo para que todos preguntaran qué pasaba?",
-
-]
+// Banco de preguntas derivado de RAW_QUESTION_TRAITS para evitar duplicidad.
 const TRAITS = {
   NAR: "Narcisista compulsivo",
-  ADD: "Agente del Desorden Digital",
   DSC: "Desastre social certificado",
-  FRC: "Freelance de la convivencia",
   PAP: "Pasivo-agresivo profesional",
   RTS: "Rata estratégica",
   TRL: "Troll doméstico"
@@ -162,23 +26,6 @@ const TRAIT_PROFILES = {
     ],
     catchphrase: "“No quiero ser el centro de atención… pero…”"
   },
-  ADD: {
-    emoji: "👻",
-    shortCode: "ADD",
-    title: "Agente del Desorden Digital",
-    summary: "No discutes, no afrontas, no aclaras… gestionas conflictos desapareciendo como un profesional.",
-    description: [
-      "Tu chat es un campo de minas: entras, no respondes; lees, ignoras; prometes, no cumples.",
-      "Tu especialidad es generar ansiedad digital sin decir ni una palabra.",
-      "No eres mala persona… pero emocionalmente eres un “ya si eso luego” constante."
-    ],
-    characteristics: [
-      "“Perdón por contestar tarde” (mentira).",
-      "Ghosting suave, elegante y sostenido.",
-      "Respuestas mínimas para cerrar temas incómodos."
-    ],
-    catchphrase: "“Acabo de ver esto” (estabas online toda la tarde)"
-  },
   DSC: {
     emoji: "🫠",
     shortCode: "DSC",
@@ -195,23 +42,6 @@ const TRAIT_PROFILES = {
       "Te quedas atrapado en conversaciones sin saber salir."
     ],
     catchphrase: "“Bueno… jaja… en fin…” (silencio incómodo)"
-  },
-  FRC: {
-    emoji: "🚧",
-    shortCode: "FRC",
-    title: "Freelance de la convivencia",
-    summary: "No rompes las normas… las ignoras con una confianza admirable.",
-    description: [
-      "Tu filosofía es: “si puedo hacerlo, lo hago… y ya si eso luego vemos”.",
-      "Te cuelas, ocupas espacio de más y tomas libertades que nadie te dio.",
-      "No buscas conflicto… pero eres una fuente constante de micro-caos social."
-    ],
-    characteristics: [
-      "“Solo es un momento” (nunca lo es).",
-      "Usas cosas ajenas sin preguntar.",
-      "Conviertes lo común en ligeramente incómodo."
-    ],
-    catchphrase: "“Bah, tampoco es para tanto”"
   },
   PAP: {
     emoji: "🐍",
@@ -285,10 +115,10 @@ const RAW_QUESTION_TRAITS = {
   "¿Has dicho “solo una cosa rápida” y luego hablaste diez minutos?": { NAR:4, DSC:1 },
   "¿Has contado una historia exagerando tu papel heroico?": { NAR:4, PAP:2 },
   "¿Has omitido un detalle importante para parecer más listo?": { NAR:4, RTS:2 },
-  "¿Has subido una story triste esperando mensajes de “¿qué te pasa?”?": { NAR:4, ADD:2 },
+  "¿Has subido una story triste esperando mensajes de “¿qué te pasa?”?": { NAR:4, PAP:2 },
   "¿Has mirado quién dio like antes de decidir si darlo tú también?": { NAR:4, PAP:1 },
   "¿Has corregido algo en Google solo para tener razón?": { NAR:4 },
-  "¿Has respondido tarde a propósito para parecer más importante?": { NAR:4, ADD:2 },
+  "¿Has respondido tarde a propósito para parecer más importante?": { NAR:4, PAP:2 },
   "¿Has contado algo esperando impresionar?": { NAR:4, PAP:2 },
   "¿Has pensado que alguien hablaba demasiado mientras tú hacías lo mismo?": { NAR:4, DSC:1 },
   "¿Has dicho 'no soy experto pero…' antes de opinar con seguridad?": { NAR:4, PAP:1 },
@@ -299,27 +129,27 @@ const RAW_QUESTION_TRAITS = {
   "¿Has contado un problema tuyo esperando que te dijeran “eres increíble por aguantar tanto”?": { NAR:4, PAP:2 },
   "¿Has mirado una foto de grupo y pensado primero “yo salgo bien, perfecto”?": { NAR:4, DSC:2 },
 
-  // Evasión / ghosting (ADD dominante)
-  "¿Has mirado el móvil para evitar una conversación incómoda?": { ADD:4, DSC:1 },
-  "¿Has respondido con un meme para evitar una conversación seria?": { ADD:4, PAP:1 },
-  "¿Has dicho “salgo ya” cuando aún estabas en pijama?": { ADD:4, RTS:2 },
-  "¿Has enviado “perdón por contestar tarde” mientras estabas en línea todo el día?": { ADD:4, RTS:2 },
-  "¿Has enviado un 'ok' seco para cerrar una conversación incómoda?": { ADD:4, PAP:2 },
-  "¿Has dejado una conversación grupal cuando se volvió incómoda?": { ADD:4, DSC:1 },
-  "¿Has soltado una bomba en un chat y luego lo silenciaste?": { ADD:4, TRL:2 },
-  "¿Has dejado de responder esperando que el problema desaparezca?": { ADD:4 },
-  "¿Has respondido con un GIF para no pensar una respuesta?": { ADD:4, PAP:1 },
-  "¿Has visto un mensaje importante y decidiste contestar 'luego'… y nunca llegó?": { ADD:4, RTS:2 },
-  "¿Has silenciado a alguien para no tener que interactuar con él?": { ADD:4 },
-  "¿Has entrado en línea para otra cosa pero evitaste responder a alguien?": { ADD:4, RTS:1 },
-  "¿Has visto un mensaje largo y has decidido que tu yo del futuro cargue con eso?": { ADD:4, PAP:1 },
-  "¿Has respondido “luego te cuento” para no contar absolutamente nada?": { ADD:4, PAP:2 },
-  "¿Has visto una llamada venir y has esperado a que colgara para escribir “¿todo bien?”?": { ADD:4, DSC:1 },
+  // Evasión / ghosting (reclasificadas en PAP/RTS/TRL/DSC)
+  "¿Has mirado el móvil para evitar una conversación incómoda?": { PAP:4, DSC:1 },
+  "¿Has respondido con un meme para evitar una conversación seria?": { PAP:4, RTS:1 },
+  "¿Has dicho “salgo ya” cuando aún estabas en pijama?": { RTS:4, PAP:2 },
+  "¿Has enviado “perdón por contestar tarde” mientras estabas en línea todo el día?": { PAP:4, RTS:2 },
+  "¿Has enviado un 'ok' seco para cerrar una conversación incómoda?": { PAP:4, RTS:1 },
+  "¿Has dejado una conversación grupal cuando se volvió incómoda?": { DSC:4, PAP:1 },
+  "¿Has soltado una bomba en un chat y luego lo silenciaste?": { TRL:4, PAP:2 },
+  "¿Has dejado de responder esperando que el problema desaparezca?": { PAP:4 },
+  "¿Has respondido con un GIF para no pensar una respuesta?": { PAP:4, RTS:1 },
+  "¿Has visto un mensaje importante y decidiste contestar 'luego'… y nunca llegó?": { RTS:4, PAP:2 },
+  "¿Has silenciado a alguien para no tener que interactuar con él?": { PAP:4 },
+  "¿Has entrado en línea para otra cosa pero evitaste responder a alguien?": { PAP:4, RTS:1 },
+  "¿Has visto un mensaje largo y has decidido que tu yo del futuro cargue con eso?": { PAP:4, DSC:1 },
+  "¿Has respondido “luego te cuento” para no contar absolutamente nada?": { PAP:4, RTS:2 },
+  "¿Has visto una llamada venir y has esperado a que colgara para escribir “¿todo bien?”?": { PAP:4, DSC:1 },
 
   // Torpeza social (DSC dominante)
-  "¿Has cruzado la calle para evitar una conversación incómoda?": { DSC:4, ADD:2 },
+  "¿Has cruzado la calle para evitar una conversación incómoda?": { DSC:4, PAP:2 },
   "¿Has saludado a alguien que no te estaba saludando a ti?": { DSC:4 },
-  "¿Has intentado salir de una conversación y te quedaste atrapado más tiempo?": { DSC:4, ADD:2 },
+  "¿Has intentado salir de una conversación y te quedaste atrapado más tiempo?": { DSC:4, PAP:2 },
   "¿Has hecho contacto visual incómodo demasiado tiempo?": { DSC:4 },
   "¿Has dicho algo y te arrepentiste justo después de decirlo?": { DSC:4, PAP:1 },
   "¿Has fingido que entendías un chiste y remataste con una risa fuera de tiempo?": { DSC:4 },
@@ -330,20 +160,20 @@ const RAW_QUESTION_TRAITS = {
   "¿Has dicho “tú también” al camarero?": { DSC:4 },
   "¿Has empezado a hablar y te has dado cuenta a mitad de que nadie te estaba escuchando?": { DSC:4 },
   "¿Has intentado irte de un sitio con naturalidad y casi vuelves a entrar por la puerta equivocada?": { DSC:4, NAR:1 },
-  "¿Has dicho un nombre con total seguridad y era otro completamente distinto?": { DSC:4, ADD:1 },
+  "¿Has dicho un nombre con total seguridad y era otro completamente distinto?": { DSC:4, PAP:1 },
 
-  // Convivencia / anarquía (FRC dominante)
-  "¿Has intentado colarte sutilmente en una fila?": { FRC:4, RTS:2 },
-  "¿Has usado “solo es un momento” para justificar algo molesto?": { FRC:4, RTS:2 },
-  "¿Has ocupado dos asientos con tu mochila?": { FRC:4, DSC:1 },
-  "¿Has abierto la nevera ajena y opinado?": { FRC:4, NAR:1 },
-  "¿Has dejado una puerta abierta sabiendo que molestaba?": { FRC:4 },
-  "¿Has ocupado un sitio “reservado”?": { FRC:4, RTS:2 },
-  "¿Has dejado basura “porque ya estaba sucio”?": { FRC:4, RTS:2 },
-  "¿Has hablado por teléfono en voz alta sin importar?": { FRC:4, NAR:1 },
-  "¿Has cambiado la música de todos sin preguntar porque la tuya era “mejor”?": { FRC:4, NAR:2 },
-  "¿Has puesto el móvil con sonido en un lugar silencioso porque “será un segundo”?": { FRC:4, RTS:2 },
-  "¿Has cogido sitio de más en el sofá como si fueras un emperador romano?": { FRC:4, DSC:1 },
+  // Convivencia / anarquía (reclasificadas en RTS)
+  "¿Has intentado colarte sutilmente en una fila?": { RTS:5 },
+  "¿Has usado “solo es un momento” para justificar algo molesto?": { RTS:5 },
+  "¿Has ocupado dos asientos con tu mochila?": { RTS:4, DSC:1 },
+  "¿Has abierto la nevera ajena y opinado?": { RTS:4, NAR:1 },
+  "¿Has dejado una puerta abierta sabiendo que molestaba?": { RTS:4 },
+  "¿Has ocupado un sitio “reservado”?": { RTS:5 },
+  "¿Has dejado basura “porque ya estaba sucio”?": { RTS:5 },
+  "¿Has hablado por teléfono en voz alta sin importar?": { RTS:4, NAR:1 },
+  "¿Has cambiado la música de todos sin preguntar porque la tuya era “mejor”?": { RTS:4, NAR:2 },
+  "¿Has puesto el móvil con sonido en un lugar silencioso porque “será un segundo”?": { RTS:5 },
+  "¿Has cogido sitio de más en el sofá como si fueras un emperador romano?": { RTS:4, DSC:1 },
 
   // Pasivo-agresivo (PAP dominante)
   "¿Has respondido “qué pena” sin sentirlo?": { PAP:4 },
@@ -364,13 +194,13 @@ const RAW_QUESTION_TRAITS = {
   "¿Has usado 'te lo digo por tu bien' antes de criticar?": { PAP:4, RTS:1 },
   "¿Has dicho “vale, perfecto” cuando en realidad estabas abriendo una lista mental de agravios?": { PAP:4, RTS:1 },
   "¿Has soltado un “qué valiente” que sonaba a elogio pero era veneno?": { PAP:4, TRL:1 },
-  "¿Has rematado un mensaje borde con un “😊” para fingir paz diplomática?": { PAP:4, ADD:1 },
+  "¿Has rematado un mensaje borde con un “😊” para fingir paz diplomática?": { PAP:4, RTS:1 },
 
   // Conveniencia / egoísmo estratégico (RTS dominante)
   "¿Has dicho “te aviso” sabiendo que no lo harías?": { RTS:4, PAP:2 },
   "¿Has devuelto una llamada solo porque necesitabas algo?": { RTS:4, NAR:2 },
   "¿Has fingido interés en una historia aburrida?": { RTS:4, DSC:1 },
-  "¿Has cogido la última porción con excusa?": { RTS:4, FRC:2 },
+  "¿Has cogido la última porción con excusa?": { RTS:4, DSC:1 },
   "¿Has criticado algo que en realidad te gusta?": { RTS:4, NAR:2 },
   "¿Has culpado al tráfico aunque saliste tarde?": { RTS:4, PAP:2 },
   "¿Has prometido algo que no cumplirías?": { RTS:4, PAP:2 },
@@ -382,13 +212,13 @@ const RAW_QUESTION_TRAITS = {
   "¿Has dicho “yo invito la próxima” esperando que se olvide?": { RTS:4, PAP:2 },
   "¿Has seguido una serie sin la persona con la que la veías?": { RTS:4 },
   "¿Has dicho “sí claro” esperando no hacerlo?": { RTS:4, PAP:2 },
-  "¿Has pedido “una prueba” y comido medio plato?": { RTS:4, FRC:2 },
-  "¿Has usado el cargador de alguien sin decir nada?": { RTS:4, FRC:1 },
-  "¿Has dicho “yo me encargo” y desaparecido?": { RTS:4, ADD:2 },
-  "¿Has dicho 'ya lo miraré' sabiendo que no lo harías?": { RTS:4, ADD:2 },
+  "¿Has pedido “una prueba” y comido medio plato?": { RTS:4, DSC:1 },
+  "¿Has usado el cargador de alguien sin decir nada?": { RTS:4, PAP:1 },
+  "¿Has dicho “yo me encargo” y desaparecido?": { RTS:4, PAP:2 },
+  "¿Has dicho 'ya lo miraré' sabiendo que no lo harías?": { RTS:4, PAP:2 },
   "¿Has dejado que otro cargue con tu culpa?": { RTS:4, TRL:2 },
-  "¿Has ido a comprar con gente y te has esfumado justo al repartir las bolsas?": { RTS:4, FRC:1 },
-  "¿Has dicho “luego te hago Bizum” esperando que la historia muriera ahí?": { RTS:4, FRC:2 },
+  "¿Has ido a comprar con gente y te has esfumado justo al repartir las bolsas?": { RTS:4, DSC:1 },
+  "¿Has dicho “luego te hago Bizum” esperando que la historia muriera ahí?": { RTS:4, PAP:2 },
   "¿Has ofrecido ayuda cuando ya estaba casi todo hecho?": { RTS:4, PAP:1 },
 
   // Troll / caos / drama (TRL dominante)
@@ -399,7 +229,7 @@ const RAW_QUESTION_TRAITS = {
   "¿Has dicho “no soy cotilla pero…” antes de cotillear?": { TRL:4 },
   "¿Has escuchado un chisme con interés fingiendo lo contrario?": { TRL:4, PAP:1 },
   "¿Has contado un secreto que te pidieron guardar?": { TRL:4, RTS:2 },
-  "¿Has reenviado un pantallazo privado?": { TRL:4, ADD:1 },
+  "¿Has reenviado un pantallazo privado?": { TRL:4, PAP:1 },
   "¿Has disfrutado viendo discusiones absurdas online?": { TRL:4 },
   "¿Has seguido un drama solo por morbo?": { TRL:4 },
   "¿Has metido cizaña y luego fingido sorpresa?": { TRL:4, PAP:2 },
@@ -409,6 +239,8 @@ const RAW_QUESTION_TRAITS = {
   "¿Has preguntado “qué ha pasado” sabiendo que eso iba a reactivar todo el drama?": { TRL:4, PAP:2 },
   "¿Has enviado un “uff” a un chat solo para que todos preguntaran qué pasaba?": { TRL:4, PAP:1 }
 };
+
+const QUESTIONS = Object.keys(RAW_QUESTION_TRAITS)
 // ------------------------------
 // Normalización conservadora
 // ------------------------------
@@ -457,22 +289,10 @@ const TRAIT_PENITENCES = {
     "Cuenta una anécdota tuya… pero cambiando el protagonista a otra persona ficticia sin avisar."
   ],
 
-  ADD: [
-    "Responde a todos tus mensajes durante 1 hora empezando por “HE LEÍDO TU MENSAJE Y HE DECIDIDO RESPONDER” en mayúsculas.",
-    "Envía un “sigo vivo” a 3 conversaciones que llevas ignorando días.",
-    "Durante 30 minutos, cada respuesta tuya debe tardar EXACTAMENTE 17 segundos (ni uno más, ni uno menos)."
-  ],
-
   DSC: [
     "Mantén contacto visual con alguien 2 segundos más de lo normal… y luego asiente lentamente.",
     "Empieza una conversación con: “No sé muy bien cómo empezar esto, pero aquí voy” y sigue sin explicar nada.",
     "Despídete de alguien… y vuelve a despedirte 10 segundos después como si nada."
-  ],
-
-  FRC: [
-    "Pulsa el botón del ascensor una sola vez… y luego susurra “confío en ti” mientras lo miras.",
-    "Deja pasar a alguien y haz un gesto exageradamente ceremonioso como si fueras un mayordomo.",
-    "Si estás en un sitio público, recoloca algo torcido con total seriedad como si fuera una misión crítica."
   ],
 
   PAP: [
@@ -741,11 +561,11 @@ function renderTraitRadar(traitScores) {
     const labelRadius = radius + 28
     const x = cx + Math.cos(angle) * labelRadius
     const y = cy + Math.sin(angle) * labelRadius
-    const textFRChor = x < cx - 10 ? "end" : x > cx + 10 ? "start" : "middle"
+    const textAnchor = x < cx - 10 ? "end" : x > cx + 10 ? "start" : "middle"
 
     return `
-      <text class="radar-label" x="${x.toFixed(2)}" y="${y.toFixed(2)}" text-FRChor="${textFRChor}">${code}</text>
-      <text class="radar-score" x="${x.toFixed(2)}" y="${(y + 14).toFixed(2)}" text-FRChor="${textFRChor}">${score.toFixed(1)}%</text>
+      <text class="radar-label" x="${x.toFixed(2)}" y="${y.toFixed(2)}" text-anchor="${textAnchor}">${code}</text>
+      <text class="radar-score" x="${x.toFixed(2)}" y="${(y + 14).toFixed(2)}" text-anchor="${textAnchor}">${score.toFixed(1)}%</text>
     `
   }).join("")
 
