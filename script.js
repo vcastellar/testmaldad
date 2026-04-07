@@ -26,23 +26,6 @@ const TRAIT_PROFILES = {
     ],
     catchphrase: "“No quiero ser el centro de atención… pero…”"
   },
-  ADD: {
-    emoji: "👻",
-    shortCode: "ADD",
-    title: "Agente del Desorden Digital",
-    summary: "No discutes, no afrontas, no aclaras… gestionas conflictos desapareciendo como un profesional.",
-    description: [
-      "Tu chat es un campo de minas: entras, no respondes; lees, ignoras; prometes, no cumples.",
-      "Tu especialidad es generar ansiedad digital sin decir ni una palabra.",
-      "No eres mala persona… pero emocionalmente eres un “ya si eso luego” constante."
-    ],
-    characteristics: [
-      "“Perdón por contestar tarde” (mentira).",
-      "Ghosting suave, elegante y sostenido.",
-      "Respuestas mínimas para cerrar temas incómodos."
-    ],
-    catchphrase: "“Acabo de ver esto” (estabas online toda la tarde)"
-  },
   DSC: {
     emoji: "🫠",
     shortCode: "DSC",
@@ -132,10 +115,10 @@ const RAW_QUESTION_TRAITS = {
   "¿Has dicho “solo una cosa rápida” y luego hablaste diez minutos?": { NAR:4, DSC:1 },
   "¿Has contado una historia exagerando tu papel heroico?": { NAR:4, PAP:2 },
   "¿Has omitido un detalle importante para parecer más listo?": { NAR:4, RTS:2 },
-  "¿Has subido una story triste esperando mensajes de “¿qué te pasa?”?": { NAR:4, ADD:2 },
+  "¿Has subido una story triste esperando mensajes de “¿qué te pasa?”?": { NAR:4, PAP:2 },
   "¿Has mirado quién dio like antes de decidir si darlo tú también?": { NAR:4, PAP:1 },
   "¿Has corregido algo en Google solo para tener razón?": { NAR:4 },
-  "¿Has respondido tarde a propósito para parecer más importante?": { NAR:4, ADD:2 },
+  "¿Has respondido tarde a propósito para parecer más importante?": { NAR:4, PAP:2 },
   "¿Has contado algo esperando impresionar?": { NAR:4, PAP:2 },
   "¿Has pensado que alguien hablaba demasiado mientras tú hacías lo mismo?": { NAR:4, DSC:1 },
   "¿Has dicho 'no soy experto pero…' antes de opinar con seguridad?": { NAR:4, PAP:1 },
@@ -146,27 +129,27 @@ const RAW_QUESTION_TRAITS = {
   "¿Has contado un problema tuyo esperando que te dijeran “eres increíble por aguantar tanto”?": { NAR:4, PAP:2 },
   "¿Has mirado una foto de grupo y pensado primero “yo salgo bien, perfecto”?": { NAR:4, DSC:2 },
 
-  // Evasión / ghosting (ADD dominante)
-  "¿Has mirado el móvil para evitar una conversación incómoda?": { ADD:4, DSC:1 },
-  "¿Has respondido con un meme para evitar una conversación seria?": { ADD:4, PAP:1 },
-  "¿Has dicho “salgo ya” cuando aún estabas en pijama?": { ADD:4, RTS:2 },
-  "¿Has enviado “perdón por contestar tarde” mientras estabas en línea todo el día?": { ADD:4, RTS:2 },
-  "¿Has enviado un 'ok' seco para cerrar una conversación incómoda?": { ADD:4, PAP:2 },
-  "¿Has dejado una conversación grupal cuando se volvió incómoda?": { ADD:4, DSC:1 },
-  "¿Has soltado una bomba en un chat y luego lo silenciaste?": { ADD:4, TRL:2 },
-  "¿Has dejado de responder esperando que el problema desaparezca?": { ADD:4 },
-  "¿Has respondido con un GIF para no pensar una respuesta?": { ADD:4, PAP:1 },
-  "¿Has visto un mensaje importante y decidiste contestar 'luego'… y nunca llegó?": { ADD:4, RTS:2 },
-  "¿Has silenciado a alguien para no tener que interactuar con él?": { ADD:4 },
-  "¿Has entrado en línea para otra cosa pero evitaste responder a alguien?": { ADD:4, RTS:1 },
-  "¿Has visto un mensaje largo y has decidido que tu yo del futuro cargue con eso?": { ADD:4, PAP:1 },
-  "¿Has respondido “luego te cuento” para no contar absolutamente nada?": { ADD:4, PAP:2 },
-  "¿Has visto una llamada venir y has esperado a que colgara para escribir “¿todo bien?”?": { ADD:4, DSC:1 },
+  // Evasión / ghosting (reclasificadas en PAP/RTS/TRL/DSC)
+  "¿Has mirado el móvil para evitar una conversación incómoda?": { PAP:4, DSC:1 },
+  "¿Has respondido con un meme para evitar una conversación seria?": { PAP:4, RTS:1 },
+  "¿Has dicho “salgo ya” cuando aún estabas en pijama?": { RTS:4, PAP:2 },
+  "¿Has enviado “perdón por contestar tarde” mientras estabas en línea todo el día?": { PAP:4, RTS:2 },
+  "¿Has enviado un 'ok' seco para cerrar una conversación incómoda?": { PAP:4, RTS:1 },
+  "¿Has dejado una conversación grupal cuando se volvió incómoda?": { DSC:4, PAP:1 },
+  "¿Has soltado una bomba en un chat y luego lo silenciaste?": { TRL:4, PAP:2 },
+  "¿Has dejado de responder esperando que el problema desaparezca?": { PAP:4 },
+  "¿Has respondido con un GIF para no pensar una respuesta?": { PAP:4, RTS:1 },
+  "¿Has visto un mensaje importante y decidiste contestar 'luego'… y nunca llegó?": { RTS:4, PAP:2 },
+  "¿Has silenciado a alguien para no tener que interactuar con él?": { PAP:4 },
+  "¿Has entrado en línea para otra cosa pero evitaste responder a alguien?": { PAP:4, RTS:1 },
+  "¿Has visto un mensaje largo y has decidido que tu yo del futuro cargue con eso?": { PAP:4, DSC:1 },
+  "¿Has respondido “luego te cuento” para no contar absolutamente nada?": { PAP:4, RTS:2 },
+  "¿Has visto una llamada venir y has esperado a que colgara para escribir “¿todo bien?”?": { PAP:4, DSC:1 },
 
   // Torpeza social (DSC dominante)
-  "¿Has cruzado la calle para evitar una conversación incómoda?": { DSC:4, ADD:2 },
+  "¿Has cruzado la calle para evitar una conversación incómoda?": { DSC:4, PAP:2 },
   "¿Has saludado a alguien que no te estaba saludando a ti?": { DSC:4 },
-  "¿Has intentado salir de una conversación y te quedaste atrapado más tiempo?": { DSC:4, ADD:2 },
+  "¿Has intentado salir de una conversación y te quedaste atrapado más tiempo?": { DSC:4, PAP:2 },
   "¿Has hecho contacto visual incómodo demasiado tiempo?": { DSC:4 },
   "¿Has dicho algo y te arrepentiste justo después de decirlo?": { DSC:4, PAP:1 },
   "¿Has fingido que entendías un chiste y remataste con una risa fuera de tiempo?": { DSC:4 },
@@ -177,7 +160,7 @@ const RAW_QUESTION_TRAITS = {
   "¿Has dicho “tú también” al camarero?": { DSC:4 },
   "¿Has empezado a hablar y te has dado cuenta a mitad de que nadie te estaba escuchando?": { DSC:4 },
   "¿Has intentado irte de un sitio con naturalidad y casi vuelves a entrar por la puerta equivocada?": { DSC:4, NAR:1 },
-  "¿Has dicho un nombre con total seguridad y era otro completamente distinto?": { DSC:4, ADD:1 },
+  "¿Has dicho un nombre con total seguridad y era otro completamente distinto?": { DSC:4, PAP:1 },
 
   // Convivencia / anarquía (reclasificadas en RTS)
   "¿Has intentado colarte sutilmente en una fila?": { RTS:5 },
@@ -211,7 +194,7 @@ const RAW_QUESTION_TRAITS = {
   "¿Has usado 'te lo digo por tu bien' antes de criticar?": { PAP:4, RTS:1 },
   "¿Has dicho “vale, perfecto” cuando en realidad estabas abriendo una lista mental de agravios?": { PAP:4, RTS:1 },
   "¿Has soltado un “qué valiente” que sonaba a elogio pero era veneno?": { PAP:4, TRL:1 },
-  "¿Has rematado un mensaje borde con un “😊” para fingir paz diplomática?": { PAP:4, ADD:1 },
+  "¿Has rematado un mensaje borde con un “😊” para fingir paz diplomática?": { PAP:4, RTS:1 },
 
   // Conveniencia / egoísmo estratégico (RTS dominante)
   "¿Has dicho “te aviso” sabiendo que no lo harías?": { RTS:4, PAP:2 },
@@ -231,8 +214,8 @@ const RAW_QUESTION_TRAITS = {
   "¿Has dicho “sí claro” esperando no hacerlo?": { RTS:4, PAP:2 },
   "¿Has pedido “una prueba” y comido medio plato?": { RTS:4, DSC:1 },
   "¿Has usado el cargador de alguien sin decir nada?": { RTS:4, PAP:1 },
-  "¿Has dicho “yo me encargo” y desaparecido?": { RTS:4, ADD:2 },
-  "¿Has dicho 'ya lo miraré' sabiendo que no lo harías?": { RTS:4, ADD:2 },
+  "¿Has dicho “yo me encargo” y desaparecido?": { RTS:4, PAP:2 },
+  "¿Has dicho 'ya lo miraré' sabiendo que no lo harías?": { RTS:4, PAP:2 },
   "¿Has dejado que otro cargue con tu culpa?": { RTS:4, TRL:2 },
   "¿Has ido a comprar con gente y te has esfumado justo al repartir las bolsas?": { RTS:4, DSC:1 },
   "¿Has dicho “luego te hago Bizum” esperando que la historia muriera ahí?": { RTS:4, PAP:2 },
@@ -246,7 +229,7 @@ const RAW_QUESTION_TRAITS = {
   "¿Has dicho “no soy cotilla pero…” antes de cotillear?": { TRL:4 },
   "¿Has escuchado un chisme con interés fingiendo lo contrario?": { TRL:4, PAP:1 },
   "¿Has contado un secreto que te pidieron guardar?": { TRL:4, RTS:2 },
-  "¿Has reenviado un pantallazo privado?": { TRL:4, ADD:1 },
+  "¿Has reenviado un pantallazo privado?": { TRL:4, PAP:1 },
   "¿Has disfrutado viendo discusiones absurdas online?": { TRL:4 },
   "¿Has seguido un drama solo por morbo?": { TRL:4 },
   "¿Has metido cizaña y luego fingido sorpresa?": { TRL:4, PAP:2 },
@@ -304,12 +287,6 @@ const TRAIT_PENITENCES = {
     "Durante 2 horas, cada vez que hables de ti debes añadir: “pero bueno, tampoco soy tan importante” en voz alta.",
     "Graba un audio diciendo: “Hoy voy a intentar no ser el protagonista” y envíaselo a alguien random de tus chats.",
     "Cuenta una anécdota tuya… pero cambiando el protagonista a otra persona ficticia sin avisar."
-  ],
-
-  ADD: [
-    "Responde a todos tus mensajes durante 1 hora empezando por “HE LEÍDO TU MENSAJE Y HE DECIDIDO RESPONDER” en mayúsculas.",
-    "Envía un “sigo vivo” a 3 conversaciones que llevas ignorando días.",
-    "Durante 30 minutos, cada respuesta tuya debe tardar EXACTAMENTE 17 segundos (ni uno más, ni uno menos)."
   ],
 
   DSC: [
